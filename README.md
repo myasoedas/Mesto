@@ -24,7 +24,6 @@
 * Минимальная ширина: 320px (одна карточка в ряд)
 * Максимальная ширина: 1280px (три карточки в ряд)
 * На странице присутствуют 6 карточек с фотографиями 
-* [Фотосток с бесплатными фото;](https://unsplash.com/)
 * Реализовать диалоговое окно  «Редактировать профиль» из макета
 * Реализовать обработку ситуации "переполнение содержимого в блоке"
 * Реализовать для иконки "сердечко" переход из ненажатого состояния в нажатое (закрашивается в черный цвет)
@@ -35,8 +34,10 @@
 #### Полезные ссылки:
 * [JavaScript - учебные материалы](https://developer.mozilla.org/ru/docs/Web/JavaScript)
 * [Дебагинг JavaScript](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error)
+* [Правила оформления коммитов](https://praktikum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/3753/topics/69f49b9d-7d5c-41f4-8938-e81fee61e549/lessons/4fcc091e-e8f2-4a6e-8cad-de34038b438b/)
 * [Сервис для поиска ответов на вопросы по вебразработке](https://stackoverflow.com/)
 * [Google-webfonts-helper](https://google-webfonts-helper.herokuapp.com/fonts)
+* [Фотосток с бесплатными фото;](https://unsplash.com/)
 * [Оптимизатор картинок](https://tinypng.com/)
 * [PerfectPixel](https://www.welldonecode.com/perfectpixel/)
 
