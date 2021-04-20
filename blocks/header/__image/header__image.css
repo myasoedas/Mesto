@@ -2,6 +2,28 @@
   margin: 28px auto 32px 27px;
   padding: 0;
 
-  min-width: 104px;
+  max-width: 104px;
+
+  width: 100%;
   height: auto;
+
+  object-fit: contain; /*выровнять изображение в границах блока с сохранением пропорций изображения*/
 }
+
+/*Медиазапрос - задать новые свойства блока для экранов с разрешением от 768px до 1023px*/
+@media (min-width: 880px) {
+  .header__image {
+    margin-top: 45px;
+    margin-bottom: 41px;
+    max-width: 142px;
+  }
+}
+
+/*Добавил отступ 27px, чтобы текст не прилипал к левому краю экрана
+Как только боковой отступ становится больше 27px - прижать логотип к левому краю*/
+@media (min-width: 907px) {
+  .header__image {
+    margin-left: 0;
+  }
+}
+

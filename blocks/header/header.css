@@ -2,13 +2,12 @@
   margin: 0;
   padding: 0;
 
-  display: grid; /*создать грид контейнер*/
+  display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;
-  gap: 0; /*отступ от элемента*/
+  gap: 0;
 
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: rgba(84, 84, 84, 0.7);
-
 }
