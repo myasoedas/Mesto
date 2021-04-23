@@ -11,6 +11,8 @@
 
 @import url(../blocks/profile/profile.css);
 
+@import url(../blocks/grid-of-cards/grid-of-cards.css);
+
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
