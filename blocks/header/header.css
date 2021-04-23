@@ -1,4 +1,6 @@
 .header {
+  grid-area: header;
+
   margin: 0;
   padding: 0;
 

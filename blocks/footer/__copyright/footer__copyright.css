@@ -1,0 +1,21 @@
+.footer__copyright {
+  margin: 0;
+  padding: 0;
+
+  color: #545454;
+
+  font-family: inherit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@media (max-width: 581px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
