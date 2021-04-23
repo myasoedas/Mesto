@@ -1,0 +1,12 @@
+.profile {
+  grid-area: profile;
+
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr auto 1fr;
+  grid-template-rows: 1fr;
+  row-gap: 0;
+  column-gap: 0;
+}
