@@ -1,0 +1,18 @@
+/*блок img - лайк - сердечко с незаполненным фоном*/
+.element__like {
+  margin: 0;
+  padding: 0;
+
+  width: 22px;
+  height: auto;
+
+  justify-self: end; /*по горизонтали: прижать к правому краю столбца*/
+  align-self: center; /*по вертикали: выровнять по центру строки*/
+
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.element__like:hover {
+  opacity: 0.5;
+}

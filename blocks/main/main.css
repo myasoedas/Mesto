@@ -1,20 +1,17 @@
 .main {
-  grid-area: main;
-
   margin: 0;
   padding: 0;
 
-  background: #000000;
+  font-family: inherit;
+
+  background: inherit;
 
   max-width: inherit;
   width: 100%;
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: row; /*автоматически добавлять неявные строки*/
   row-gap: 40px;
   column-gap: 0;
-  grid-template-areas:
-  "profile"
-  "grid-of-cards";
 }
