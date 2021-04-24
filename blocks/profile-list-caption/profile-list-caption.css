@@ -1,0 +1,26 @@
+/*блок ul - содержит ФИО путешественника и кнопку для редактирования профиля*/
+.profile-list-caption {
+  margin: 0;
+  padding: 0;
+
+  list-style: none; /*убрать маркеры*/
+
+  font-family: inherit;
+
+  background: inherit;
+
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content);
+  grid-template-rows: auto;
+  gap: 0;
+  justify-content: start;
+  align-content: center;
+}
+
+@media (max-width: 775px) {
+  .profile-list-caption {
+
+    justify-self: center;
+    align-self: start;
+  }
+}

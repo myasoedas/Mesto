@@ -1,9 +1,11 @@
-.footer__copyright {
-  margin: 0;
+/*блок p - содержит информацию о том чем занимается путешественник*/
+.profile-list-caption__text {
+  margin: 16px 0 0 0;
   padding: 0;
 
-  color: #545454;
+  color: inherit;
 
+  /*Настройки отображения текста*/
   font-family: inherit;
   font-size: 18px;
   font-style: normal;
@@ -16,11 +18,19 @@
   -webkit-font-smoothing: antialiased; /*сглаживание шрифтов в Safari и во всех браузерах на платформе Chromium*/
   -moz-osx-font-smoothing: grayscale; /*сглаживание шрифтов в Mozilla Firefox*/
 
+  justify-self: start;
+  align-self: start;
 }
 
-@media (max-width: 581px) {
-  .footer__copyright {
+@media (max-width: 775px) {
+  .profile-list-caption__text {
+    margin: 14px 0 0 0;
+
     font-size: 14px;
     line-height: 17px;
+    text-align: center;
+
+    justify-self: center;
+    align-self: start;
   }
 }

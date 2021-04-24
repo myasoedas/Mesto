@@ -1,0 +1,22 @@
+/*блок img - содержит изображение путешественника в круглой рамке*/
+.profile-list__image {
+  margin: 0;
+  padding: 0;
+
+  width: 120px;
+  height: auto;
+
+  border-radius: 50%; /*вписать изображение в круг*/
+
+  object-fit: contain; /*подогнать ихображение под размер контейнера с сохранением пропорций*/
+
+  justify-self: start;
+  align-self: center;
+}
+
+@media (max-width: 775px) {
+  .profile-list__image {
+    justify-self: center;
+    align-self: center;
+  }
+}

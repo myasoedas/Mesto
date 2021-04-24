@@ -1,15 +1,9 @@
-/*секция с профилем путешественника*/
-.profile {
+/*блок li - содержит аватар путешественника - блок img*/
+.profile-list__avatar {
   margin: 0;
   padding: 0;
 
-  font-family: inherit;
-  color: #FFFFFF;
-
   background: inherit;
-
-  max-width: inherit;
-  width: 100%;
 
   display: grid;
   grid-template-columns: 1fr;

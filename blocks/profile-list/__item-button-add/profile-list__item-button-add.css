@@ -1,0 +1,15 @@
+/*блок li - содержит блок button-add*/
+.profile-list__item-button-add {
+  margin: 0;
+  padding: 0;
+
+  background: inherit;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0;
+
+  justify-content: end;
+  align-content: center;
+}

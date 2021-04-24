@@ -1,0 +1,25 @@
+/*блок li - содержит блок h1 и button-edit, которые необходимо разместить друг за другом по горизонтали*/
+.profile-list-caption__item-title {
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+
+  background: inherit;
+
+  display: grid;
+  grid-template-columns: auto 24px;
+  grid-template-rows: 1fr;
+  gap: 20px;
+  justify-content: start;
+  align-content: end;
+}
+
+@media (max-width: 775px) {
+  .profile-list-caption__item-title {
+    margin: 22px 0 0 0;
+
+    justify-self: center;
+    align-self: start;
+  }
+}

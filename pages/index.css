@@ -10,6 +10,18 @@
 @import url(../blocks/main/main.css);
 
 @import url(../blocks/profile/profile.css); /*секция с профилем путешественника*/
+@import url(../blocks/profile-list/profile-list.css); /*блок ul - список параметров, описывающих путешественника*/
+@import url(../blocks/profile-list/__avatar/profile-list__avatar.css); /*блок li - содержит аватар путешественника - блок img*/
+@import url(../blocks/profile-list/__image/profile-list__image.css); /*блок img - содержит изображение путешественника в круглой рамке*/
+@import url(../blocks/profile-list-caption/profile-list-caption.css); /*блок ul - содержит ФИО путешественника и кнопку для редактирования профиля*/
+@import url(../blocks/profile-list-caption/__item-title/profile-list-caption__item-title.css); /*блок li - содержит блок h1 и button-edit, которые необходимо разместить друг за другом по горизонтали*/
+@import url(../blocks/profile-list-caption/__title/profile-list-caption__title.css); /*блок h1 - содержит заголовок с ФИО путешественника*/
+@import url(../blocks/profile-list-caption/__button-edit/profile-list-caption__button-edit.css); /*блок button - button-edit - кнопка для редактирования профиля путешественика*/
+@import url(../blocks/profile-list-caption/__item-text/profile-list-caption__item-text.css); /*блок li - содержит блок p с информацией о том чем занимается путешественник*/
+@import url(../blocks/profile-list-caption/__text/profile-list-caption__text.css); /*блок p - содержит информацию о том чем занимается путешественник*/
+@import url(../blocks/profile-list/__item-button-add/profile-list__item-button-add.css); /*блок li - содержит блок button-add*/
+@import url(../blocks/profile-list/__button-add/profile-list__button-add.css);
+
 
 @import url(../blocks/elements/elements.css); /*секция со списком мест, где побывал путешественник*/
 @import url(../blocks/list-elements/list-elements.css); /*блок ul - список мест, где побывал путешественник*/
