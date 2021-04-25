@@ -1,5 +1,5 @@
 /*блок h1 - содержит заголовок с ФИО путешественника, необходимо поставить защиту от переполнения и запретить перенос слов*/
-.profile-list-caption__title {
+.profile__title {
   margin: 0;
   padding: 0;
 
@@ -27,7 +27,8 @@
 }
 
 @media (max-width: 775px) {
-  .profile-list-caption__title {
+  .profile__title {
+    margin: 26px 0 0 0;
     font-size: 27px;
     font-style: normal;
     font-weight: 500;
@@ -36,7 +37,7 @@
     text-align: center;
 
     justify-self: center;
-    align-self: start;
+    align-self: center;
   }
 }
 

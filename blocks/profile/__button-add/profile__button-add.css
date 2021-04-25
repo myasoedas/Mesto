@@ -1,5 +1,5 @@
 /*блок button-add*/
-.profile-list__button-add {
+.profile__button-add {
   margin: 0;
   padding: 0;
 
@@ -16,13 +16,13 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.profile-list__button-add:hover {
+.profile__button-add:hover {
   opacity: 0.5;
 }
 
 
 @media (max-width: 775px) {
-  .profile-list__button-add {
+  .profile__button-add {
     margin: 36px 0 0 0;
     width: 100%;
     justify-content: center;

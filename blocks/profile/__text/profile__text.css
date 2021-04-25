@@ -1,6 +1,6 @@
 /*блок p - содержит информацию о том чем занимается путешественник*/
-.profile-list-caption__text {
-  margin: 16px 0 0 0;
+.profile__text {
+  margin: 0;
   padding: 0;
 
   color: inherit;
@@ -23,8 +23,8 @@
 }
 
 @media (max-width: 775px) {
-  .profile-list-caption__text {
-    margin: 14px 0 0 0;
+  .profile__text {
+    margin: 0;
 
     font-size: 14px;
     line-height: 17px;

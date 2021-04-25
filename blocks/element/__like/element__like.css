@@ -4,12 +4,17 @@
   padding: 0;
 
   width: 22px;
-  height: auto;
+  height: 19px;
 
   justify-self: end; /*по горизонтали: прижать к правому краю столбца*/
   align-self: center; /*по вертикали: выровнять по центру строки*/
 
+  background: no-repeat center url("../../../images/like-disabled.svg");
+  background-color: inherit;
   cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-size: 0;
 
   opacity: 1;
   transition: opacity 0.5s ease-in-out;

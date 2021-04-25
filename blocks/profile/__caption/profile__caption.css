@@ -1,0 +1,24 @@
+/*блок div - содержит в первой строке блок div с описанием и кнопкой edit, во второй строке описание*/
+.profile__caption {
+  margin: 0;
+  padding: 0;
+
+  background: inherit;
+  color: inherit;
+  font-family: inherit;
+
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  gap: 16px 0;
+  justify-content: start;
+  align-content: start;
+}
+
+@media (max-width: 775px) {
+  .profile__caption {
+    gap: 14px 0;
+    justify-content: center;
+    align-content: center;
+  }
+}
