@@ -9,6 +9,8 @@
   justify-self: end; /*по горизонтали: прижать к правому краю столбца*/
   align-self: center; /*по вертикали: выровнять по центру строки*/
 
+  cursor: pointer;
+
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
