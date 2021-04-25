@@ -1,0 +1,18 @@
+/*элемент h2 - заголовок формы*/
+.edit-form__title {
+  margin: 0 0 45px 0;
+  padding: 0;
+
+  color: inherit;
+
+  font-family: inherit;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  justify-self: start; /*по горизонтали: прижать элемент к левому краю*/
+  align-self: start; /*по вертикали: выровнять элемент по центру*/
+}

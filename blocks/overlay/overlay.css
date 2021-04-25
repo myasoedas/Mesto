@@ -1,0 +1,24 @@
+/*блок div - полупрозрачный фон на весь экран для затемнения основного контента, на его фоне будет отображен popup*/
+.overlay {
+  width:100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  overflow:hidden; /*контент обрезается, без предоставления прокрутки.*/
+  position:fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: 0;
+  justify-content: center;
+  align-content: center;
+
+  display: none; /*пока кнопка не нажата overlay не отображается*/
+}

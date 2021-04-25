@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="description" content="Mesto - веб сервис, где можно выкладывать фото о путешествиях и ставить лайки.">
+  <meta name="description" content="Можно выкладывать фото о путешествиях, а подписчитки будут ставить лайки, если им понравились фотографии.">
   <meta name="keywords" content="люди, путешествие, место, фотография, лайки">
   <meta name="author" content="Мясоед Александр">
 
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
 
-  <title>Mesto - веб сервис, где можно выкладывать фото о путешествиях и ставить лайки</title>
+  <title>Mesto - веб сервис для путешественников</title>
 </head>
 <body class="page">
 
@@ -131,7 +131,15 @@
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
 
-
+<div class="overlay">
+  <form class="edit-form">
+    <h2 class="edit-form__title">Редактировать профиль</h2>
+    <input class="edit-form__field" type="text" placeholder="Александр Мясоед">
+    <input class="edit-form__field" type="text" placeholder='Студент 25-ivory-group курса "Веб-разработчик" от Яндекс Практикума'>
+    <button class="edit-form__button-save">Сохранить</button>
+    <button class="edit-form__button-close"></button>
+  </form>
+</div>
 
 </body>
 </html>
