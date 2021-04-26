@@ -19,6 +19,4 @@
   gap: 0;
   justify-content: center;
   align-content: center;
-
-  display: none; /*пока кнопка не нажата overlay не отображается*/
 }

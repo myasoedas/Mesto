@@ -33,6 +33,7 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @import url(../blocks/overlay/overlay.css); /*блок div - полупрозрачный фон на весь экран для затемнения основного контента, на его фоне будет отображен popup*/
+@import url(../blocks/overlay/__display/overlay__display.css);
 @import url(../blocks/edit-form/edit-form.css); /*блок form - содержит все элементы формы в один столбец*/
 @import url(../blocks/edit-form/__title/edit-form__title.css);
 @import url(../blocks/edit-form/__field/edit-form__field.css);
