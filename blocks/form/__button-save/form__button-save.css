@@ -1,11 +1,14 @@
 /*элемент button-save размещен в popup черный фон белые буквы*/
-.edit-form__button-save {
+.form__button-save {
   margin: 0;
   padding: 0;
 
   background: #000000;
   border: none;
   cursor: pointer;
+
+  width: 358px;
+  height: 50px;
 
   color: #FFFFFF;
 
@@ -17,11 +20,14 @@
   letter-spacing: 0em;
   text-align: center;
 
+  justify-self: start;
+  align-self: end;
+
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
 
-.edit-form__button-save:hover {
+.form__button-save:hover {
   opacity: 0.5;
 }
 

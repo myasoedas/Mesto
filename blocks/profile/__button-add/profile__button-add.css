@@ -8,6 +8,8 @@
 
   background: no-repeat center url("../../../images/button-add.svg");
 
+  border: 2px solid #FFFFFF;
+
   cursor: pointer;
   justify-self: end;
   align-self: center;

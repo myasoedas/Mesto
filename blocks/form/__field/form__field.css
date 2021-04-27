@@ -1,5 +1,5 @@
 /*элемент input - поле для ввода данных в popup, снизу нижняя граница, курсор по центру поля*/
-.edit-form__field {
+.form__field {
   margin: 0;
   padding: 0;
 

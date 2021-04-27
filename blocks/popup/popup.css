@@ -1,0 +1,32 @@
+/*блок div - содержит все, что находится внутри popup: форма с полями и кнопкой сохранить, кнопка закрытия popup*/
+.popup {
+  margin: 0 auto;
+  padding: 0;
+
+  width: 430px;
+  height: 330px;
+
+  background: #FFFFFF;
+  border-radius: 8px;
+
+  position: relative;
+
+  color: inherit;
+  font-family: inherit;
+
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: 0;
+  justify-content: center;
+  align-content: end;
+}
+
+@media (max-width: 470px) {
+  .popup {
+    width: 282px;
+    height: 322px;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
+}

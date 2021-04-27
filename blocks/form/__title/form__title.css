@@ -1,6 +1,6 @@
 /*элемент h2 - заголовок формы*/
-.edit-form__title {
-  margin: 0 0 45px 0;
+.form__title {
+  margin: 0;
   padding: 0;
 
   color: inherit;

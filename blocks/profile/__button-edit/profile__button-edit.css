@@ -7,6 +7,8 @@
   height: 24px;
 
   background: no-repeat center url("../../../images/button-edit.svg");
+  border: 1px solid #FFFFFF;
+
 
   cursor: pointer;
   justify-self: start;
