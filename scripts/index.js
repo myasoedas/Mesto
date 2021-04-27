@@ -1,4 +1,4 @@
-/* Установить слушатель на событие clic по кнопке button-edit */
+/* Установить слушатель на событие clic по кнопке button*/
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonClose = document.querySelector('.popup__button-close');
 const buttonSave = document.querySelector('.form__button-save');

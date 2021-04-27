@@ -5,6 +5,11 @@
 
   color: inherit;
 
+  white-space: nowrap; /*запретить перенос слов в блоке*/
+  text-overflow: ellipsis; /*текст обрезается и к концу строки добавляется многоточие*/
+  overflow: hidden; /*отображается только область внутри элемента, остальное будет скрыто*/
+
+
   /*Настройки отображения текста*/
   font-family: inherit;
   font-size: 18px;
@@ -13,10 +18,6 @@
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-
-  /*Сглаживание шрифтов*/
-  -webkit-font-smoothing: antialiased; /*сглаживание шрифтов в Safari и во всех браузерах на платформе Chromium*/
-  -moz-osx-font-smoothing: grayscale; /*сглаживание шрифтов в Mozilla Firefox*/
 
   justify-self: start;
   align-self: start;
