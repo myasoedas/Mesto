@@ -1,35 +1,43 @@
 /* Установить слушатель на событие clic по кнопке button-edit */
-let buttonEdit = document.querySelector('.profile__button-edit');
+const buttonEdit = document.querySelector('.profile__button-edit');
+const buttonClose = document.querySelector('.popup__button-close');
+const buttonSave = document.querySelector('.form__button-save');
 
-let buttoneClose = document.querySelector('.edit-form__button-close');
+function openPopup() {
+  let title = document.querySelector('.profile__title');
+  let text = document.querySelector('.profile__text');
 
-let buttonSave = document.querySelector('.edit-form__button-save');
+  captionEdit = document.querySelectorAll('.form__field');
+  captionEdit[0].setAttribute('value', title.textContent);
+  captionEdit[1].setAttribute('value', text.textContent);
 
-
-function displayOverlay() {
-  console.log('Клик по button-edit');
-
-  console.log('конец функции');
+  overlay = document.querySelector('.overlay');
+  overlay.classList.toggle('overlay_is-opened');
 }
 
-function displayOverlay2() {
-  console.log('Клик по button-close');
-
-  console.log('конец функции');
+function closePopup() {
+  overlay = document.querySelector('.overlay');
+  overlay.classList.toggle('overlay_is-opened');
 }
 
-function saveForm() {
-  evt.preventDefault();
+function saveForm(event) {
+  event.preventDefault();
 
-  console.log('Клик по button-Save');
+  let title = document.querySelector('.profile__title');
+  let text = document.querySelector('.profile__text');
 
-  console.log('конец функции');
+  captionEdit = document.querySelectorAll('.form__field');
+  title.textContent = captionEdit[0].value;
+  text.textContent = captionEdit[1].value;
+
+  overlay = document.querySelector('.overlay');
+  overlay.classList.toggle('overlay_is-opened');
 }
 
 
-buttonEdit.addEventListener('click', displayOverlay);
+buttonEdit.addEventListener('click', openPopup);
 
-buttoneClose.addEventListener('click', displayOverlay2);
+buttonClose.addEventListener('click', closePopup);
 
 buttonSave.addEventListener('click', saveForm);
 

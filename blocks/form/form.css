@@ -24,7 +24,9 @@
 
 @media (max-width: 470px) {
   .form {
+    margin: 25px 22px;
     grid-template-rows: auto auto auto 46px;
     gap: 45px 0;
   }
 }
+

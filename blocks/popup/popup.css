@@ -1,6 +1,6 @@
 /*блок div - содержит все, что находится внутри popup: форма с полями и кнопкой сохранить, кнопка закрытия popup*/
 .popup {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 
   width: 430px;
@@ -20,6 +20,9 @@
   gap: 0;
   justify-content: center;
   align-content: end;
+
+  justify-self: center;
+  align-self: center;
 }
 
 @media (max-width: 470px) {

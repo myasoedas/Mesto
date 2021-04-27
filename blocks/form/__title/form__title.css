@@ -16,3 +16,11 @@
   justify-self: start; /*по горизонтали: прижать элемент к левому краю*/
   align-self: start; /*по вертикали: выровнять элемент по центру*/
 }
+
+@media (max-width: 470px) {
+  .form__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+

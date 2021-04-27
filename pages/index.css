@@ -33,6 +33,7 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @import url(../blocks/overlay/overlay.css); /*блок div - полупрозрачный фон на весь экран для затемнения основного контента, на его фоне будет отображен popup*/
+@import url(../blocks/overlay/overlay_is-opened.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);

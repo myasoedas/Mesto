@@ -23,3 +23,11 @@
 .popup__button-close:hover {
   opacity: 0.5;
 }
+
+@media (max-width: 470px) {
+  .popup__button-close {
+    width: 26px;
+    height: 26px;
+    right: 0;
+  }
+}
