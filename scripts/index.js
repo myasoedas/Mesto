@@ -2,7 +2,7 @@
 /*Использовать let при объявлении переменной, значение которой будет изменяться во время работы со страницей index.html*/
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonClose = document.querySelector('.popup__button-close');
-const buttonSave = document.querySelector('.form__button-save');
+const formSave = document.querySelector('.form');
 
 const title = document.querySelector('.profile__title');
 const text = document.querySelector('.profile__text');
@@ -43,6 +43,6 @@ function saveForm(event) {
 /*подключить слушатели к кнопкам*/
 buttonEdit.addEventListener('click', openPopup); /*при нажатии на кнопку button-edit - выполнить функцию openPopup()*/
 buttonClose.addEventListener('click', closePopup); /*при нажатии на кнопку button-close - выполнить функцию closePopup()*/
-buttonSave.addEventListener('click', saveForm); /*при нажатии на кнопку button-save - выполнить функцию saveForm()*/
+formSave.addEventListener('submit', saveForm); /*при нажатии на кнопку button-save - отправить данные формы, выполнить функцию saveForm()*/
 
 
