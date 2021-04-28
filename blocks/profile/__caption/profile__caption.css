@@ -2,18 +2,15 @@
 .profile__caption {
   margin: 0;
   padding: 0;
-
   background: inherit;
   color: inherit;
   font-family: inherit;
-
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto;
   gap: 16px 0;
   justify-content: start;
   align-content: start;
-
   white-space: nowrap; /*запретить перенос слов в блоке*/
   text-overflow: ellipsis; /*текст обрезается и к концу строки добавляется многоточие*/
   overflow: hidden; /*отображается только область внутри элемента, остальное будет скрыто*/

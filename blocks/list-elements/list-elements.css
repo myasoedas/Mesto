@@ -2,9 +2,7 @@
 .list-elements {
   margin: 0;
   padding: 0;
-
   background: inherit;
-
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: repeat(auto-fit, 361px);

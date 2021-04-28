@@ -2,15 +2,12 @@
 .profile__caption-title {
   margin: 0;
   padding: 0;
-
   background: inherit;
   color: inherit;
   font-family: inherit;
-
   white-space: nowrap; /*запретить перенос слов в блоке*/
   text-overflow: ellipsis; /*текст обрезается и к концу строки добавляется многоточие*/
   overflow: hidden; /*отображается только область внутри элемента, остальное будет скрыто*/
-
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
@@ -25,6 +22,5 @@
     grid-template-rows: auto;
     gap: 0 14px;
     justify-content: center;
-    align-content: center;
   }
 }

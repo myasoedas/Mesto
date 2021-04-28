@@ -3,14 +3,10 @@
   /*margin: 30px 20px;*/
   margin: 24px 20px;
   padding: 0;
-
   background: #FFFFFF; /*взять цвет фона у родительского блока*/
-
   max-width: 246px;
-
   font-family: 'Inter', Arial, sans-serif;
   color:#000000;
-
   /*задать параметры грид контейнера*/
   /*2 - столбца, 1 строка, размеры точно указаны и не меняются ни при каких обстоятелствах*/
   display: grid;

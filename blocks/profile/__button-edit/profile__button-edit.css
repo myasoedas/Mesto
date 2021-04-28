@@ -2,18 +2,13 @@
 .profile__button-edit {
   margin: 0;
   padding: 0;
-
   width: 24px;
   height: 24px;
-
   background: no-repeat center url("../../../images/button-edit.svg");
   border: 1px solid #FFFFFF;
-
-
   cursor: pointer;
   justify-self: start;
   align-self: center;
-
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
@@ -22,14 +17,11 @@
   opacity: 0.6;
 }
 
-
 @media (max-width: 775px) {
   .profile__button-edit {
     margin: 36px 0 0 0;
-
     width: 18px;
     height: 18px;
-
     justify-self: center;
     align-self: start;
   }

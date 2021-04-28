@@ -2,9 +2,7 @@
 .form__title {
   margin: 0;
   padding: 0;
-
   color: inherit;
-
   font-family: inherit;
   font-size: 24px;
   font-style: normal;
@@ -12,7 +10,6 @@
   line-height: 29px;
   letter-spacing: 0em;
   text-align: left;
-
   justify-self: start; /*по горизонтали: прижать элемент к левому краю*/
   align-self: start; /*по вертикали: выровнять элемент по центру*/
 }

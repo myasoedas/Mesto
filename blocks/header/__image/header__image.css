@@ -1,12 +1,9 @@
 .header__image {
   margin: 28px auto 32px 0;
   padding: 0;
-
   max-width: 104px;
-
   width: 100%;
   height: auto;
-
   object-fit: contain; /*выровнять изображение в границах блока с сохранением пропорций изображения*/
 }
 

@@ -2,8 +2,6 @@
 .element__image {
   margin: 0;
   padding: 0;
-
   border-radius: 10px 10px 0 0;
-
   object-fit: contain; /*выровнять изображение в границах блока с сохранением пропорций изображения*/
 }
