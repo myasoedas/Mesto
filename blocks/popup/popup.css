@@ -28,8 +28,5 @@
 @media (max-width: 470px) {
   .popup {
     width: 282px;
-    height: 322px;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
   }
 }
