@@ -4,15 +4,9 @@
   margin: 24px 20px;
   padding: 0;
 
-  list-style: none; /*убрать маркеры*/
-
   background: #FFFFFF; /*взять цвет фона у родительского блока*/
 
   max-width: 246px;
-
-  /*Сглаживание шрифтов*/
-  -webkit-font-smoothing: antialiased; /*сглаживание шрифтов в Safari и во всех браузерах на платформе Chromium*/
-  -moz-osx-font-smoothing: grayscale; /*сглаживание шрифтов в Mozilla Firefox*/
 
   font-family: 'Inter', Arial, sans-serif;
   color:#000000;
