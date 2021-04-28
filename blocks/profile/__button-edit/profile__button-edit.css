@@ -1,6 +1,6 @@
 /*блок button - button-edit - кнопка для редактирования профиля путешественика*/
 .profile__button-edit {
-  margin: 7px 0 0 0;
+  margin: 0;
   padding: 0;
 
   width: 24px;
