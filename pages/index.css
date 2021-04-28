@@ -19,7 +19,6 @@
 @import url(../blocks/profile/__text/profile__text.css); /*блок p - содержит информацию о том чем занимается путешественник*/
 @import url(../blocks/profile/__button-add/profile__button-add.css);
 
-@import url(../blocks/elements/elements.css); /*секция со списком мест, где побывал путешественник*/
 @import url(../blocks/list-elements/list-elements.css); /*блок ul - список мест, где побывал путешественник*/
 @import url(../blocks/element/element.css); /*блок li - элемент списка - место где побывал путешественник*/
 @import url(../blocks/element/__image/element__image.css); /*блок img - изображение элемента*/
