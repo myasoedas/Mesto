@@ -20,3 +20,9 @@
     line-height: 17px;
   }
 }
+
+@media (max-width: 880px) {
+  .footer__copyright {
+    padding-left: 19px;
+  }
+}

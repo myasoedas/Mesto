@@ -11,8 +11,4 @@
   column-gap: 0;
 }
 
-@media (max-width: 899px) {
-  .page {
-    margin: 0 19px;
-  }
-}
+
