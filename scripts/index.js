@@ -7,6 +7,8 @@ const formSave = document.querySelector('.form');
 const title = document.querySelector('.profile__title');
 const text = document.querySelector('.profile__text');
 
+/*Marina Lukianova: Я не понимаю в чем ошибка в названии модификатора. Вы запретили использовать массив, я его убрал, сделал модификатор конкретные под каждый input*/
+/*Объясните, не понимаю ход вашей мысли: о каких булевых значениях идет речь? */
 const fieldName = document.querySelector('.form__field_name');
 const fieldCaption = document.querySelector('.form__field_caption');
 

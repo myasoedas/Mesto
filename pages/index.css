@@ -23,8 +23,6 @@
 @import url(../blocks/element/element.css); /*блок li - элемент списка - место где побывал путешественник*/
 @import url(../blocks/element/__image/element__image.css); /*блок img - изображение элемента*/
 @import url(../blocks/element/__caption/element__caption.css); /*блок ul - список описательных параметров места*/
-@import url(../blocks/element/__caption-title/element__caption-title.css); /*блок li - заголовок h2 с названием места*/
-@import url(../blocks/element/__caption-like/element__caption-like.css); /*блок li - содержит блок img с незакрашенным сердечком, которое закрашивается при установке лайка*/
 @import url(../blocks/element/__title/element__title.css); /*блок h2 - заголовок с названием места*/
 @import url(../blocks/element/__like/element__like.css); /*блок button - лайк - сердечко с незаполненным фоном*/
 
