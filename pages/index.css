@@ -19,10 +19,13 @@
 @import url(../blocks/profile/__text/profile__text.css); /*блок p - содержит информацию о том чем занимается путешественник*/
 @import url(../blocks/profile/__button-add/profile__button-add.css);
 
-@import url(../blocks/list-elements/list-elements.css); /*блок ul - список мест, где побывал путешественник*/
-@import url(../blocks/element/element.css); /*блок li - элемент списка - место где побывал путешественник*/
+@import url(../blocks/elements/elements.css); /*блок section - содержит список ul элементов списка li с карточками, обернутыми в блок div*/
+@import url(../blocks/elements/__list/elements__list.css); /*блок ul - список элементов li с карточками, обернутыми в блок div*/
+@import url(../blocks/elements/__item/elements__item.css); /*блок li - элемент списка, который содержит блок element - карточку места, обернутую в блок div*/
+
+@import url(../blocks/element/element.css); /*блок div - карточка - место где побывал путешественник*/
 @import url(../blocks/element/__image/element__image.css); /*блок img - изображение элемента*/
-@import url(../blocks/element/__caption/element__caption.css); /*блок ul - список описательных параметров места*/
+@import url(../blocks/element/__caption/element__caption.css); /*блок div - список описательных параметров места*/
 @import url(../blocks/element/__title/element__title.css); /*блок h2 - заголовок с названием места*/
 @import url(../blocks/element/__like/element__like.css); /*блок button - лайк - сердечко с незаполненным фоном*/
 
