@@ -2,6 +2,7 @@
 /*Использовать let при объявлении переменной, значение которой будет изменяться во время работы со страницей index.html*/
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonClose = document.querySelector('.popup__button-close');
+const buttonDelElement = document.querySelector('.element__del-element');
 const formSave = document.querySelector('.form');
 
 const title = document.querySelector('.profile__title');
@@ -21,7 +22,6 @@ function overlayToggle() {
 function openPopup() {
   fieldName.value = title.textContent;
   fieldCaption.value = text.textContent;
-
   overlayToggle();
 }
 
@@ -33,16 +33,19 @@ function closePopup() {
 /*Записать данные введенные пользователем в полях name и caption формы в соответсвующие текстовые поля в блоке profile*/
 function saveForm(event) {
   event.preventDefault();
-
   title.textContent = fieldName.value;
   text.textContent = fieldCaption.value;
-
   overlayToggle();
+}
+
+function delElement() {
+  console.log('Нажата кнопка удаления элемента');
 }
 
 /*подключить слушатели к кнопкам*/
 buttonEdit.addEventListener('click', openPopup); /*при нажатии на кнопку button-edit - выполнить функцию openPopup()*/
 buttonClose.addEventListener('click', closePopup); /*при нажатии на кнопку button-close - выполнить функцию closePopup()*/
+buttonDelElement.addEventListener('click', delElement); /*при нажатии на кнопку - выполнить функцию которая удалит текущую карточку*/
 formSave.addEventListener('submit', saveForm); /*при нажатии на кнопку button-save - отправить данные формы, выполнить функцию saveForm()*/
 
 
