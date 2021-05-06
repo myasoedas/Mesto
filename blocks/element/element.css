@@ -5,6 +5,7 @@
   font-family: inherit;
   background: #FFFFFF;
   border-radius: 10px;
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;

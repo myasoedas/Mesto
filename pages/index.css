@@ -25,6 +25,7 @@
 
 @import url(../blocks/element/element.css); /*блок div - карточка - место где побывал путешественник*/
 @import url(../blocks/element/__image/element__image.css); /*блок img - изображение элемента*/
+@import url(../blocks/element/__del-element/element__del-element.css); /*блок button - удаляет карточку со страницы*/
 @import url(../blocks/element/__caption/element__caption.css); /*блок div - список описательных параметров места*/
 @import url(../blocks/element/__title/element__title.css); /*блок h2 - заголовок с названием места*/
 @import url(../blocks/element/__like/element__like.css); /*блок button - лайк - сердечко с незаполненным фоном*/

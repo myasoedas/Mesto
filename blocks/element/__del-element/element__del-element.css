@@ -1,0 +1,22 @@
+/*блок button - кнопка удаления карточки*/
+.element__del-element {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 18px;
+  height: 19.3px;
+  background: no-repeat center url("../../../images/button-delete.svg");
+  background-color: rgba(0,0,0,0); /*прозрачный фон*/
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.element__del-element:hover {
+  opacity: 0.5;
+}
