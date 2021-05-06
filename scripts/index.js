@@ -2,7 +2,7 @@
 /*Использовать let при объявлении переменной, значение которой будет изменяться во время работы со страницей index.html*/
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonClose = document.querySelector('.popup__button-close');
-const buttonDelElement = document.querySelector('.element__del-element');
+const buttonsDelElement = document.querySelectorAll('.element__del-element'); /*неявный массив всех кнопок del на странице*/
 const formSave = document.querySelector('.form');
 
 const title = document.querySelector('.profile__title');
@@ -38,14 +38,26 @@ function saveForm(event) {
   overlayToggle();
 }
 
-function delElement() {
+function delElement(event) {
   console.log('Нажата кнопка удаления элемента');
+  console.log(buttonsDelElement);
+  console.log(event);
+  const eventTarget = event.target;
+  console.log(eventTarget);
+  const eventTargetParent = eventTarget.parentElement.parentElement;
+  console.log(eventTargetParent);
+  eventTargetParent.remove();
 }
 
 /*подключить слушатели к кнопкам*/
 buttonEdit.addEventListener('click', openPopup); /*при нажатии на кнопку button-edit - выполнить функцию openPopup()*/
 buttonClose.addEventListener('click', closePopup); /*при нажатии на кнопку button-close - выполнить функцию closePopup()*/
-buttonDelElement.addEventListener('click', delElement); /*при нажатии на кнопку - выполнить функцию которая удалит текущую карточку*/
+
+/*подключить слушатель для всех кнопок del на странице*/
+buttonsDelElement.forEach((item) => {
+  item.addEventListener('click', delElement);
+});
+
 formSave.addEventListener('submit', saveForm); /*при нажатии на кнопку button-save - отправить данные формы, выполнить функцию saveForm()*/
 
 
