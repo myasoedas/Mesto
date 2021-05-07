@@ -26,8 +26,10 @@
         </div>
       <button class="profile__button-add" type="button"></button>
     </section>
+
     <section class="elements">
       <ul class="elements__list">
+        <!--
         <li class="elements__item">
           <div class="element">
             <img class="element__image" src="./images/irkutsk.jpg" alt="Иркутск">
@@ -88,14 +90,16 @@
             </div>
           </div>
         </li>
+        -->
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
+
 <!-- Попап для редактирования профиля -->
-<div class="overlay overlay_name_edit-caption">
+<div class="overlay">
   <div class="popup">
     <form class="form" name="form-edit-caption">
       <h2 class="form__title">Редактировать профиль</h2>
@@ -106,29 +110,9 @@
     <button class="popup__button-close" type="button"></button>
   </div>
 </div>
-<!-- Попап для добавления нового места -->
-<div class="overlay overlay_name_add-place">
-  <div class="popup">
-    <form class="form" name="form-edit-caption">
-      <h2 class="form__title">Новое место</h2>
-      <input class="form__field form__field_name_name" name="name" type="text" placeholder="Название">
-      <input class="form__field form__field_name_caption" name="caption" type="text" placeholder='Ссылка на картинку'>
-      <button class="form__button-save" type="submit">Сохранить</button>
-    </form>
-    <button class="popup__button-close" type="button"></button>
-  </div>
-</div>
 
-<!-- Попап с фотографией места на весь экран -->
-<div class="overlay overlay_name_close-up-image">
-  <div class="popup-image">
-      <img class="popup-image__image" src="./images/omsk.jpg" alt="Омск">
-      <p class="popup-image__caption">Омск</p>
-      <button class="popup-image__button-close" type="button"></button>
-  </div>
-</div>
-
-<template>
+<!-- элемент списка с карточкой места -->
+<template id="template__elements-item">
   <li class="elements__item">
     <div class="element">
       <img class="element__image" src="" alt="">
@@ -140,6 +124,33 @@
     </div>
   </li>
 </template>
+
+<!-- Попап для редактирования описания объекта -->
+<template id="template__popup">
+  <div class="overlay">
+    <div class="popup">
+      <button class="popup__button-close" type="button"></button>
+    </div>
+  </div>
+</template>
+
+<!-- Попап с формой для редактирования описания -->
+
+<template id="template__form">
+  <form class="form" name="form-edit-caption">
+    <h2 class="form__title"></h2>
+    <input class="form__field form__field_name_name" name="name" type="text" placeholder="">
+    <input class="form__field form__field_name_caption" name="caption" type="text" placeholder="">
+    <button class="form__button-save" type="submit">Сохранить</button>
+  </form>
+</template>
+
+<!-- Попап с фотографией места на весь экран -->
+<template id="template__image">
+  <img class="popup__image" src="" alt="">
+  <p class="popup__caption"></p>
+</template>
+
 <script src="./scripts/index.js"></script>
 </body>
 </html>

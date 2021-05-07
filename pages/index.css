@@ -36,17 +36,16 @@
 
 @import url(../blocks/overlay/overlay.css); /*блок div - полупрозрачный фон на весь экран для затемнения основного контента, на его фоне будет отображен popup*/
 @import url(../blocks/overlay/_is-opened/overlay_is-opened.css);
+
 @import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
 @import url(../blocks/overlay/_name/overlay_name_add-place.css);
 @import url(../blocks/overlay/_name/overlay_name_close-up-image.css);
 
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 
-@import url(../blocks/popup-image/popup-image.css);
-@import url(../blocks/popup-image/__image/popup-image__image.css);
-@import url(../blocks/popup-image/__caption/popup-image__caption.css);
-@import url(../blocks/popup-image/__button-close/popup-image__button-close.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
