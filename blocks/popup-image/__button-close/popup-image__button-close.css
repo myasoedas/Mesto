@@ -1,0 +1,27 @@
+.popup-image__button-close {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0,0,0,0); /*прозрачный фон*/
+  background: no-repeat center url("../../../images/close-icon.svg");
+  cursor: pointer;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.popup-image__button-close:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 470px) {
+  .popup-image__button-close {
+    width: 26px;
+    height: 26px;
+    right: 0;
+  }
+}

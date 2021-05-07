@@ -29,15 +29,24 @@
 @import url(../blocks/element/__caption/element__caption.css); /*блок div - список описательных параметров места*/
 @import url(../blocks/element/__title/element__title.css); /*блок h2 - заголовок с названием места*/
 @import url(../blocks/element/__like/element__like.css); /*блок button - лайк - сердечко с незаполненным фоном*/
+@import url(../blocks/element/__like/_status/element__like_status_active.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @import url(../blocks/overlay/overlay.css); /*блок div - полупрозрачный фон на весь экран для затемнения основного контента, на его фоне будет отображен popup*/
 @import url(../blocks/overlay/_is-opened/overlay_is-opened.css);
+@import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
+@import url(../blocks/overlay/_name/overlay_name_add-place.css);
+@import url(../blocks/overlay/_name/overlay_name_close-up-image.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
+
+@import url(../blocks/popup-image/popup-image.css);
+@import url(../blocks/popup-image/__image/popup-image__image.css);
+@import url(../blocks/popup-image/__caption/popup-image__caption.css);
+@import url(../blocks/popup-image/__button-close/popup-image__button-close.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);

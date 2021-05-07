@@ -1,0 +1,17 @@
+.popup-image__caption {
+  margin: 10px 0 0 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  white-space: nowrap; /*запретить перенос слов в блоке*/
+  text-overflow: ellipsis; /*текст обрезается и к концу строки добавляется многоточие*/
+  overflow: hidden; /*отображается только область внутри элемента, остальное будет скрыто*/
+  justify-self: start;
+  align-self: center;
+}

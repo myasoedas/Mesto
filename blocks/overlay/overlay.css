@@ -11,10 +11,17 @@
   right: 0;
   font-family: 'Inter', Arial, sans-serif;
   color: #000000;
-  display: none;
+  visibility: hidden; /*по умолчанию элемент скрыт*/
+  display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;
   gap: 0;
   justify-content: center;
   align-content: center;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.overlay_is-opened {
+  opacity: 1;
 }

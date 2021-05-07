@@ -1,9 +1,12 @@
-/*Использовать const при объявлении переменной, которая не меняется за все время работы со страницей index.html*/
-/*Использовать let при объявлении переменной, значение которой будет изменяться во время работы со страницей index.html*/
+
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonClose = document.querySelector('.popup__button-close');
-const buttonsDelElement = document.querySelectorAll('.element__del-element'); /*неявный массив всех кнопок del на странице*/
+const buttonsDelElement = document.querySelectorAll('.element__del-element');
+const buttonsLike = document.querySelectorAll('.element__like');
+const buttonAdd = document.querySelector('.profile__button-add');
 const formSave = document.querySelector('.form');
+
+const elementImages = document.querySelectorAll('.element__image'); /*Псевдомассив картинок от карточки места*/
 
 const title = document.querySelector('.profile__title');
 const text = document.querySelector('.profile__text');
@@ -11,9 +14,39 @@ const text = document.querySelector('.profile__text');
 const fieldName = document.querySelector('.form__field_name_name');
 const fieldCaption = document.querySelector('.form__field_name_caption');
 
+const overlayEditCaption = document.querySelector('.overlay_name_edit-caption');
+const overlayAddPlace = document.querySelector('.overlay_name_add-place');
+const overlayCloseUpImage = document.querySelector('.overlay_name_close-up-image');
 const overlay = document.querySelector('.overlay');
 
-/*включить: display: grid в блоке overlay*/
+elementImages.forEach((item) => {
+  item.addEventListener('click', function(event) {
+    console.log(event.target);
+    const elementImage = event.target;
+    console.log(elementImage.src);
+    const elementTitle = elementImage.nextElementSibling.nextElementSibling.firstElementChild;
+    console.log(elementTitle.textContent);
+
+  });
+});
+
+/*подключить слушатели к кнопкам*/
+buttonEdit.addEventListener('click', openPopup); /*при нажатии на кнопку button-edit - выполнить функцию openPopup()*/
+buttonClose.addEventListener('click', closePopup); /*при нажатии на кнопку button-close - выполнить функцию closePopup()*/
+
+/*подключить слушатель для всех кнопок del на странице*/
+buttonsDelElement.forEach((item) => {
+  item.addEventListener('click', delElement);
+});
+
+buttonsLike.forEach((item) => {
+  item.addEventListener('click', setLikeStatus);
+});
+
+formSave.addEventListener('submit', saveForm); /*при нажатии на кнопку button-save - отправить данные формы, выполнить функцию saveForm()*/
+buttonAdd.addEventListener('click', openPopupAddPlace); /*при нажатии на кнопку открывается форма добавлени янового места*/
+
+/*включить: visibility: visible; в блоке overlay*/
 function overlayToggle() {
   overlay.classList.toggle('overlay_is-opened');
 }
@@ -25,7 +58,7 @@ function openPopup() {
   overlayToggle();
 }
 
-/*Закрыть popup*/
+/*Закрыть popup: 0 - закрыть попап редактирования профиля. 1 - закрыть попап добавления нового*/
 function closePopup() {
   overlayToggle();
 }
@@ -39,25 +72,19 @@ function saveForm(event) {
 }
 
 function delElement(event) {
-  console.log('Нажата кнопка удаления элемента');
-  console.log(buttonsDelElement);
-  console.log(event);
   const eventTarget = event.target;
-  console.log(eventTarget);
   const eventTargetParent = eventTarget.parentElement.parentElement;
-  console.log(eventTargetParent);
   eventTargetParent.remove();
 }
 
-/*подключить слушатели к кнопкам*/
-buttonEdit.addEventListener('click', openPopup); /*при нажатии на кнопку button-edit - выполнить функцию openPopup()*/
-buttonClose.addEventListener('click', closePopup); /*при нажатии на кнопку button-close - выполнить функцию closePopup()*/
+function setLikeStatus(event) {
+  const eventTarget = event.target;
+  eventTarget.classList.toggle('element__like_status_active');
+}
 
-/*подключить слушатель для всех кнопок del на странице*/
-buttonsDelElement.forEach((item) => {
-  item.addEventListener('click', delElement);
-});
-
-formSave.addEventListener('submit', saveForm); /*при нажатии на кнопку button-save - отправить данные формы, выполнить функцию saveForm()*/
+function openPopupAddPlace() {
+  console.log('Нажата кнопка добавить новое место');
+  overlayToggle();
+}
 
 

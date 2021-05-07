@@ -9,9 +9,6 @@
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-  /*Сглаживание шрифтов*/
-  -webkit-font-smoothing: antialiased; /*сглаживание шрифтов в Safari и во всех браузерах на платформе Chromium*/
-  -moz-osx-font-smoothing: grayscale; /*сглаживание шрифтов в Mozilla Firefox*/
 }
 
 @media (max-width: 581px) {
