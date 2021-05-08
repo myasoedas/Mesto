@@ -14,6 +14,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
 
 @media (max-width: 775px) {
   .profile__caption {
