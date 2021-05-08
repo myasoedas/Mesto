@@ -66,6 +66,7 @@ const buttonsDelElement = document.querySelectorAll('.element__del-element');
 buttonsDelElement.forEach((item) => {
   item.addEventListener('click', delElement);
 });
+
 function delElement(event) {
   const eventTarget = event.target;
   const eventTargetParent = eventTarget.parentElement.parentElement;
@@ -77,6 +78,7 @@ const buttonsLike = document.querySelectorAll('.element__like');
 buttonsLike.forEach((item) => {
   item.addEventListener('click', setLikeStatus);
 });
+
 function setLikeStatus(event) {
   const eventTarget = event.target;
   eventTarget.classList.toggle('element__like_status_active');
@@ -121,3 +123,21 @@ function closePopup(event) {
   eventTarget.remove(); 
 }
 
+const elementsImage = document.querySelectorAll('.element__image');
+elementsImage.forEach((item) => {
+  item.addEventListener('click', openPopupImage);
+});
+
+function openPopupImage(event) {
+  const page = document.querySelector('.page');
+  const eventTarget = event.target;
+  const templatePopupImage = document.querySelector('#popup-image').content;
+  const popupImage = templatePopupImage.querySelector('.overlay').cloneNode(true);
+  popupImage.querySelector('.popup__image').src = eventTarget.src;
+  popupImage.querySelector('.popup__image').alt = eventTarget.alt;
+  popupImage.querySelector('.popup__caption').textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+  page.append(popupImage);
+  popupImage.classList.toggle('overlay_is-opened');
+  const buttonClosePopupImage = popupImage.querySelector('.popup__button-close');
+  buttonClosePopupImage.addEventListener('click', closePopup); 
+}
