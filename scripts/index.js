@@ -44,3 +44,20 @@ const arrCardsCaption = [
   }
 ];
 
+//Добавить 6 карточек мест на страницу
+
+initialCards(); /*отображаем карточки на странице*/
+
+function initialCards() { /*Функция к/я добавляет карточки на страницу*/
+  const elementsList = document.querySelector('.elements__list'); /*Получить доступ к элементу ul*/
+  const elementsItemTemplate = document.querySelector('#template__elements-item').content; /*получить доступ к template__elements-item и его содержимому*/
+  /*Наполнить карточку содержимым перебрав все элементы массива*/
+  arrCardsCaption.forEach((item) => {
+    const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true); /*клонировать li вместе с содержимым*/
+    elementsItem.querySelector('.element__image').src = item.linkPlaceFoto; /*задать значение параметру src*/
+    elementsItem.querySelector('.element__image').alt = item.altPlaceFoto; /*задать значение параметру alt*/
+    elementsItem.querySelector('.element__title').textContent = item.titlePlace; /*задать значение заголовку h2*/
+    elementsList.append(elementsItem); /*добавить заполненныю карточку на страницу*/
+  });
+}
+

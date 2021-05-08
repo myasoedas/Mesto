@@ -37,6 +37,20 @@
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
 
+<!-- элемент списка с карточкой места -->
+<template id="template__elements-item">
+  <li class="elements__item">
+    <div class="element">
+      <img class="element__image" src="" alt="">
+      <button class="element__del-element" type="button"></button>
+      <div class="element__caption">
+          <h2 class="element__title"></h2>
+          <button class="element__like" type="button"></button>
+      </div>
+    </div>
+  </li>
+</template>
+
 <!-- Попап для редактирования профиля -->
 <template id="popup-edit-profile">
 <div class="overlay overlay_is-opened">
@@ -77,21 +91,6 @@
   </div>
 </div>  
 </template>
-
-<!-- элемент списка с карточкой места -->
-<template id="template__elements-item">
-  <li class="elements__item">
-    <div class="element">
-      <img class="element__image" src="" alt="">
-      <button class="element__del-element" type="button"></button>
-      <div class="element__caption">
-          <h2 class="element__title"></h2>
-          <button class="element__like" type="button"></button>
-      </div>
-    </div>
-  </li>
-</template>
-
 
 <!-- Попап с формой для редактирования описания 
 <template id="popup-form-add-element">
