@@ -82,3 +82,42 @@ function setLikeStatus(event) {
   eventTarget.classList.toggle('element__like_status_active');
 }
 
+//форма редактирования профиля с защитой от межсайтового скриптинга
+const buttonEditProfile = document.querySelector('.profile__button-edit');
+buttonEditProfile.addEventListener('click', openPopupEditProfile);
+
+function openPopupEditProfile() {  
+  const page = document.querySelector('.page');
+  const templatePopupEditProfile = page.querySelector('#popup-edit-profile').content;
+  const profileTitle = page.querySelector('.profile__title').textContent;
+  const profileText = page.querySelector('.profile__text').textContent;  
+  const popupEditProfile = templatePopupEditProfile.querySelector('.overlay').cloneNode(true);
+  const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
+  const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');  
+  const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close'); 
+  const formEditProfile = popupEditProfile.querySelector('.form');  
+  profileFieldName.value = profileTitle;
+  profileFieldCaption.value = profileText;  
+  page.append(popupEditProfile);
+  popupEditProfile.classList.toggle('overlay_is-opened');
+  buttonClosePopupEditProfile.addEventListener('click', closePopup); 
+  formEditProfile.addEventListener('submit', saveFormEditProfile);    
+}
+
+function saveFormEditProfile(event) {    
+  event.preventDefault();  
+  const page = document.querySelector('.page');
+  const eventTarget = event.target.closest('.overlay'); //получить доступ к ближайшему родителю с классом overlay    
+  page.querySelector('.profile__title').textContent = eventTarget.querySelector('.form__field_name_name').value;  
+  page.querySelector('.profile__text').textContent = eventTarget.querySelector('.form__field_name_caption').value;  
+  eventTarget.classList.toggle('overlay_is-opened'); 
+  eventTarget.remove();   
+}
+
+/*Универсальня функция для закрытия попапа*/
+function closePopup(event) {   
+  const eventTarget = event.target.closest('.overlay'); 
+  eventTarget.classList.toggle('overlay_is-opened'); 
+  eventTarget.remove(); 
+}
+
