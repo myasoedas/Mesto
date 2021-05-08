@@ -72,3 +72,13 @@ function delElement(event) {
   eventTargetParent.remove();
 }
 
+//При нажатии на сердечко в карточке оно должно заполняться черым цветом, при повторном нажатии становиться прозрачным
+const buttonsLike = document.querySelectorAll('.element__like');
+buttonsLike.forEach((item) => {
+  item.addEventListener('click', setLikeStatus);
+});
+function setLikeStatus(event) {
+  const eventTarget = event.target;
+  eventTarget.classList.toggle('element__like_status_active');
+}
+
