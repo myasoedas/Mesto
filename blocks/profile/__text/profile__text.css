@@ -2,7 +2,7 @@
 .profile__text {
   margin: 0;
   padding: 0;
-  color: inherit;  
+  color: inherit;
   font-family: inherit;
   font-size: 18px;
   font-style: normal;
@@ -10,9 +10,9 @@
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   justify-self: start;
   align-self: start;
 }

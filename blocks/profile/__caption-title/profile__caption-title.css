@@ -5,9 +5,9 @@
   background: inherit;
   color: inherit;
   font-family: inherit;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;

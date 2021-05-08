@@ -1,28 +1,20 @@
 @import url(../vendor/normalize.css);
-
 @import url(../vendor/fonts/font.css);
-
 @import url(../blocks/page/page.css);
-
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__image/header__image.css);
-
 @import url(../blocks/main/main.css);
-
 @import url(../blocks/profile/profile.css); 
 @import url(../blocks/profile/__image/profile__image.css); 
 @import url(../blocks/profile/__caption/profile__caption.css); 
 @import url(../blocks/profile/__caption-title/profile__caption-title.css); 
-
 @import url(../blocks/profile/__title/profile__title.css); 
 @import url(../blocks/profile/__button-edit/profile__button-edit.css); 
 @import url(../blocks/profile/__text/profile__text.css); 
 @import url(../blocks/profile/__button-add/profile__button-add.css);
-
 @import url(../blocks/elements/elements.css); 
 @import url(../blocks/elements/__list/elements__list.css); 
 @import url(../blocks/elements/__item/elements__item.css); 
-
 @import url(../blocks/element/element.css); 
 @import url(../blocks/element/__image/element__image.css); 
 @import url(../blocks/element/__del-element/element__del-element.css); 
@@ -30,25 +22,20 @@
 @import url(../blocks/element/__title/element__title.css); 
 @import url(../blocks/element/__like/element__like.css); 
 @import url(../blocks/element/__like/_status/element__like_status_active.css);
-
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-
 @import url(../blocks/overlay/overlay.css); 
 @import url(../blocks/overlay/_is-opened/overlay_is-opened.css);
 @import url(../blocks/overlay/_color/overlay_color_black.css);
-
 @import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
 @import url(../blocks/overlay/_name/overlay_name_add-place.css);
 @import url(../blocks/overlay/_name/overlay_name_close-up-image.css);
-
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/_color/popup_color_transparent.css);
 @import url(../blocks/popup/_width/popup_width_auto.css);
-
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__field/form__field.css);
@@ -57,6 +44,3 @@
 @import url(../blocks/form/__field/_name/form__field_name_name-place.css);
 @import url(../blocks/form/__field/_name/form__field_name_src-link.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
-
-
-

@@ -11,9 +11,9 @@
   gap: 16px 0;
   justify-content: start;
   align-content: center;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
 @media (max-width: 775px) {
   .profile__caption {
