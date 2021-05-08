@@ -9,9 +9,9 @@
   line-height: 15px;
   letter-spacing: 0em;
   text-align: left;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   justify-self: start;
   align-self: center;
 }
