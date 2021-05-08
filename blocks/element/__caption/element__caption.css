@@ -1,15 +1,15 @@
 /*блок ul - список описательных параметров места*/
-.element__caption {  
+.element__caption {
   margin: 24px 20px;
   padding: 0;
-  background: #FFFFFF; 
+  background: #FFFFFF;
   max-width: 246px;
   font-family: 'Inter', Arial, sans-serif;
-  color:#000000;  
+  color:#000000;
   display: grid;
   grid-template-columns: 200px 42px;
   grid-template-rows: 1fr;
   gap: 0;
-  justify-content: space-between; 
-  align-content: end; 
+  justify-content: space-between;
+  align-content: end;
 }

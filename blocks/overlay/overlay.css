@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.5);
-  overflow:hidden; 
+  overflow:hidden;
   position:fixed;
   top: 0;
   bottom: 0;
@@ -11,7 +11,7 @@
   right: 0;
   font-family: 'Inter', Arial, sans-serif;
   color: #000000;
-  visibility: hidden; 
+  visibility: hidden;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;

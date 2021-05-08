@@ -2,9 +2,9 @@
 .element__title {
   margin: 0;
   padding: 0;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  overflow: hidden;   
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   font-family: inherit;
   font-size: 24px;
   font-style: normal;
@@ -12,6 +12,6 @@
   line-height: 29px;
   letter-spacing: 0em;
   text-align: left;
-  justify-self: start; 
-  align-self: center; 
+  justify-self: start;
+  align-self: center;
 }
