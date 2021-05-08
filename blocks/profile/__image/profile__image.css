@@ -4,8 +4,8 @@
   padding: 0;
   width: 120px;
   height: 120px;
-  border-radius: 50%; /*вписать изображение в круг*/
-  object-fit: contain; /*подогнать ихображение под размер контейнера с сохранением пропорций*/
+  border-radius: 50%; 
+  object-fit: contain; 
   justify-self: center;
   align-self: center;
 }

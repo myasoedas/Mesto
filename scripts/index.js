@@ -1,16 +1,3 @@
-const arrPopupFormFields = [
-  {
-    popupTitle: 'Редактировать профиль',
-    popupPlaceholderUp: 'Введите ФИО',
-    popupPlaceholderDown: 'Кем вы работаете'
-  },
-  {
-    popupTitle: 'Новое место',
-    popupPlaceholderUp: 'Название места',
-    popupPlaceholderDown: 'Ссылка на фото места'
-  }
-];
-
 const arrCardsCaption = [
   {
     titlePlace: 'Иркутск',
@@ -45,24 +32,23 @@ const arrCardsCaption = [
 ];
 
 //Добавить 6 карточек мест на страницу
-initialCards(); /*отображаем карточки на странице*/
+initialCards(); 
 
-function initialCards() { /*Функция к/я добавляет карточки на страницу*/
-  const elementsList = document.querySelector('.elements__list'); /*Получить доступ к элементу ul*/
-  const elementsItemTemplate = document.querySelector('#template__elements-item').content; /*получить доступ к template__elements-item и его содержимому*/
-  /*Наполнить карточку содержимым перебрав все элементы массива*/
+function initialCards() { 
+  const elementsList = document.querySelector('.elements__list'); 
+  const elementsItemTemplate = document.querySelector('#template__elements-item').content;   
   arrCardsCaption.forEach((item) => {
-    const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true); /*клонировать li вместе с содержимым*/
-    elementsItem.querySelector('.element__image').src = item.linkPlaceFoto; /*задать значение параметру src*/
-    elementsItem.querySelector('.element__image').alt = item.altPlaceFoto; /*задать значение параметру alt*/
-    elementsItem.querySelector('.element__title').textContent = item.titlePlace; /*задать значение заголовку h2*/
-    elementsList.append(elementsItem); /*добавить заполненныю карточку на страницу*/
+    const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true); 
+    elementsItem.querySelector('.element__image').src = item.linkPlaceFoto;
+    elementsItem.querySelector('.element__image').alt = item.altPlaceFoto; 
+    elementsItem.querySelector('.element__title').textContent = item.titlePlace; 
+    elementsList.append(elementsItem); 
   });
 }
 
 //При нажатии на кнопку удалить карточку - карточка должна удаляться
 const buttonsDelElement = document.querySelectorAll('.element__del-element');
-/*подключить слушатель для всех кнопок del на странице*/
+
 buttonsDelElement.forEach((item) => {
   item.addEventListener('click', delElement);
 });
@@ -109,7 +95,7 @@ function openPopupEditProfile() {
 function saveFormEditProfile(event) {    
   event.preventDefault();  
   const page = document.querySelector('.page');
-  const eventTarget = event.target.closest('.overlay'); //получить доступ к ближайшему родителю с классом overlay    
+  const eventTarget = event.target.closest('.overlay'); 
   page.querySelector('.profile__title').textContent = eventTarget.querySelector('.form__field_name_name').value;  
   page.querySelector('.profile__text').textContent = eventTarget.querySelector('.form__field_name_caption').value;  
   eventTarget.classList.toggle('overlay_is-opened'); 
@@ -159,8 +145,8 @@ function openPopupAddPlace() {
 
 function saveNewPlace(event) {
   event.preventDefault();    
-  const elementsList = document.querySelector('.elements__list'); /*Получить элемент ul*/    
-  const eventTarget = event.target; /*получить доступ к элементу form*/   
+  const elementsList = document.querySelector('.elements__list'); 
+  const eventTarget = event.target;   
   const popupAddPlace = eventTarget.parentElement.parentElement;
   const placeName = eventTarget.firstElementChild.nextElementSibling.value;  
   const linkPlaceImage = eventTarget.firstElementChild.nextElementSibling.nextElementSibling.value;

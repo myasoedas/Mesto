@@ -4,8 +4,8 @@
   padding: 0;
   width: 22px;
   height: 19px;
-  justify-self: end; /*по горизонтали: прижать к правому краю столбца*/
-  align-self: center; /*по вертикали: выровнять по центру строки*/
+  justify-self: end; 
+  align-self: center; 
   background: no-repeat center url("../../../images/like-disabled.svg");
   background-color: inherit;
   cursor: pointer;

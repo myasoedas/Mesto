@@ -9,32 +9,32 @@
 
 @import url(../blocks/main/main.css);
 
-@import url(../blocks/profile/profile.css); /*секция с профилем путешественника*/
-@import url(../blocks/profile/__image/profile__image.css); /*блок img - содержит изображение путешественника в круглой рамке*/
-@import url(../blocks/profile/__caption/profile__caption.css); /*блок div - содержит в первой строке блок div с описанием и кнопкой edit, во второй строке описание*/
-@import url(../blocks/profile/__caption-title/profile__caption-title.css); /*блок div - содержит h1 заголовок и кнопку button-edit в одну строку*/
+@import url(../blocks/profile/profile.css); 
+@import url(../blocks/profile/__image/profile__image.css); 
+@import url(../blocks/profile/__caption/profile__caption.css); 
+@import url(../blocks/profile/__caption-title/profile__caption-title.css); 
 
-@import url(../blocks/profile/__title/profile__title.css); /*блок h1 - содержит заголовок с ФИО путешественника*/
-@import url(../blocks/profile/__button-edit/profile__button-edit.css); /*блок button - button-edit - кнопка для редактирования профиля путешественика*/
-@import url(../blocks/profile/__text/profile__text.css); /*блок p - содержит информацию о том чем занимается путешественник*/
+@import url(../blocks/profile/__title/profile__title.css); 
+@import url(../blocks/profile/__button-edit/profile__button-edit.css); 
+@import url(../blocks/profile/__text/profile__text.css); 
 @import url(../blocks/profile/__button-add/profile__button-add.css);
 
-@import url(../blocks/elements/elements.css); /*блок section - содержит список ul элементов списка li с карточками, обернутыми в блок div*/
-@import url(../blocks/elements/__list/elements__list.css); /*блок ul - список элементов li с карточками, обернутыми в блок div*/
-@import url(../blocks/elements/__item/elements__item.css); /*блок li - элемент списка, который содержит блок element - карточку места, обернутую в блок div*/
+@import url(../blocks/elements/elements.css); 
+@import url(../blocks/elements/__list/elements__list.css); 
+@import url(../blocks/elements/__item/elements__item.css); 
 
-@import url(../blocks/element/element.css); /*блок div - карточка - место где побывал путешественник*/
-@import url(../blocks/element/__image/element__image.css); /*блок img - изображение элемента*/
-@import url(../blocks/element/__del-element/element__del-element.css); /*блок button - удаляет карточку со страницы*/
-@import url(../blocks/element/__caption/element__caption.css); /*блок div - список описательных параметров места*/
-@import url(../blocks/element/__title/element__title.css); /*блок h2 - заголовок с названием места*/
-@import url(../blocks/element/__like/element__like.css); /*блок button - лайк - сердечко с незаполненным фоном*/
+@import url(../blocks/element/element.css); 
+@import url(../blocks/element/__image/element__image.css); 
+@import url(../blocks/element/__del-element/element__del-element.css); 
+@import url(../blocks/element/__caption/element__caption.css); 
+@import url(../blocks/element/__title/element__title.css); 
+@import url(../blocks/element/__like/element__like.css); 
 @import url(../blocks/element/__like/_status/element__like_status_active.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-@import url(../blocks/overlay/overlay.css); /*блок div - полупрозрачный фон на весь экран для затемнения основного контента, на его фоне будет отображен popup*/
+@import url(../blocks/overlay/overlay.css); 
 @import url(../blocks/overlay/_is-opened/overlay_is-opened.css);
 @import url(../blocks/overlay/_color/overlay_color_black.css);
 
@@ -48,7 +48,6 @@
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/_color/popup_color_transparent.css);
 @import url(../blocks/popup/_width/popup_width_auto.css);
-
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);

@@ -10,8 +10,8 @@
   line-height: 29px;
   letter-spacing: 0em;
   text-align: left;
-  justify-self: start; /*по горизонтали: прижать элемент к левому краю*/
-  align-self: start; /*по вертикали: выровнять элемент по центру*/
+  justify-self: start; 
+  align-self: start; 
 }
 
 @media (max-width: 470px) {

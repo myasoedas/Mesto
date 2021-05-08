@@ -5,7 +5,7 @@
   border: none;
   width: 40px;
   height: 40px;
-  background-color: rgba(0,0,0,0); /*прозрачный фон*/
+  background-color: rgba(0,0,0,0); 
   background: no-repeat center url("../../../images/close-icon.svg");
   cursor: pointer;
   position: absolute;

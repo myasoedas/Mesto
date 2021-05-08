@@ -7,7 +7,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-flow: row; /*автоматически добавлять неявные строки*/
+  grid-auto-flow: row; 
   row-gap: 40px;
   column-gap: 0;
 }
