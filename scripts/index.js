@@ -45,7 +45,6 @@ const arrCardsCaption = [
 ];
 
 //Добавить 6 карточек мест на страницу
-
 initialCards(); /*отображаем карточки на странице*/
 
 function initialCards() { /*Функция к/я добавляет карточки на страницу*/
@@ -59,5 +58,17 @@ function initialCards() { /*Функция к/я добавляет карточ
     elementsItem.querySelector('.element__title').textContent = item.titlePlace; /*задать значение заголовку h2*/
     elementsList.append(elementsItem); /*добавить заполненныю карточку на страницу*/
   });
+}
+
+//При нажатии на кнопку удалить карточку - карточка должна удаляться
+const buttonsDelElement = document.querySelectorAll('.element__del-element');
+/*подключить слушатель для всех кнопок del на странице*/
+buttonsDelElement.forEach((item) => {
+  item.addEventListener('click', delElement);
+});
+function delElement(event) {
+  const eventTarget = event.target;
+  const eventTargetParent = eventTarget.parentElement.parentElement;
+  eventTargetParent.remove();
 }
 
