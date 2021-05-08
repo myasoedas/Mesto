@@ -141,3 +141,41 @@ function openPopupImage(event) {
   const buttonClosePopupImage = popupImage.querySelector('.popup__button-close');
   buttonClosePopupImage.addEventListener('click', closePopup); 
 }
+
+const buttonAddPlace = document.querySelector('.profile__button-add');
+buttonAddPlace.addEventListener('click', openPopupAddPlace);
+
+function openPopupAddPlace() {
+  const page = document.querySelector('.page');
+  const templatePopupAddPlace = page.querySelector('#popup-add-element').content;
+  popupAddPlace = templatePopupAddPlace.querySelector('.overlay').cloneNode(true);
+  page.append(popupAddPlace);
+  popupAddPlace.classList.toggle('overlay_is-opened');
+  const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-close');
+  buttonClosePopupAddPlace.addEventListener('click', closePopup);
+  const formAddPlace = popupAddPlace.querySelector('.form');
+  formAddPlace.addEventListener('submit', saveNewPlace);
+}
+
+function saveNewPlace(event) {
+  event.preventDefault();    
+  const elementsList = document.querySelector('.elements__list'); /*Получить элемент ul*/    
+  const eventTarget = event.target; /*получить доступ к элементу form*/   
+  const popupAddPlace = eventTarget.parentElement.parentElement;
+  const placeName = eventTarget.firstElementChild.nextElementSibling.value;  
+  const linkPlaceImage = eventTarget.firstElementChild.nextElementSibling.nextElementSibling.value;
+  const templateNewPlace = document.querySelector('#template__elements-item').content;
+  const newPlace = templateNewPlace.querySelector('.elements__item').cloneNode(true);
+  newPlace.firstElementChild.firstElementChild.src = linkPlaceImage;
+  newPlace.firstElementChild.firstElementChild.alt = placeName;
+  newPlace.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.textContent = placeName;
+  popupAddPlace.classList.toggle('overlay_is-opened');  
+  elementsList.prepend(newPlace);
+  popupAddPlace.remove();
+  const buttonDelElement = newPlace.firstElementChild.firstElementChild.nextElementSibling;
+  buttonDelElement.addEventListener('click', delElement);
+  const buttonLike = newPlace.firstElementChild.lastElementChild.lastElementChild;
+  buttonLike.addEventListener('click', setLikeStatus);  
+  const elementImage = newPlace.firstElementChild.firstElementChild;
+  elementImage.addEventListener('click', openPopupImage); 
+}

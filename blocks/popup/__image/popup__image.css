@@ -1,11 +1,9 @@
-.popup-image__image {
+.popup__image {
   margin: 0;
-  padding: 0;
-  max-width: 75vw;
-  max-height: 75vh;
+  padding: 0;  
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   justify-self: center;
   align-self: center;
 }
