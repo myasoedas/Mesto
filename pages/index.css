@@ -46,7 +46,7 @@
 @import url(../blocks/overlay/_color/overlay_color_black.css);
 @import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
 @import url(../blocks/overlay/_name/overlay_name_add-place.css);
-@import url(../blocks/overlay/_name/overlay_name_close-up-image.css);
+@import url(../blocks/overlay/_name/overlay_name_display-image.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__caption/popup__caption.css);

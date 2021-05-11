@@ -1,12 +1,28 @@
 .popup_width_auto {
-  margin: 0 45px 0 45px;
+  margin: 0;
+  max-width: 882px;
   width: auto;
   border-radius: 0;
 }
 
-@media (max-width: 452px) {
+@media (min-width: 0) {
+  .popup_width_auto {
+    margin-right:  45px;
+    margin-left:  45px;
+  }
+}
+
+@media (max-width: 470px) {
+  .popup_width_auto {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 370px) {
   .popup_width_auto {
     margin-right: 19px;
     margin-left: 19px;
   }
 }
+

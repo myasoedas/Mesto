@@ -1,32 +1,32 @@
 const arrCardsCaption = [
   {
     titlePlace: 'Иркутск',
-    linkPlaceFoto: './images/irkutsk.jpg',
-    altPlaceFoto: 'Памятник Колчаку в г. Иркутск'
+    linkPlaceFoto: 'https://pobedarf.ru/wp-content/uploads/2020/12/irkutsk.jpg',
+    altPlaceFoto: 'Центр города'
   },
   {
     titlePlace: 'Ужур',
-    linkPlaceFoto: './images/uzhur-love.jpg',
-    altPlaceFoto: 'Мозаика - Мы любим Ужур в центре города'
+    linkPlaceFoto: 'https://i1.photo.2gis.com/images/geo/0/30258560054884725_9db9.jpg',
+    altPlaceFoto: 'Центр города'
   },
   {
     titlePlace: 'Сибирский',
-    linkPlaceFoto: './images/sibirski.jpg',
-    altPlaceFoto: 'Храм в центре г. Сибирский'
+    linkPlaceFoto: 'http://forumimage.ru/uploads/20151212/144990808502039562.jpg',
+    altPlaceFoto: 'Церковь Варвары'
   },
   {
     titlePlace: 'Новосибирск',
-    linkPlaceFoto: './images/novosibirsk.jpg',
-    altPlaceFoto: 'ЖД вокзал г. Новосибирск ночью - весь в снегу'
+    linkPlaceFoto: 'https://www.sobaka.ru/uploads/nsk/Novosibirsk-41.jpg',
+    altPlaceFoto: 'Центр города'
   },
   {
     titlePlace: 'Омск',
-    linkPlaceFoto: './images/omsk.jpg',
-    altPlaceFoto: 'Зима - багровый закат накрывает мост уходящий в даль, справа - поворачивает дорожная пробка, церковь'
+    linkPlaceFoto: 'https://avatars.mds.yandex.net/get-zen_doc/174930/pub_5afe8eb1a815f1942b55080a_5afe8f7aad0f2251f7e3cd82/scale_1200',
+    altPlaceFoto: 'Центр города'
   },
   {
     titlePlace: 'Оренбург',
-    linkPlaceFoto: './images/orenburg.jpg',
-    altPlaceFoto: 'Памятник Гагарину, проложившему дорогу в космос всему человечеству в г. Оренбург'
+    linkPlaceFoto: 'http://rasfokus.ru/images/photos/medium/9c307e11a215fad2f1a718224779191f.jpg',
+    altPlaceFoto: 'Центр города'
   }
 ];

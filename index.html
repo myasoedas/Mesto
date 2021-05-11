@@ -19,7 +19,7 @@
       <img class="profile__image" src="./images/alex.jpg" alt="Александр">
         <div class="profile__caption">
           <div class="profile__caption-title">
-            <h1 class="profile__title">Александр Мясоед</h1>
+            <h1 class="profile__title">Александр</h1>
             <button class="profile__button-edit" type="button"></button>
           </div>
           <p class="profile__text">WEB разработчик</p>
@@ -28,13 +28,14 @@
     </section>
     <section class="elements">
       <ul class="elements__list">
-        <!-- Элементы списка заполняются автоматически функцией initialCards(); в файле index.js -->
+        <!-- Элементы списка заполняются автоматически функцией renderInitialCards() в файле index.js -->
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
+
   <!-- элемент списка с карточкой места -->
   <template id="template__elements-item">
     <li class="elements__item">
@@ -48,9 +49,9 @@
       </div>
     </li>
   </template>
+
   <!-- Попап для редактирования профиля -->
-  <template id="popup-edit-profile">
-  <div class="overlay">
+  <div class="overlay overlay_name_edit-caption">
     <div class="popup">
       <form class="form" name="form-edit-caption">
         <h2 class="form__title">Редактировать профиль</h2>
@@ -61,10 +62,9 @@
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
-  </template>
+
   <!-- Попап с формой для для добавления нового места -->
-  <template id="popup-add-element">
-  <div class="overlay">
+  <div class="overlay overlay_name_add-place">
     <div class="popup">
       <form class="form" name="form-add-element">
         <h2 class="form__title">Новое место</h2>
@@ -75,18 +75,19 @@
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
-  </template>
+
   <!-- Попап с фотографией места на весь экран -->
-  <template id="popup-image">
-  <div class="overlay overlay_color_black">
+  <div class="overlay overlay_color_black overlay_name_display-image">
     <div class="popup popup_color_transparent popup_width_auto">
       <img class="popup__image" src=" " alt=" ">
-      <p class="popup__caption"></p>
+      <p class="popup__caption">Байкал</p>
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
-  </template>
+
   <script src="./scripts/initial-сards.js"></script>
+  <script src="./scripts/functions.js"></script>
   <script src="./scripts/index.js"></script>
+
 </body>
 </html>
