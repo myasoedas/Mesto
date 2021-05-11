@@ -7,6 +7,7 @@ const profileFieldName = popupEditProfile.querySelector('.form__field_name_name'
 const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
 const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close');
 const formEditProfile = popupEditProfile.querySelector('.form');
+buttonClosePopupEditProfile.addEventListener('click', closePopup);
 
 
 renderInitialCards();
@@ -59,7 +60,7 @@ function openPopupEditProfile() {
   profileFieldCaption.value = profileText;
   page.append(popupEditProfile);
   popupEditProfile.classList.toggle('overlay_is-opened');
-  buttonClosePopupEditProfile.addEventListener('click', closePopup);
+
   formEditProfile.addEventListener('submit', saveFormEditProfile);
 }
 
