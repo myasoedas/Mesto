@@ -1,6 +1,14 @@
 //Добавить 6 карточек мест на страницу
 const elementsList = document.querySelector('.elements__list'); //Вынес переменную elementsList из функции renderInitialCards() по замечанию код Ревьювера
 const page = document.querySelector('.page'); //Вынес переменную page из функций, где она объявляется внутри функции в глобальную область по требованию код ревьювера
+const templatePopupEditProfile = page.querySelector('#popup-edit-profile').content;
+const popupEditProfile = templatePopupEditProfile.querySelector('.overlay').cloneNode(true);
+const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
+const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
+const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close');
+const formEditProfile = popupEditProfile.querySelector('.form');
+
+
 renderInitialCards();
 
 function renderInitialCards() {
@@ -43,14 +51,10 @@ const buttonEditProfile = document.querySelector('.profile__button-edit');
 buttonEditProfile.addEventListener('click', openPopupEditProfile);
 
 function openPopupEditProfile() {
-  const templatePopupEditProfile = page.querySelector('#popup-edit-profile').content;
+
   const profileTitle = page.querySelector('.profile__title').textContent;
   const profileText = page.querySelector('.profile__text').textContent;
-  const popupEditProfile = templatePopupEditProfile.querySelector('.overlay').cloneNode(true);
-  const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
-  const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
-  const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close');
-  const formEditProfile = popupEditProfile.querySelector('.form');
+
   profileFieldName.value = profileTitle;
   profileFieldCaption.value = profileText;
   page.append(popupEditProfile);
