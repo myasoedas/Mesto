@@ -1,8 +1,8 @@
 //Добавить 6 карточек мест на страницу
+const elementsList = document.querySelector('.elements__list'); //Вынес переменную elementsList из функции renderInitialCards() по замечанию код Ревьювера
 renderInitialCards();
 
 function renderInitialCards() {
-  const elementsList = document.querySelector('.elements__list');
   const elementsItemTemplate = document.querySelector('#template__elements-item').content;
   arrCardsCaption.forEach((item) => {
     const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
