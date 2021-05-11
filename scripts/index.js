@@ -21,29 +21,20 @@ function renderInitialCards() {
     elementsItem.querySelector('.element__image').alt = item.altPlaceFoto;
     elementsItem.querySelector('.element__title').textContent = item.titlePlace;
     elementsList.append(elementsItem);
-    const elementImage = document.querySelector('.element__image');
+    const elementImage = elementsItem.querySelector('.element__image');
     elementImage.addEventListener('click', openPopupImage);
+    const buttonDelElement = elementsItem.querySelector('.element__del-element');
+    buttonDelElement.addEventListener('click', delElement);
+    const buttonLike = elementsItem.querySelector('.element__like');
+    buttonLike.addEventListener('click', setLikeStatus);
   });
 }
-
-//При нажатии на кнопку удалить карточку - карточка должна удаляться
-const buttonsDelElement = document.querySelectorAll('.element__del-element');
-
-buttonsDelElement.forEach((item) => {
-  item.addEventListener('click', delElement);
-});
 
 function delElement(event) {
   const eventTarget = event.target;
   const eventTargetParent = eventTarget.parentElement.parentElement;
   eventTargetParent.remove();
 }
-
-//При нажатии на сердечко в карточке оно должно заполняться черым цветом, при повторном нажатии становиться прозрачным
-const buttonsLike = document.querySelectorAll('.element__like');
-buttonsLike.forEach((item) => {
-  item.addEventListener('click', setLikeStatus);
-});
 
 function setLikeStatus(event) {
   const eventTarget = event.target;
