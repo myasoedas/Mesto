@@ -21,6 +21,8 @@ function renderInitialCards() {
     elementsItem.querySelector('.element__image').alt = item.altPlaceFoto;
     elementsItem.querySelector('.element__title').textContent = item.titlePlace;
     elementsList.append(elementsItem);
+    const elementImage = document.querySelector('.element__image');
+    elementImage.addEventListener('click', openPopupImage);
   });
 }
 
@@ -79,10 +81,10 @@ function closePopup(event) {
   eventTarget.remove();
 }
 
-const elementsImage = document.querySelectorAll('.element__image');
+/*const elementsImage = document.querySelectorAll('.element__image');
 elementsImage.forEach((item) => {
   item.addEventListener('click', openPopupImage);
-});
+});*/
 
 function openPopupImage(event) {
   const eventTarget = event.target;
