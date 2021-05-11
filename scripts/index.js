@@ -1,5 +1,6 @@
 //Добавить 6 карточек мест на страницу
 const elementsList = document.querySelector('.elements__list'); //Вынес переменную elementsList из функции renderInitialCards() по замечанию код Ревьювера
+const page = document.querySelector('.page'); //Вынес переменную page из функций, где она объявляется внутри функции в глобальную область по требованию код ревьювера
 renderInitialCards();
 
 function renderInitialCards() {
@@ -42,7 +43,6 @@ const buttonEditProfile = document.querySelector('.profile__button-edit');
 buttonEditProfile.addEventListener('click', openPopupEditProfile);
 
 function openPopupEditProfile() {
-  const page = document.querySelector('.page');
   const templatePopupEditProfile = page.querySelector('#popup-edit-profile').content;
   const profileTitle = page.querySelector('.profile__title').textContent;
   const profileText = page.querySelector('.profile__text').textContent;
@@ -61,7 +61,6 @@ function openPopupEditProfile() {
 
 function saveFormEditProfile(event) {
   event.preventDefault();
-  const page = document.querySelector('.page');
   const eventTarget = event.target.closest('.overlay');
   page.querySelector('.profile__title').textContent = eventTarget.querySelector('.form__field_name_name').value;
   page.querySelector('.profile__text').textContent = eventTarget.querySelector('.form__field_name_caption').value;
@@ -82,7 +81,6 @@ elementsImage.forEach((item) => {
 });
 
 function openPopupImage(event) {
-  const page = document.querySelector('.page');
   const eventTarget = event.target;
   const templatePopupImage = document.querySelector('#popup-image').content;
   const popupImage = templatePopupImage.querySelector('.overlay').cloneNode(true);
@@ -99,7 +97,6 @@ const buttonAddPlace = document.querySelector('.profile__button-add');
 buttonAddPlace.addEventListener('click', openPopupAddPlace);
 
 function openPopupAddPlace() {
-  const page = document.querySelector('.page');
   const templatePopupAddPlace = page.querySelector('#popup-add-element').content;
   popupAddPlace = templatePopupAddPlace.querySelector('.overlay').cloneNode(true);
   page.append(popupAddPlace);
