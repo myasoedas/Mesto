@@ -32,17 +32,17 @@ const arrCardsCaption = [
 ];
 
 //Добавить 6 карточек мест на страницу
-initialCards(); 
+renderInitialCards();
 
-function initialCards() { 
-  const elementsList = document.querySelector('.elements__list'); 
-  const elementsItemTemplate = document.querySelector('#template__elements-item').content;   
+function renderInitialCards() {
+  const elementsList = document.querySelector('.elements__list');
+  const elementsItemTemplate = document.querySelector('#template__elements-item').content;
   arrCardsCaption.forEach((item) => {
-    const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true); 
+    const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
     elementsItem.querySelector('.element__image').src = item.linkPlaceFoto;
-    elementsItem.querySelector('.element__image').alt = item.altPlaceFoto; 
-    elementsItem.querySelector('.element__title').textContent = item.titlePlace; 
-    elementsList.append(elementsItem); 
+    elementsItem.querySelector('.element__image').alt = item.altPlaceFoto;
+    elementsItem.querySelector('.element__title').textContent = item.titlePlace;
+    elementsList.append(elementsItem);
   });
 }
 
@@ -74,39 +74,39 @@ function setLikeStatus(event) {
 const buttonEditProfile = document.querySelector('.profile__button-edit');
 buttonEditProfile.addEventListener('click', openPopupEditProfile);
 
-function openPopupEditProfile() {  
+function openPopupEditProfile() {
   const page = document.querySelector('.page');
   const templatePopupEditProfile = page.querySelector('#popup-edit-profile').content;
   const profileTitle = page.querySelector('.profile__title').textContent;
-  const profileText = page.querySelector('.profile__text').textContent;  
+  const profileText = page.querySelector('.profile__text').textContent;
   const popupEditProfile = templatePopupEditProfile.querySelector('.overlay').cloneNode(true);
   const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
-  const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');  
-  const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close'); 
-  const formEditProfile = popupEditProfile.querySelector('.form');  
+  const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
+  const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close');
+  const formEditProfile = popupEditProfile.querySelector('.form');
   profileFieldName.value = profileTitle;
-  profileFieldCaption.value = profileText;  
+  profileFieldCaption.value = profileText;
   page.append(popupEditProfile);
   popupEditProfile.classList.toggle('overlay_is-opened');
-  buttonClosePopupEditProfile.addEventListener('click', closePopup); 
-  formEditProfile.addEventListener('submit', saveFormEditProfile);    
+  buttonClosePopupEditProfile.addEventListener('click', closePopup);
+  formEditProfile.addEventListener('submit', saveFormEditProfile);
 }
 
-function saveFormEditProfile(event) {    
-  event.preventDefault();  
+function saveFormEditProfile(event) {
+  event.preventDefault();
   const page = document.querySelector('.page');
-  const eventTarget = event.target.closest('.overlay'); 
-  page.querySelector('.profile__title').textContent = eventTarget.querySelector('.form__field_name_name').value;  
-  page.querySelector('.profile__text').textContent = eventTarget.querySelector('.form__field_name_caption').value;  
-  eventTarget.classList.toggle('overlay_is-opened'); 
-  eventTarget.remove();   
+  const eventTarget = event.target.closest('.overlay');
+  page.querySelector('.profile__title').textContent = eventTarget.querySelector('.form__field_name_name').value;
+  page.querySelector('.profile__text').textContent = eventTarget.querySelector('.form__field_name_caption').value;
+  eventTarget.classList.toggle('overlay_is-opened');
+  eventTarget.remove();
 }
 
 /*Универсальня функция для закрытия попапа*/
-function closePopup(event) {   
-  const eventTarget = event.target.closest('.overlay'); 
-  eventTarget.classList.toggle('overlay_is-opened'); 
-  eventTarget.remove(); 
+function closePopup(event) {
+  const eventTarget = event.target.closest('.overlay');
+  eventTarget.classList.toggle('overlay_is-opened');
+  eventTarget.remove();
 }
 
 const elementsImage = document.querySelectorAll('.element__image');
@@ -125,7 +125,7 @@ function openPopupImage(event) {
   page.append(popupImage);
   popupImage.classList.toggle('overlay_is-opened');
   const buttonClosePopupImage = popupImage.querySelector('.popup__button-close');
-  buttonClosePopupImage.addEventListener('click', closePopup); 
+  buttonClosePopupImage.addEventListener('click', closePopup);
 }
 
 const buttonAddPlace = document.querySelector('.profile__button-add');
@@ -144,24 +144,24 @@ function openPopupAddPlace() {
 }
 
 function saveNewPlace(event) {
-  event.preventDefault();    
-  const elementsList = document.querySelector('.elements__list'); 
-  const eventTarget = event.target;   
+  event.preventDefault();
+  const elementsList = document.querySelector('.elements__list');
+  const eventTarget = event.target;
   const popupAddPlace = eventTarget.parentElement.parentElement;
-  const placeName = eventTarget.firstElementChild.nextElementSibling.value;  
+  const placeName = eventTarget.firstElementChild.nextElementSibling.value;
   const linkPlaceImage = eventTarget.firstElementChild.nextElementSibling.nextElementSibling.value;
   const templateNewPlace = document.querySelector('#template__elements-item').content;
   const newPlace = templateNewPlace.querySelector('.elements__item').cloneNode(true);
   newPlace.firstElementChild.firstElementChild.src = linkPlaceImage;
   newPlace.firstElementChild.firstElementChild.alt = placeName;
   newPlace.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.textContent = placeName;
-  popupAddPlace.classList.toggle('overlay_is-opened');  
+  popupAddPlace.classList.toggle('overlay_is-opened');
   elementsList.prepend(newPlace);
   popupAddPlace.remove();
   const buttonDelElement = newPlace.firstElementChild.firstElementChild.nextElementSibling;
   buttonDelElement.addEventListener('click', delElement);
   const buttonLike = newPlace.firstElementChild.lastElementChild.lastElementChild;
-  buttonLike.addEventListener('click', setLikeStatus);  
+  buttonLike.addEventListener('click', setLikeStatus);
   const elementImage = newPlace.firstElementChild.firstElementChild;
-  elementImage.addEventListener('click', openPopupImage); 
+  elementImage.addEventListener('click', openPopupImage);
 }
