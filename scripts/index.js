@@ -67,17 +67,16 @@ function createCard(placeName, placeImageLink, placeImageAlt) {
   elementImage.src = placeImageLink;
   elementImage.alt = placeImageAlt;
   elementsItem.querySelector('.element__title').textContent = placeName;
-  return elementsItem;
-}
-
-function addCard(elementsItem) {
-  elementsList.prepend(elementsItem);
-  const elementImage = elementsItem.querySelector('.element__image');
   elementImage.addEventListener('click', openPopupImage);
   const buttonDelElement = elementsItem.querySelector('.element__del-element');
   buttonDelElement.addEventListener('click', deleteCard);
   const buttonLike = elementsItem.querySelector('.element__like');
   buttonLike.addEventListener('click', setLikeStatus);
+  return elementsItem;
+}
+
+function addCard(elementsItem) {
+  elementsList.prepend(elementsItem);
 }
 
 function openPopupImage(event) {
