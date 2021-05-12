@@ -23,8 +23,7 @@ const profileTitle = page.querySelector('.profile__title');
 const profileText = page.querySelector('.profile__text');
 
 initialCards.forEach((item) => {
-  const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
-  renderCard(elementsItem, elementsList, item.titlePlace, item.linkPlaceFoto, item.altPlaceFoto);
+  addCard(createCard(item.titlePlace, item.linkPlaceFoto, item.altPlaceFoto));
 });
 
 //форма редактирования профиля
@@ -38,40 +37,45 @@ const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-clo
 buttonClosePopupAddPlace.addEventListener('click', closePopup);
 const formAddPlace = popupAddPlace.querySelector('.form');
 formAddPlace.addEventListener('submit', saveNewPlace);
+let fieldNamePlace = popupAddPlace.querySelector('.form__field_name_name-place');
+let fieldNameSrcLink = popupAddPlace.querySelector('.form__field_name_src-link');
+
+const fieldName = popupEditProfile.querySelector('.form__field_name_name');
+const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
 
 function saveNewPlace(event) {
   event.preventDefault();
-  const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
-  const fieldNamePlace = popupAddPlace.querySelector('.form__field_name_name-place');
-  const fieldNameSrcLink = popupAddPlace.querySelector('.form__field_name_src-link');
-  const placeName = fieldNamePlace.value;
-  const linkPlaceImage = fieldNameSrcLink.value;
-  popupAddPlace.classList.toggle('overlay_is-opened');
-  renderCard(elementsItem, elementsList, placeName, linkPlaceImage, placeName);
-  placeName = '';
-  linkPlaceImage = '';
+  let placeName = fieldNamePlace.value;
+  let linkPlaceImage = fieldNameSrcLink.value;
+  togglePopup(popupAddPlace);
+  addCard(createCard(placeName, linkPlaceImage, placeName));
   fieldNamePlace.value = '';
   fieldNameSrcLink.value = '';
 }
 
 function openPopupEditProfile() {
-  const profileTitle = page.querySelector('.profile__title').textContent;
-  const profileText = page.querySelector('.profile__text').textContent;
-  profileFieldName.value = profileTitle;
-  profileFieldCaption.value = profileText;
+  const profileTitle = page.querySelector('.profile__title');
+  const profileText = page.querySelector('.profile__text');
+  profileFieldName.value = profileTitle.textContent;
+  profileFieldCaption.value = profileText.textContent;
   togglePopup(popupEditProfile);
 }
 
-/*функция, которая рендерит карточку*/
-function renderCard(elementsItem, elementsList, titlePlace, linkPlaceFoto, altPlaceFoto) {
-  elementsItem.querySelector('.element__image').src = linkPlaceFoto;
-  elementsItem.querySelector('.element__image').alt = altPlaceFoto;
-  elementsItem.querySelector('.element__title').textContent = titlePlace;
+function createCard(placeName, placeImageLink, placeImageAlt) {
+  const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
+  const elementImage = elementsItem.querySelector('.element__image');
+  elementImage.src = placeImageLink;
+  elementImage.alt = placeImageAlt;
+  elementsItem.querySelector('.element__title').textContent = placeName;
+  return elementsItem;
+}
+
+function addCard(elementsItem) {
   elementsList.prepend(elementsItem);
   const elementImage = elementsItem.querySelector('.element__image');
   elementImage.addEventListener('click', openPopupImage);
   const buttonDelElement = elementsItem.querySelector('.element__del-element');
-  buttonDelElement.addEventListener('click', delElement);
+  buttonDelElement.addEventListener('click', deleteCard);
   const buttonLike = elementsItem.querySelector('.element__like');
   buttonLike.addEventListener('click', setLikeStatus);
 }
@@ -89,7 +93,7 @@ function closePopup(event) {
   togglePopup(eventTarget);
 }
 
-function delElement(event) {
+function deleteCard(event) {
   const eventTarget = event.target;
   const eventTargetParent = eventTarget.parentElement.parentElement;
   eventTargetParent.remove();
@@ -102,17 +106,17 @@ function setLikeStatus(event) {
 
 function saveFormEditProfile(event) {
   event.preventDefault();
-  const eventTarget = event.target.closest('.overlay');
-  profileTitle.textContent = eventTarget.querySelector('.form__field_name_name').value;
-  profileText.textContent = eventTarget.querySelector('.form__field_name_caption').value;
-  eventTarget.classList.toggle('overlay_is-opened');
+  const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
+  profileTitle.textContent = fieldName.value;
+  profileText.textContent = fieldCaption.value;
+  togglePopup(popupEditProfile);
 }
 
 function openPopupAddPlace() {
   togglePopup(popupAddPlace);
 }
 
-function togglePopup(overlay) {
-  overlay.classList.toggle('overlay_is-opened');
+function togglePopup(popup) {
+  popup.classList.toggle('overlay_is-opened');
 }
 
