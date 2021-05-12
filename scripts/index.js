@@ -22,7 +22,7 @@ formEditProfile.addEventListener('submit', saveFormEditProfile);
 const profileTitle = page.querySelector('.profile__title');
 const profileText = page.querySelector('.profile__text');
 
-arrCardsCaption.forEach((item) => {
+initialCards.forEach((item) => {
   const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
   renderCard(elementsItem, elementsList, item.titlePlace, item.linkPlaceFoto, item.altPlaceFoto);
 });

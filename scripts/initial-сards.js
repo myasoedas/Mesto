@@ -1,4 +1,4 @@
-const arrCardsCaption = [
+const initialCards = [
   {
     titlePlace: 'Иркутск',
     linkPlaceFoto: 'https://pobedarf.ru/wp-content/uploads/2020/12/irkutsk.jpg',
