@@ -45,8 +45,8 @@ const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption')
 
 function saveNewPlace(event) {
   event.preventDefault();
-  let placeName = fieldNamePlace.value;
-  let linkPlaceImage = fieldNameSrcLink.value;
+  const placeName = fieldNamePlace.value;
+  const linkPlaceImage = fieldNameSrcLink.value;
   togglePopup(popupAddPlace);
   addCard(createCard(placeName, linkPlaceImage, placeName));
   fieldNamePlace.value = '';
