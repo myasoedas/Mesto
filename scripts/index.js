@@ -6,11 +6,29 @@ const elementsList = page.querySelector('.elements__list');
 //Получаем доступ к содержимому тега template ч/з id template__elements-item
 const elementsItemTemplate = page.querySelector('#template__elements-item').content;
 
+const overlayEditCaption = page.querySelector('.overlay_name_edit-caption');
+const overlayAddPlace = page.querySelector('.overlay_name_add-place');
+
 const overlayPopupImage = page.querySelector('.overlay_name_display-image');
 const popupImage = overlayPopupImage.querySelector('.popup__image');
 const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
 const buttonClosePopupImage = overlayPopupImage.querySelector('.popup__button-close');
-buttonClosePopupImage.addEventListener('click', closePopup);
+//buttonClosePopupImage.addEventListener('click', closePopup);
+page.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    if (overlayPopupImage.classList.contains('overlay_is-opened')){
+      overlayPopupImage.classList.toggle('overlay_is-opened');
+    }
+    if (overlayEditCaption.classList.contains('overlay_is-opened')){
+      overlayEditCaption.classList.toggle('overlay_is-opened');
+    }
+    if (overlayAddPlace.classList.contains('overlay_is-opened')){
+      overlayAddPlace.classList.toggle('overlay_is-opened');
+    }
+  }
+});
+
+
 overlayPopupImage.addEventListener('click', closePopup);
 
 const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
@@ -91,8 +109,13 @@ function openPopupImage(event) {
 }
 
 function closePopup(event) {
-  const eventTarget = event.target.closest('.overlay');
-  togglePopup(eventTarget);
+  const eventTarget = event.target;
+  if (eventTarget.classList.contains('popup__button-close')){
+    togglePopup(eventTarget.closest('.overlay'));
+  }
+  if (eventTarget.classList.contains('overlay')){
+    togglePopup(eventTarget);
+  }
 }
 
 function deleteCard(event) {
