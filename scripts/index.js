@@ -21,8 +21,6 @@ initialCards.forEach((item) => {
 });
 
 popupAddPlace = page.querySelector('.overlay_name_add-place');
-//const buttonAddPlace = page.querySelector('.profile__button-add');
-//buttonAddPlace.addEventListener('click', openPopupAddPlace);
 
 const formAddPlace = popupAddPlace.querySelector('.form');
 formAddPlace.addEventListener('submit', saveNewPlace);
@@ -35,7 +33,8 @@ const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption')
 page.addEventListener('keydown', closePopupFromKeydownEscape);
 
 page.addEventListener('click', function(event) {
-  eventTarget = event.target;
+  let eventTarget = event.target;
+  console.log(eventTarget);
   if (eventTarget.classList.contains('popup__button-close')) {
     closePopup();
   }
@@ -48,8 +47,17 @@ page.addEventListener('click', function(event) {
   if (eventTarget.classList.contains('profile__button-add')) {
     openPopupAddPlace();
   }
-
+  if (eventTarget.classList.contains('element__image')) {
+    openPopupImage(eventTarget, overlayPopupImage);
+  }
 });
+
+function openPopupImage(eventTarget, overlayPopupImage) {
+  popupImage.src = eventTarget.src;
+  popupImage.alt = eventTarget.alt;
+  captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+  togglePopup(overlayPopupImage);
+}
 
 function closePopupFromKeydownEscape (event) {
   if (event.key === 'Escape') {
@@ -81,7 +89,7 @@ function createCard(placeName, placeImageLink, placeImageAlt) {
   elementImage.src = placeImageLink;
   elementImage.alt = placeImageAlt;
   elementsItem.querySelector('.element__title').textContent = placeName;
-  elementImage.addEventListener('click', openPopupImage);
+  //elementImage.addEventListener('click', openPopupImage);
   const buttonDelElement = elementsItem.querySelector('.element__del-element');
   buttonDelElement.addEventListener('click', deleteCard);
   const buttonLike = elementsItem.querySelector('.element__like');
@@ -91,14 +99,6 @@ function createCard(placeName, placeImageLink, placeImageAlt) {
 
 function addCard(elementsItem) {
   elementsList.prepend(elementsItem);
-}
-
-function openPopupImage(event) {
-  const eventTarget = event.target;
-  popupImage.src = eventTarget.src;
-  popupImage.alt = eventTarget.alt;
-  captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
-  togglePopup(overlayPopupImage);
 }
 
 function deleteCard(event) {
