@@ -23,11 +23,11 @@
         <div class="profile__caption">
           <div class="profile__caption-title">
             <h1 class="profile__title">Александр</h1>
-            <button class="profile__button-edit" type="button"></button>
+            <button class="profile__button-edit" name ="button_name_edit-profile" type="button"></button>
           </div>
           <p class="profile__text">WEB разработчик</p>
         </div>
-      <button class="profile__button-add" type="button"></button>
+      <button class="profile__button-add" name ="button_name_add-place" type="button"></button>
     </section>
 
     <section class="elements">
@@ -59,26 +59,26 @@
   <!-- Попап для редактирования профиля -->
   <div class="overlay overlay_name_edit-caption">
     <div class="popup">
-      <form class="form" name="form-edit-caption">
+      <form class="form" name="form_name_edit-caption">
         <h2 class="form__title">Редактировать профиль</h2>
-        <input class="form__field form__field_name_name" name="name" type="text" value="" placeholder="Введите ФИО">
-        <input class="form__field form__field_name_caption" name="caption" type="text" value="" placeholder='Кем вы работаете'>
-        <button class="form__button-save" type="submit">Сохранить</button>
+        <input class="form__field form__field_name_name" name="input_name_name" type="text" value="" placeholder="Введите ФИО">
+        <input class="form__field form__field_name_caption" name="input_name_caption" type="text" value="" placeholder='Кем вы работаете'>
+        <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>
-      <button class="popup__button-close" type="button"></button>
+      <button class="popup__button-close" name ="button_name_close" type="button"></button>
     </div>
   </div>
 
   <!-- Попап с формой для для добавления нового места -->
   <div class="overlay overlay_name_add-place">
     <div class="popup">
-      <form class="form" name="form-add-element">
+      <form class="form" name="form_name_add-place">
         <h2 class="form__title">Новое место</h2>
-        <input class="form__field form__field_name_name-place" name="name-place" type="text" value="" placeholder="Название">
-        <input class="form__field form__field_name_src-link" name="src-link" type="text" value="" placeholder="Ссылка на картинку">
-        <button class="form__button-save" type="submit">Сохранить</button>
+        <input class="form__field form__field_name_name-place" name="input_name_name-place" type="text" value="" placeholder="Название">
+        <input class="form__field form__field_name_src-link" name="input_name_src-link" type="text" value="" placeholder="Ссылка на картинку">
+        <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>
-      <button class="popup__button-close" type="button"></button>
+      <button class="popup__button-close" name ="button_name_close" type="button"></button>
     </div>
   </div>
 
@@ -87,7 +87,7 @@
     <div class="popup popup_color_transparent popup_width_auto">
       <img class="popup__image" src="https://kartinkinaden.ru/uploads/posts/2021-03/1616118940_4-p-baikal-krasivie-foto-4.jpg" alt="Байкал">
       <p class="popup__caption">Байкал</p>
-      <button class="popup__button-close" type="button"></button>
+      <button class="popup__button-close" name ="button_name_close" type="button"></button>
     </div>
   </div>
 
