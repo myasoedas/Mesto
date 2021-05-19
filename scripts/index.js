@@ -34,7 +34,6 @@ page.addEventListener('keydown', closePopupFromKeydownEscape);
 
 page.addEventListener('click', function(event) {
   let eventTarget = event.target;
-  console.log(eventTarget);
   if (eventTarget.classList.contains('popup__button-close')) {
     closePopup();
   }
@@ -50,7 +49,32 @@ page.addEventListener('click', function(event) {
   if (eventTarget.classList.contains('element__image')) {
     openPopupImage(eventTarget, overlayPopupImage);
   }
+  if (eventTarget.classList.contains('element__del-element')) {
+    deleteCard(eventTarget);
+  }
+  if (eventTarget.classList.contains('element__like')) {
+    setLikeStatus(eventTarget);
+  }
 });
+
+function saveNewPlace(event) {
+  event.preventDefault();
+  const placeName = fieldNamePlace.value;
+  const linkPlaceImage = fieldNameSrcLink.value;
+  togglePopup(popupAddPlace);
+  addCard(createCard(placeName, linkPlaceImage, placeName));
+  // необходимо использовать reset
+  fieldNamePlace.value = '';
+  fieldNameSrcLink.value = '';
+}
+
+function setLikeStatus(eventTarget) {
+  eventTarget.classList.toggle('element__like_status_active');
+}
+
+function deleteCard(eventTarget) {
+  eventTarget.parentElement.parentElement.remove();
+}
 
 function openPopupImage(eventTarget, overlayPopupImage) {
   popupImage.src = eventTarget.src;
@@ -63,16 +87,6 @@ function closePopupFromKeydownEscape (event) {
   if (event.key === 'Escape') {
     closePopup();
   }
-}
-
-function saveNewPlace(event) {
-  event.preventDefault();
-  const placeName = fieldNamePlace.value;
-  const linkPlaceImage = fieldNameSrcLink.value;
-  togglePopup(popupAddPlace);
-  addCard(createCard(placeName, linkPlaceImage, placeName));
-  fieldNamePlace.value = '';
-  fieldNameSrcLink.value = '';
 }
 
 function openPopupEditProfile() {
@@ -89,27 +103,11 @@ function createCard(placeName, placeImageLink, placeImageAlt) {
   elementImage.src = placeImageLink;
   elementImage.alt = placeImageAlt;
   elementsItem.querySelector('.element__title').textContent = placeName;
-  //elementImage.addEventListener('click', openPopupImage);
-  const buttonDelElement = elementsItem.querySelector('.element__del-element');
-  buttonDelElement.addEventListener('click', deleteCard);
-  const buttonLike = elementsItem.querySelector('.element__like');
-  buttonLike.addEventListener('click', setLikeStatus);
   return elementsItem;
 }
 
 function addCard(elementsItem) {
   elementsList.prepend(elementsItem);
-}
-
-function deleteCard(event) {
-  const eventTarget = event.target;
-  const eventTargetParent = eventTarget.parentElement.parentElement;
-  eventTargetParent.remove();
-}
-
-function setLikeStatus(event) {
-  const eventTarget = event.target;
-  eventTarget.classList.toggle('element__like_status_active');
 }
 
 function saveFormEditProfile(event) {
