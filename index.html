@@ -11,10 +11,13 @@
   <title>Mesto - веб сервис для путешественников</title>
 </head>
 <body class="page">
+
   <header class="header">
     <img class="header__image" src="./images/logo-mesto-russia.svg" alt="Логотип: Mesto Russia">
   </header>
+
   <main class="main">
+
     <section class="profile">
       <img class="profile__image" src="./images/alex.jpg" alt="Александр">
         <div class="profile__caption">
@@ -26,15 +29,19 @@
         </div>
       <button class="profile__button-add" type="button"></button>
     </section>
+
     <section class="elements">
       <ul class="elements__list">
         <!-- Элементы списка заполняются автоматически функцией renderInitialCards() в файле index.js -->
       </ul>
     </section>
+
   </main>
+
   <footer class="footer">
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
+
   <!-- элемент списка с карточкой места -->
   <template id="template__elements-item">
     <li class="elements__item">
@@ -48,6 +55,7 @@
       </div>
     </li>
   </template>
+
   <!-- Попап для редактирования профиля -->
   <div class="overlay overlay_name_edit-caption">
     <div class="popup">
@@ -60,6 +68,7 @@
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
+
   <!-- Попап с формой для для добавления нового места -->
   <div class="overlay overlay_name_add-place">
     <div class="popup">
@@ -72,6 +81,7 @@
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
+
   <!-- Попап с фотографией места на весь экран -->
   <div class="overlay overlay_color_black overlay_name_display-image">
     <div class="popup popup_color_transparent popup_width_auto">
@@ -80,7 +90,12 @@
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
+
   <script src="./scripts/initial-сards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
+
+
+

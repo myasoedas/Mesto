@@ -1,13 +1,16 @@
+//Получаем доступ к тегу body ч/з селектор класса page
 const page = document.querySelector('.page');
+//Получаем доступ к тегу ul ч/з селектор класса elements__list
 const elementsList = page.querySelector('.elements__list');
 
+//Получаем доступ к содержимому тега template ч/з id template__elements-item
 const elementsItemTemplate = page.querySelector('#template__elements-item').content;
 
-const popupImage = page.querySelector('.overlay_name_display-image');
-const srcPopupImage = popupImage.querySelector('.popup__image');
-const altPopupImage = popupImage.querySelector('.popup__image');
-const captionPopupImage = popupImage.querySelector('.popup__caption');
-const buttonClosePopupImage = popupImage.querySelector('.popup__button-close');
+const overlayPopupImage = page.querySelector('.overlay_name_display-image');
+const srcPopupImage = overlayPopupImage.querySelector('.popup__image');
+const altPopupImage = overlayPopupImage.querySelector('.popup__image');
+const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
+const buttonClosePopupImage = overlayPopupImage.querySelector('.popup__button-close');
 buttonClosePopupImage.addEventListener('click', closePopup);
 
 const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
@@ -84,7 +87,7 @@ function openPopupImage(event) {
   srcPopupImage.src = eventTarget.src;
   altPopupImage.alt = eventTarget.alt;
   captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
-  togglePopup(popupImage);
+  togglePopup(overlayPopupImage);
 }
 
 function closePopup(event) {
