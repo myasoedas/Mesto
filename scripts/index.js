@@ -11,6 +11,7 @@ const popupImage = overlayPopupImage.querySelector('.popup__image');
 const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
 const buttonClosePopupImage = overlayPopupImage.querySelector('.popup__button-close');
 buttonClosePopupImage.addEventListener('click', closePopup);
+overlayPopupImage.addEventListener('click', closePopup);
 
 const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
 const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
