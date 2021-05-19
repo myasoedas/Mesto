@@ -1,41 +1,16 @@
-//Получаем доступ к тегу body ч/з селектор класса page
 const page = document.querySelector('.page');
-//Получаем доступ к тегу ul ч/з селектор класса elements__list
 const elementsList = page.querySelector('.elements__list');
-
-//Получаем доступ к содержимому тега template ч/з id template__elements-item
 const elementsItemTemplate = page.querySelector('#template__elements-item').content;
-
 const overlayEditCaption = page.querySelector('.overlay_name_edit-caption');
 const overlayAddPlace = page.querySelector('.overlay_name_add-place');
-
 const overlayPopupImage = page.querySelector('.overlay_name_display-image');
 const popupImage = overlayPopupImage.querySelector('.popup__image');
 const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
-const buttonClosePopupImage = overlayPopupImage.querySelector('.popup__button-close');
-
-//Слушатель для всего body - отлавливает событие нажатие на клавиатуру.
-//Слушатель ждет нажатия клавиши Escape.
-//Затем проверяет наличие открытых попапов
-page.addEventListener('keydown', closePopupFromKeydownEscape);
-
-function closePopupFromKeydownEscape (event) {
-  if (event.key === 'Escape') {
-    closePopup();
-  }
-}
-
-
-
-overlayPopupImage.addEventListener('click', closePopup);
-
 const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
 const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
 const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
-const buttonClosePopupEditProfile = popupEditProfile.querySelector('.popup__button-close');
 const formEditProfile = popupEditProfile.querySelector('.form');
 
-buttonClosePopupEditProfile.addEventListener('click', closePopup);
 formEditProfile.addEventListener('submit', saveFormEditProfile);
 
 const profileTitle = page.querySelector('.profile__title');
@@ -45,15 +20,10 @@ initialCards.forEach((item) => {
   addCard(createCard(item.titlePlace, item.linkPlaceFoto, item.altPlaceFoto));
 });
 
-//форма редактирования профиля
-const buttonEditProfile = page.querySelector('.profile__button-edit');
-buttonEditProfile.addEventListener('click', openPopupEditProfile);
-
 popupAddPlace = page.querySelector('.overlay_name_add-place');
 const buttonAddPlace = page.querySelector('.profile__button-add');
 buttonAddPlace.addEventListener('click', openPopupAddPlace);
-const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-close');
-buttonClosePopupAddPlace.addEventListener('click', closePopup);
+
 const formAddPlace = popupAddPlace.querySelector('.form');
 formAddPlace.addEventListener('submit', saveNewPlace);
 let fieldNamePlace = popupAddPlace.querySelector('.form__field_name_name-place');
@@ -61,6 +31,28 @@ let fieldNameSrcLink = popupAddPlace.querySelector('.form__field_name_src-link')
 
 const fieldName = popupEditProfile.querySelector('.form__field_name_name');
 const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
+
+page.addEventListener('keydown', closePopupFromKeydownEscape);
+
+page.addEventListener('click', function(event) {
+  eventTarget = event.target;
+  if (eventTarget.classList.contains('popup__button-close')) {
+    closePopup();
+  }
+  if (eventTarget.classList.contains('overlay_is-opened')) {
+    togglePopup(eventTarget);
+  }
+  if (eventTarget.classList.contains('profile__button-edit')) {
+    openPopupEditProfile();
+  }
+
+});
+
+function closePopupFromKeydownEscape (event) {
+  if (event.key === 'Escape') {
+    closePopup();
+  }
+}
 
 function saveNewPlace(event) {
   event.preventDefault();
@@ -104,16 +96,6 @@ function openPopupImage(event) {
   popupImage.alt = eventTarget.alt;
   captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
   togglePopup(overlayPopupImage);
-}
-
-function closePopup(event) {
-  const eventTarget = event.target;
-  if (eventTarget.classList.contains('popup__button-close')){
-    togglePopup(eventTarget.closest('.overlay'));
-  }
-  if (eventTarget.classList.contains('overlay')){
-    togglePopup(eventTarget);
-  }
 }
 
 function deleteCard(event) {
