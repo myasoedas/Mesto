@@ -13,20 +13,18 @@ const overlayPopupImage = page.querySelector('.overlay_name_display-image');
 const popupImage = overlayPopupImage.querySelector('.popup__image');
 const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
 const buttonClosePopupImage = overlayPopupImage.querySelector('.popup__button-close');
-//buttonClosePopupImage.addEventListener('click', closePopup);
-page.addEventListener('keydown', function(event) {
+
+//Слушатель для всего body - отлавливает событие нажатие на клавиатуру.
+//Слушатель ждет нажатия клавиши Escape.
+//Затем проверяет наличие открытых попапов
+page.addEventListener('keydown', closePopupFromKeydownEscape);
+
+function closePopupFromKeydownEscape (event) {
   if (event.key === 'Escape') {
-    if (overlayPopupImage.classList.contains('overlay_is-opened')){
-      overlayPopupImage.classList.toggle('overlay_is-opened');
-    }
-    if (overlayEditCaption.classList.contains('overlay_is-opened')){
-      overlayEditCaption.classList.toggle('overlay_is-opened');
-    }
-    if (overlayAddPlace.classList.contains('overlay_is-opened')){
-      overlayAddPlace.classList.toggle('overlay_is-opened');
-    }
+    closePopup();
   }
-});
+}
+
 
 
 overlayPopupImage.addEventListener('click', closePopup);
@@ -145,3 +143,9 @@ function togglePopup(popup) {
   popup.classList.toggle('overlay_is-opened');
 }
 
+function closePopup() {
+  const overlayIsOpened = page.querySelector('.overlay_is-opened');
+    if (!(overlayIsOpened === null)) {
+      togglePopup(overlayIsOpened);
+    }
+}
