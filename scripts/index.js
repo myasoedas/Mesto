@@ -21,8 +21,8 @@ initialCards.forEach((item) => {
 });
 
 popupAddPlace = page.querySelector('.overlay_name_add-place');
-const buttonAddPlace = page.querySelector('.profile__button-add');
-buttonAddPlace.addEventListener('click', openPopupAddPlace);
+//const buttonAddPlace = page.querySelector('.profile__button-add');
+//buttonAddPlace.addEventListener('click', openPopupAddPlace);
 
 const formAddPlace = popupAddPlace.querySelector('.form');
 formAddPlace.addEventListener('submit', saveNewPlace);
@@ -44,6 +44,9 @@ page.addEventListener('click', function(event) {
   }
   if (eventTarget.classList.contains('profile__button-edit')) {
     openPopupEditProfile();
+  }
+  if (eventTarget.classList.contains('profile__button-add')) {
+    openPopupAddPlace();
   }
 
 });
