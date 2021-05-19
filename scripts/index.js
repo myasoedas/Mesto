@@ -7,8 +7,7 @@ const elementsList = page.querySelector('.elements__list');
 const elementsItemTemplate = page.querySelector('#template__elements-item').content;
 
 const overlayPopupImage = page.querySelector('.overlay_name_display-image');
-const srcPopupImage = overlayPopupImage.querySelector('.popup__image');
-const altPopupImage = overlayPopupImage.querySelector('.popup__image');
+const popupImage = overlayPopupImage.querySelector('.popup__image');
 const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
 const buttonClosePopupImage = overlayPopupImage.querySelector('.popup__button-close');
 buttonClosePopupImage.addEventListener('click', closePopup);
@@ -84,8 +83,8 @@ function addCard(elementsItem) {
 
 function openPopupImage(event) {
   const eventTarget = event.target;
-  srcPopupImage.src = eventTarget.src;
-  altPopupImage.alt = eventTarget.alt;
+  popupImage.src = eventTarget.src;
+  popupImage.alt = eventTarget.alt;
   captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
   togglePopup(overlayPopupImage);
 }
