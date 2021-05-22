@@ -11,76 +11,91 @@
   <title>Mesto - веб сервис для путешественников</title>
 </head>
 <body class="page">
+
   <header class="header">
     <img class="header__image" src="./images/logo-mesto-russia.svg" alt="Логотип: Mesto Russia">
   </header>
+
   <main class="main">
+
     <section class="profile">
-      <img class="profile__image" src="./images/alex.jpg" alt="Александр">
+      <img class="profile__image" src="./images/alex.png" alt="Александр">
         <div class="profile__caption">
           <div class="profile__caption-title">
             <h1 class="profile__title">Александр</h1>
-            <button class="profile__button-edit" type="button"></button>
+            <button class="profile__button-open-popup-edit-profile" name ="open-popup-edit-profile" type="button"></button>
           </div>
           <p class="profile__text">WEB разработчик</p>
         </div>
-      <button class="profile__button-add" type="button"></button>
+      <button class="profile__button-open-popup-add-place" name ="open-popup-add-place" type="button"></button>
     </section>
+
     <section class="elements">
       <ul class="elements__list">
         <!-- Элементы списка заполняются автоматически функцией renderInitialCards() в файле index.js -->
       </ul>
     </section>
+
   </main>
+
   <footer class="footer">
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
+
   <!-- элемент списка с карточкой места -->
   <template id="template__elements-item">
     <li class="elements__item">
       <div class="element">
         <img class="element__image" src=" " alt=" ">
-        <button class="element__del-element" type="button"></button>
+        <button class="element__del-element" name ="button_name_delete-place" type="button"></button>
         <div class="element__caption">
             <h2 class="element__title"></h2>
-            <button class="element__like" type="button"></button>
+            <button class="element__like" name ="button_name_toggle-like" type="button"></button>
         </div>
       </div>
     </li>
   </template>
+
   <!-- Попап для редактирования профиля -->
-  <div class="overlay overlay_name_edit-caption">
+  <div class="overlay overlay_name_edit-profile">
     <div class="popup">
-      <form class="form" name="form-edit-caption">
+      <form class="form" name="form_edit-user-caption">
         <h2 class="form__title">Редактировать профиль</h2>
-        <input class="form__field form__field_name_name" name="name" type="text" value="" placeholder="Введите ФИО">
-        <input class="form__field form__field_name_caption" name="caption" type="text" value="" placeholder='Кем вы работаете'>
-        <button class="form__button-save" type="submit">Сохранить</button>
+        <input class="form__input form__input_name_user-name" name="input_user-name" type="text" value="" placeholder="Введите ФИО" minlength="2" maxlength="40" required>
+        <input class="form__input form__input_name_user-caption" name="input_user-caption" type="text" value="" placeholder='Кем вы работаете' minlength="2" maxlength="200" required>
+        <button class="form__button-save" name ="button_save-form-edit-caption" type="submit">Сохранить</button>
       </form>
-      <button class="popup__button-close" type="button"></button>
+      <button class="popup__button-close" name ="button_close-popup-edit-caption" type="button"></button>
     </div>
   </div>
+
   <!-- Попап с формой для для добавления нового места -->
   <div class="overlay overlay_name_add-place">
     <div class="popup">
-      <form class="form" name="form-add-element">
+      <form class="form" name="form_add-place">
         <h2 class="form__title">Новое место</h2>
-        <input class="form__field form__field_name_name-place" name="name-place" type="text" value="" placeholder="Название">
-        <input class="form__field form__field_name_src-link" name="src-link" type="text" value="" placeholder="Ссылка на картинку">
-        <button class="form__button-save" type="submit">Сохранить</button>
+        <input class="form__input form__input_name_place-name" name="input_place-name" type="text" value="" placeholder="Название" minlength="2" maxlength="30" required>
+        <input class="form__input form__input_name_src-link" name="input_src-link" type="text" value="" placeholder="Ссылка на картинку" minlength="12" required>
+        <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>
-      <button class="popup__button-close" type="button"></button>
+      <button class="popup__button-close" name ="button_name_close" type="button"></button>
     </div>
   </div>
+
   <!-- Попап с фотографией места на весь экран -->
   <div class="overlay overlay_color_black overlay_name_display-image">
     <div class="popup popup_color_transparent popup_width_auto">
-      <img class="popup__image" src="https://kartinkinaden.ru/uploads/posts/2021-03/1616118940_4-p-baikal-krasivie-foto-4.jpg" alt="Байкал">
-      <p class="popup__caption">Байкал</p>
-      <button class="popup__button-close" type="button"></button>
+      <img class="popup__image" src="#" alt="#">
+      <p class="popup__caption"></p>
+      <button class="popup__button-close" name ="button_close-popup-display-image" type="button"></button>
     </div>
   </div>
+
   <script src="./scripts/initial-сards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
+
+
+

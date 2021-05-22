@@ -15,10 +15,10 @@
 
 @import url(../blocks/profile/__title/profile__title.css);
 
-@import url(../blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../blocks/profile/__button-open-popup-edit-profile/profile__button-open-popup-edit-profile.css);
 
 @import url(../blocks/profile/__text/profile__text.css);
-@import url(../blocks/profile/__button-add/profile__button-add.css);
+@import url(../blocks/profile/__button-open-popup-add-place/profile__button-open-popup-add-place.css);
 
 @import url(../blocks/elements/elements.css);
 
@@ -44,7 +44,7 @@
 @import url(../blocks/overlay/overlay.css);
 @import url(../blocks/overlay/_is-opened/overlay_is-opened.css);
 @import url(../blocks/overlay/_color/overlay_color_black.css);
-@import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
+@import url(../blocks/overlay/_name/overlay_name_edit-profile.css);
 @import url(../blocks/overlay/_name/overlay_name_add-place.css);
 @import url(../blocks/overlay/_name/overlay_name_display-image.css);
 @import url(../blocks/popup/popup.css);
@@ -55,9 +55,10 @@
 @import url(../blocks/popup/_width/popup_width_auto.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
-@import url(../blocks/form/__field/form__field.css);
-@import url(../blocks/form/__field/_name/form__field_name_name.css);
-@import url(../blocks/form/__field/_name/form__field_name_caption.css);
-@import url(../blocks/form/__field/_name/form__field_name_name-place.css);
-@import url(../blocks/form/__field/_name/form__field_name_src-link.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
+@import url(../blocks/form/__input/_name/form__input_name_user-name.css);
+@import url(../blocks/form/__input/_name/form__input_name_user-caption.css);
+@import url(../blocks/form/__input/_name/form__input_name_place-name.css);
+@import url(../blocks/form/__input/_name/form__input_name_src-link.css);
 @import url(../blocks/form/__button-save/form__button-save.css);

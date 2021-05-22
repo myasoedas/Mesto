@@ -1,5 +1,5 @@
 /*блок button - button-edit - кнопка для редактирования профиля путешественика*/
-.profile__button-edit {
+.profile__button-open-popup-edit-profile {
   margin: 0;
   padding: 0;
   width: 24px;
@@ -13,12 +13,12 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.profile__button-edit:hover {
+.profile__button-open-popup-edit-profile:hover {
   opacity: 0.6;
 }
 
 @media (max-width: 775px) {
-  .profile__button-edit {
+  .profile__button-open-popup-edit-profile {
     margin: 36px 0 0 0;
     width: 18px;
     height: 18px;
