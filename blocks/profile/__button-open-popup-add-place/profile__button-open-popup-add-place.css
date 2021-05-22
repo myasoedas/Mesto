@@ -1,5 +1,5 @@
 /*блок button-add*/
-.profile__button-add {
+.profile__button-open-popup-add-place {
   margin: 0;
   padding: 0;
   width: 150px;
@@ -14,12 +14,12 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.profile__button-add:hover {
+.profile__button-open-popup-add-place:hover {
   opacity: 0.6;
 }
 
 @media (max-width: 775px) {
-  .profile__button-add {
+  .profile__button-open-popup-add-place {
     margin: 36px 0 0 0;
     width: 100%;
     justify-content: center;

@@ -1,134 +1,85 @@
+//конфиг
 const page = document.querySelector('.page');
-const elementsList = page.querySelector('.elements__list');
-const elementsItemTemplate = page.querySelector('#template__elements-item').content;
-const overlayEditCaption = page.querySelector('.overlay_name_edit-caption');
+const classOverlayIsOpened = '.overlay_is-opened';
+const textOverlayIsOpened = classOverlayIsOpened.slice(1);
+const classButtonClose = '.popup__button-close';
+const textButtonClose = classButtonClose.slice(1);
+
+const overlayEditProfile = page.querySelector('.overlay_name_edit-profile');
 const overlayAddPlace = page.querySelector('.overlay_name_add-place');
-const overlayPopupImage = page.querySelector('.overlay_name_display-image');
-const popupImage = overlayPopupImage.querySelector('.popup__image');
-const captionPopupImage = overlayPopupImage.querySelector('.popup__caption');
-const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
-const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
-const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
-const formEditProfile = popupEditProfile.querySelector('.form');
+const overlayDisplayImage = page.querySelector('.overlay_name_display-image');
 
-formEditProfile.addEventListener('submit', saveFormEditProfile);
+const buttonOpenPopupEditProfile = page.querySelector('.profile__button-open-popup-edit-profile');
+const buttonOpenPopupAddPlace = page.querySelector('.profile__button-open-popup-add-place');
 
-const profileTitle = page.querySelector('.profile__title');
-const profileText = page.querySelector('.profile__text');
+const userImage = page.querySelector('.profile__image');
+const srcUserImage = userImage.src;
+const altUserImage = userImage.alt;
+const userNameElement = page.querySelector('.profile__title');
+const userName = userNameElement.textContent;
+const userCaptionElement = page.querySelector('.profile__text');
+const userCaption = userCaptionElement.textContent;
+const popupImage = page.querySelector('.popup__image');
+const popupImageCaption = page.querySelector('.popup__caption');
+const inputUserName = page.querySelector('.form__input_name_user-name');
+const inputUserCaption = page.querySelector('.form__input_name_user-caption');
 
-initialCards.forEach((item) => {
-  addCard(createCard(item.titlePlace, item.linkPlaceFoto, item.altPlaceFoto));
-});
+buttonOpenPopupEditProfile.addEventListener('click', openPopup);
+buttonOpenPopupAddPlace.addEventListener('click', openPopup);
+userImage.addEventListener('click', openPopup)
 
-popupAddPlace = page.querySelector('.overlay_name_add-place');
-
-const formAddPlace = popupAddPlace.querySelector('.form');
-formAddPlace.addEventListener('submit', saveNewPlace);
-let fieldNamePlace = popupAddPlace.querySelector('.form__field_name_name-place');
-let fieldNameSrcLink = popupAddPlace.querySelector('.form__field_name_src-link');
-
-const fieldName = popupEditProfile.querySelector('.form__field_name_name');
-const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
-
-page.addEventListener('keydown', closePopupFromKeydownEscape);
-
-page.addEventListener('click', function(event) {
-  let eventTarget = event.target;
-  if (eventTarget.classList.contains('popup__button-close')) {
-    closePopup();
+function openPopup(event) {
+  const eventTarget = event.target;
+  switch (eventTarget) {
+    case buttonOpenPopupEditProfile:
+      createPopupEditProfile(userName, userCaption);
+      addClassForOpenPopup(overlayEditProfile);
+      break;
+    case buttonOpenPopupAddPlace:
+      addClassForOpenPopup(overlayAddPlace);
+      break;
+    case userImage:
+      createPopupImage(srcUserImage, `${userName} - ${userCaption}`, `${userName} - ${userCaption}`);
+      addClassForOpenPopup(overlayDisplayImage);
   }
-  if (eventTarget.classList.contains('overlay_is-opened')) {
-    togglePopup(eventTarget);
-  }
-  if (eventTarget.classList.contains('profile__button-edit')) {
-    openPopupEditProfile();
-  }
-  if (eventTarget.classList.contains('profile__button-add')) {
-    openPopupAddPlace();
-  }
-  if (eventTarget.classList.contains('element__image')) {
-    openPopupImage(eventTarget, overlayPopupImage);
-  }
-  if (eventTarget.classList.contains('element__del-element')) {
-    deleteCard(eventTarget);
-  }
-  if (eventTarget.classList.contains('element__like')) {
-    setLikeStatus(eventTarget);
-  }
-});
-
-function saveNewPlace(event) {
-  event.preventDefault();
-  const placeName = fieldNamePlace.value;
-  const linkPlaceImage = fieldNameSrcLink.value;
-  togglePopup(popupAddPlace);
-  addCard(createCard(placeName, linkPlaceImage, placeName));
-  // необходимо использовать reset
-  fieldNamePlace.value = '';
-  fieldNameSrcLink.value = '';
+  const overlayIsOpened = page.querySelector(classOverlayIsOpened);
+  const buttonClose = overlayIsOpened.querySelector(classButtonClose);
+  overlayIsOpened.addEventListener('click', closePopup);
+  buttonClose.addEventListener('click', closePopup);
+  page.addEventListener('keydown', closePopupEscape);
 }
 
-function setLikeStatus(eventTarget) {
-  eventTarget.classList.toggle('element__like_status_active');
+
+
+function createPopupEditProfile(userName, userCaption) {
+  inputUserName.value = userName;
+  inputUserCaption.value = userCaption;
 }
 
-function deleteCard(eventTarget) {
-  eventTarget.parentElement.parentElement.remove();
+function createPopupImage(src, alt, caption) {
+  popupImage.src = src;
+  popupImage.alt = alt;
+  popupImageCaption.textContent = caption;
+
 }
 
-function openPopupImage(eventTarget, overlayPopupImage) {
-  popupImage.src = eventTarget.src;
-  popupImage.alt = eventTarget.alt;
-  captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
-  togglePopup(overlayPopupImage);
+function closePopup(event) {
+  const overlayIsOpened = page.querySelector(classOverlayIsOpened);
+  if (!(overlayIsOpened === null)) {
+    removeClassForOpenPopup(overlayIsOpened);
+  }
 }
 
-function closePopupFromKeydownEscape (event) {
+function closePopupEscape(event) {
   if (event.key === 'Escape') {
     closePopup();
   }
 }
 
-function openPopupEditProfile() {
-  const profileTitle = page.querySelector('.profile__title');
-  const profileText = page.querySelector('.profile__text');
-  profileFieldName.value = profileTitle.textContent;
-  profileFieldCaption.value = profileText.textContent;
-  togglePopup(popupEditProfile);
+function addClassForOpenPopup(element) {
+  element.classList.add(textOverlayIsOpened);
 }
 
-function createCard(placeName, placeImageLink, placeImageAlt) {
-  const elementsItem = elementsItemTemplate.querySelector('.elements__item').cloneNode(true);
-  const elementImage = elementsItem.querySelector('.element__image');
-  elementImage.src = placeImageLink;
-  elementImage.alt = placeImageAlt;
-  elementsItem.querySelector('.element__title').textContent = placeName;
-  return elementsItem;
-}
-
-function addCard(elementsItem) {
-  elementsList.prepend(elementsItem);
-}
-
-function saveFormEditProfile(event) {
-  event.preventDefault();
-  const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
-  profileTitle.textContent = fieldName.value;
-  profileText.textContent = fieldCaption.value;
-  togglePopup(popupEditProfile);
-}
-
-function openPopupAddPlace() {
-  togglePopup(popupAddPlace);
-}
-
-function togglePopup(popup) {
-  popup.classList.toggle('overlay_is-opened');
-}
-
-function closePopup() {
-  const overlayIsOpened = page.querySelector('.overlay_is-opened');
-    if (!(overlayIsOpened === null)) {
-      togglePopup(overlayIsOpened);
-    }
+function removeClassForOpenPopup(element) {
+  element.classList.remove(textOverlayIsOpened);
 }
