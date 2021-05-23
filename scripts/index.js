@@ -11,6 +11,8 @@ const profileFieldName = popupEditProfile.querySelector('.form__field_name_name'
 const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
 const formEditProfile = popupEditProfile.querySelector('.form');
 
+enableValidation();
+
 formEditProfile.addEventListener('submit', saveFormEditProfile);
 
 const profileTitle = page.querySelector('.profile__title');
@@ -31,6 +33,8 @@ const fieldName = popupEditProfile.querySelector('.form__field_name_name');
 const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
 
 page.addEventListener('keydown', closePopupFromKeydownEscape);
+
+
 
 page.addEventListener('click', function(event) {
   let eventTarget = event.target;

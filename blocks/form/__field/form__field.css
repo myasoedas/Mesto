@@ -1,7 +1,7 @@
 /*элемент input - поле для ввода данных в popup, снизу нижняя граница, курсор по центру поля*/
 .form__field {
   margin: 0;
-  padding: 0;
+  padding: 13px 0 13px 0;
   background: inherit;
   color: inherit;
   border: none;
@@ -13,4 +13,8 @@
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.form__field:invalid {
+  border-bottom: 1px solid #FF0000;
 }

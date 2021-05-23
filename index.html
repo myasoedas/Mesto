@@ -59,10 +59,10 @@
   <!-- Попап для редактирования профиля -->
   <div class="overlay overlay_name_edit-caption">
     <div class="popup">
-      <form class="form" name="form_name_edit-caption">
+      <form class="form" name="form_name_edit-caption" novalidate>
         <h2 class="form__title">Редактировать профиль</h2>
-        <input class="form__field form__field_name_name" name="input_name_name" type="text" value="" placeholder="Введите ФИО">
-        <input class="form__field form__field_name_caption" name="input_name_caption" type="text" value="" placeholder='Кем вы работаете'>
+        <input class="form__field form__field_name_name" name="input_name_name" type="text" value="" placeholder="Введите ФИО" minlength="2" maxlength="40" required>
+        <input class="form__field form__field_name_caption" name="input_name_caption" type="text" value="" placeholder='Кем вы работаете' minlength="2" maxlength="200" required>
         <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>
       <button class="popup__button-close" name ="button_name_close" type="button"></button>
@@ -72,10 +72,10 @@
   <!-- Попап с формой для для добавления нового места -->
   <div class="overlay overlay_name_add-place">
     <div class="popup">
-      <form class="form" name="form_name_add-place">
+      <form class="form" name="form_name_add-place" novalidate>
         <h2 class="form__title">Новое место</h2>
-        <input class="form__field form__field_name_name-place" name="input_name_name-place" type="text" value="" placeholder="Название">
-        <input class="form__field form__field_name_src-link" name="input_name_src-link" type="text" value="" placeholder="Ссылка на картинку">
+        <input class="form__field form__field_name_name-place" name="input_name_name-place" type="text" value="" placeholder="Название" minlength="2" maxlength="30" required>
+        <input class="form__field form__field_name_src-link" name="input_name_src-link" type="text" value="" placeholder="Ссылка на картинку" minlength="12" required>
         <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>
       <button class="popup__button-close" name ="button_name_close" type="button"></button>
