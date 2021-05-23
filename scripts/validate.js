@@ -16,28 +16,35 @@ function setEventListeners(formElement) {
   //найти все button submit
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
-      checkInputValidity(inputElement);
+      checkInputValidity(formElement, inputElement);
     })
   })
 }
 
-function checkInputValidity(inputElement) {
+function checkInputValidity(formElement, inputElement) {
   //проверить input на валидность
   //если input валидный - скрыть ошибку,
   //если input не валидный - показать ошибку
   if (inputElement.validity.valid) {
-    hideInputError(inputElement);
+    hideInputError(formElement, inputElement);
   } else {
-    showInputError(inputElement);
+    showInputError(formElement, inputElement);
   }
 }
 
-function hideInputError(inputElement) {
-
+function hideInputError(formElement, inputElement) {
+  inputElement.classList.remove('form__field_type_error');
+  const spanElementError = inputElement.nextElementSibling;
+  spanElementError.textContent = 'успешная валидация';
+  spanElementError.classList.remove('form__field-error_active');
 }
 
-function showInputError(inputElement) {
-
+function showInputError(formElement, inputElement) {
+  inputElement.classList.add('form__field_type_error');
+  const inputElementErrorMessage = inputElement.validationMessage;
+  const spanElementError = inputElement.nextElementSibling;
+  spanElementError.textContent = inputElementErrorMessage;
+  spanElementError.classList.add('form__field-error_active');
 }
 
 
