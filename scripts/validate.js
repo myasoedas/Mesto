@@ -13,6 +13,7 @@ function setEventListeners(formElement, buttonSubmitElement) {
       toggleButtonState(buttonSubmitElement, inputList);
     })
   })
+  toggleButtonState(buttonSubmitElement, inputList);
 }
 
 function inputListValid(inputList) {
@@ -32,7 +33,6 @@ function checkInputValidity(formElement, inputElement) {
 }
 
 function toggleButtonState(buttonSubmitElement, inputList) {
-  console.log(!inputListValid(inputList));
   if (inputListValid(inputList)) {
     buttonSubmitElement.disabled = false;
   } else {

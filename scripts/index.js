@@ -40,6 +40,10 @@ page.addEventListener('click', function(event) {
     closePopup();
   }
   if (eventTarget.classList.contains('overlay_is-opened')) {
+    const overlayIsOpened = page.querySelector('.overlay_is-opened');
+    if (overlayIsOpened === overlayAddPlace) {
+      resetForm(overlayIsOpened);
+    }
     togglePopup(eventTarget);
   }
   if (eventTarget.classList.contains('profile__button-edit')) {
@@ -85,8 +89,16 @@ function openPopupImage(eventTarget, overlayPopupImage) {
   togglePopup(overlayPopupImage);
 }
 
+function resetForm(overlayIsOpened) {
+  overlayIsOpened.querySelector('.form').reset();
+}
+
 function closePopupFromKeydownEscape (event) {
   if (event.key === 'Escape') {
+    const overlayIsOpened = page.querySelector('.overlay_is-opened');
+    if (overlayIsOpened === overlayAddPlace) {
+      resetForm(overlayIsOpened);
+    }
     closePopup();
   }
 }
@@ -133,6 +145,9 @@ function togglePopup(popup) {
 function closePopup() {
   const overlayIsOpened = page.querySelector('.overlay_is-opened');
     if (!(overlayIsOpened === null)) {
+      if (overlayIsOpened === overlayAddPlace) {
+        resetForm(overlayIsOpened);
+      }
       togglePopup(overlayIsOpened);
     }
 }
