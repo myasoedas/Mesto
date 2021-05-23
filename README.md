@@ -35,9 +35,11 @@
 * Максимальная ширина попапа с изображением крупным планом - 75vw
 * Максимальная высота попапа с изображением крупным планом - 75vh
 * Сделать анимацию - планое открытие и закрытие попапов
+* Сделать возможным закрытие попапа при нажатии по оверлею или кнопки Escape
+* Сделать валидацию форм средствами HTML5 и JS
 * [Выложить готовую работу на gh-pages](https://praktikum.yandex.ru/trainer/web/lesson/f83d22ce-8bfe-4017-8e0f-dbf52ab92a50)
 * [Чеклист для самопроверки](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-6/index.html)
-*
+
 
 #### Полезные ссылки:
 * [JavaScript - учебные материалы](https://developer.mozilla.org/ru/docs/Web/JavaScript)
