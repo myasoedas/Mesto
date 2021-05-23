@@ -11,8 +11,6 @@ const profileFieldName = popupEditProfile.querySelector('.form__field_name_name'
 const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
 const formEditProfile = popupEditProfile.querySelector('.form');
 
-enableValidation();
-
 formEditProfile.addEventListener('submit', saveFormEditProfile);
 
 const profileTitle = page.querySelector('.profile__title');
@@ -99,6 +97,7 @@ function openPopupEditProfile() {
   profileFieldName.value = profileTitle.textContent;
   profileFieldCaption.value = profileText.textContent;
   togglePopup(popupEditProfile);
+  enableValidation(overlayEditCaption);
 }
 
 function createCard(placeName, placeImageLink, placeImageAlt) {
@@ -124,6 +123,7 @@ function saveFormEditProfile(event) {
 
 function openPopupAddPlace() {
   togglePopup(popupAddPlace);
+  enableValidation(overlayAddPlace);
 }
 
 function togglePopup(popup) {

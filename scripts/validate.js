@@ -1,34 +1,42 @@
 
-function enableValidation() {
-  //найти все формы на странице
-  const formList = Array.from(page.querySelectorAll('.form'));
-
-  //установить слушатель для каждой формы
-  formList.forEach(formElement => {
-    setEventListeners(formElement);
-  })
+function enableValidation(overlayPopupForm) {
+  const formElement = overlayPopupForm.querySelector('.form');
+  const buttonSubmitElement = overlayPopupForm.querySelector('.form__button-save');
+  setEventListeners(formElement, buttonSubmitElement);
 }
 
-function setEventListeners(formElement) {
-  //найти все input
+function setEventListeners(formElement, buttonSubmitElement) {
   const inputList = Array.from(formElement.querySelectorAll('.form__field'));
-
-  //найти все button submit
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement);
+      toggleButtonState(buttonSubmitElement, inputList);
     })
   })
 }
 
+function inputListValid(inputList) {
+  if (inputList[0].validity.valid && inputList[1].validity.valid ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function checkInputValidity(formElement, inputElement) {
-  //проверить input на валидность
-  //если input валидный - скрыть ошибку,
-  //если input не валидный - показать ошибку
   if (inputElement.validity.valid) {
     hideInputError(formElement, inputElement);
   } else {
     showInputError(formElement, inputElement);
+  }
+}
+
+function toggleButtonState(buttonSubmitElement, inputList) {
+  console.log(!inputListValid(inputList));
+  if (inputListValid(inputList)) {
+    buttonSubmitElement.disabled = false;
+  } else {
+    buttonSubmitElement.disabled = true;
   }
 }
 

@@ -25,6 +25,11 @@
   opacity: 0.8;
 }
 
+.form__button-save:disabled {
+  background-color: #E5E5E5;
+  cursor: not-allowed;
+}
+
 @media (max-width: 470px) {
   .form__button-save {
     width: 238px;
