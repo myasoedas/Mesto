@@ -1,6 +1,7 @@
 /*элемент button-save размещен в popup черный фон белые буквы*/
 .form__button-save {
   margin: 0;
+  margin-top: 20px;
   padding: 0;
   background: #000000;
   border: none;
@@ -26,7 +27,10 @@
 }
 
 .form__button-save:disabled {
-  background-color: #E5E5E5;
+  color: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #FFFFFF;
+  border-radius: 2px;
   cursor: not-allowed;
 }
 

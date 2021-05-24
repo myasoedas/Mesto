@@ -20,7 +20,7 @@ initialCards.forEach((item) => {
   addCard(createCard(item.titlePlace, item.linkPlaceFoto, item.altPlaceFoto));
 });
 
-popupAddPlace = page.querySelector('.overlay_name_add-place');
+const popupAddPlace = page.querySelector('.overlay_name_add-place');
 
 const formAddPlace = popupAddPlace.querySelector('.form');
 formAddPlace.addEventListener('submit', saveNewPlace);

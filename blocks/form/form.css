@@ -11,9 +11,8 @@
   display: grid;
   grid-template-columns: auto;
   grid-template-rows:auto auto auto 50px;
-  gap: 48px;
   justify-content: center;
-  align-content: space-between;
+  align-content: start;
 }
 
 @media (max-width: 470px) {

@@ -1,7 +1,7 @@
 /*элемент input - поле для ввода данных в popup, снизу нижняя граница, курсор по центру поля*/
 .form__field {
-  margin: 0;
-  padding: 13px 0 13px 13px;
+  margin: 0 0 10px 0;
+  padding: 10px 0 10px 10px;
   background: inherit;
   color: inherit;
   border: none;
@@ -13,5 +13,11 @@
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
+  justify-self:stretch;
+  align-self: start;
+}
+
+.form__field:last-of-type {
+  margin: 0 0 40px 0;
 }
 
