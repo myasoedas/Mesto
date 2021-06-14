@@ -33,6 +33,10 @@ function checkInputValidity(formElement, inputElement) {
 }
 
 function toggleButtonState(buttonSubmitElement, inputList) {
+  //добавляю стили для кнопки с помощью псевдокласса :disabled
+  //в файле form__button-save.css
+  //псевдокласс автоматически применяет стили если кнопка переходит в состояние disabled
+  //в связи с этим применять отдельный класс излишне
   if (inputListValid(inputList)) {
     buttonSubmitElement.disabled = false;
   } else {
