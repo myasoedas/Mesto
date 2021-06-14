@@ -1,7 +1,7 @@
 const page = document.querySelector('.page');
 const elementsList = page.querySelector('.elements__list');
 const elementsItemTemplate = page.querySelector('#template__elements-item').content;
-const overlayEditCaption = page.querySelector('.overlay_name_edit-caption');
+/*const overlayEditCaption = page.querySelector('.overlay_name_edit-caption');*/
 const overlayAddPlace = page.querySelector('.overlay_name_add-place');
 const overlayPopupImage = page.querySelector('.overlay_name_display-image');
 const popupImage = overlayPopupImage.querySelector('.popup__image');
@@ -33,9 +33,6 @@ const fieldCaption = popupEditProfile.querySelector('.form__field_name_caption')
 const buttonEditProfile = page.querySelector('.profile__button-edit');
 const buttonAddPlace = page.querySelector('.profile__button-add');
 const elementImage = page.querySelector('.element__image');
-
-
-page.addEventListener('keydown', closePopupFromKeydownEscape);
 
 buttonAddPlace.addEventListener('click', function (event) {
   openPopupAddPlace();
@@ -101,6 +98,7 @@ function openPopupImage(eventTarget) {
   popupImage.alt = eventTarget.alt;
   captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
   togglePopup(overlayPopupImage);
+  page.addEventListener('keydown', closePopupFromKeydownEscape);
 }
 
 function resetForm(overlayIsOpened) {
@@ -109,12 +107,7 @@ function resetForm(overlayIsOpened) {
 
 function closePopupFromKeydownEscape (event) {
   if (event.key === 'Escape') {
-    /*
-    const overlayIsOpened = page.querySelector('.overlay_is-opened');
-    if (overlayIsOpened === overlayAddPlace) {
-      resetForm(overlayIsOpened);
-    }
-    */
+    page.removeEventListener('keydown', closePopupFromKeydownEscape);
     closePopup();
   }
 }
@@ -125,7 +118,8 @@ function openPopupEditProfile() {
   profileFieldName.value = profileTitle.textContent;
   profileFieldCaption.value = profileText.textContent;
   togglePopup(popupEditProfile);
-  enableValidation(overlayEditCaption);
+  page.addEventListener('keydown', closePopupFromKeydownEscape);
+  enableValidation(popupEditProfile);
 }
 
 function createCard(placeName, placeImageLink, placeImageAlt) {
@@ -151,6 +145,7 @@ function saveFormEditProfile(event) {
 
 function openPopupAddPlace() {
   togglePopup(popupAddPlace);
+  page.addEventListener('keydown', closePopupFromKeydownEscape);
   enableValidation(overlayAddPlace);
 }
 
@@ -166,6 +161,7 @@ function closePopup() {
         resetForm(overlayIsOpened);
       }
       */
+      page.removeEventListener('keydown', closePopupFromKeydownEscape);
       togglePopup(overlayIsOpened);
     }
 }
