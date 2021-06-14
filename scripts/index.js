@@ -61,6 +61,10 @@ page.addEventListener('click', function(event) {
   if (eventTarget.classList.contains('popup__button-close')) {
     closePopup();
   }
+});
+
+page.addEventListener('click', function(event) {
+  const eventTarget = event.target;
   if (eventTarget.classList.contains('overlay_is-opened')) {
     const overlayIsOpened = page.querySelector('.overlay_is-opened');
     if (overlayIsOpened === overlayAddPlace) {
@@ -69,6 +73,8 @@ page.addEventListener('click', function(event) {
     togglePopup(eventTarget);
   }
 });
+
+
 
 function openPopup(popupClassName) {
   togglePopup(popupClassName);
