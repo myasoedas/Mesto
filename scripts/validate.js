@@ -1,12 +1,13 @@
 
-function enableValidation(overlayPopupForm) {
-  const formElement = overlayPopupForm.querySelector('.form');
-  const buttonSubmitElement = overlayPopupForm.querySelector('.form__button-save');
+function enableValidation(formSettings) {
+  const overlayPopupForm = document.querySelector(formSettings.overlaySelector);
+  const formElement = overlayPopupForm.querySelector(formSettings.formSelector);
+  const buttonSubmitElement = overlayPopupForm.querySelector(formSettings.submitButtonSelector);
   setEventListeners(formElement, buttonSubmitElement);
 }
 
 function setEventListeners(formElement, buttonSubmitElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.form__field'));
+  const inputList = Array.from(formElement.querySelectorAll(formSettings.inputSelector));
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement);
@@ -45,18 +46,18 @@ function toggleButtonState(buttonSubmitElement, inputList) {
 }
 
 function hideInputError(formElement, inputElement) {
-  inputElement.classList.remove('form__field_type_error');
+  inputElement.classList.remove(formSettings.inputErrorClass);
   const spanElementError = inputElement.nextElementSibling;
   spanElementError.textContent = 'успешная валидация';
-  spanElementError.classList.remove('form__field-error_active');
+  spanElementError.classList.remove(formSettings.errorClass);
 }
 
 function showInputError(formElement, inputElement) {
-  inputElement.classList.add('form__field_type_error');
+  inputElement.classList.add(formSettings.inputErrorClass);
   const inputElementErrorMessage = inputElement.validationMessage;
   const spanElementError = inputElement.nextElementSibling;
   spanElementError.textContent = inputElementErrorMessage;
-  spanElementError.classList.add('form__field-error_active');
+  spanElementError.classList.add(formSettings.errorClass);
 }
 
 

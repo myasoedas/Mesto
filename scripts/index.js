@@ -1,7 +1,6 @@
 const page = document.querySelector('.page');
 const elementsList = page.querySelector('.elements__list');
 const elementsItemTemplate = page.querySelector('#template__elements-item').content;
-/*const overlayEditCaption = page.querySelector('.overlay_name_edit-caption');*/
 const overlayAddPlace = page.querySelector('.overlay_name_add-place');
 const overlayPopupImage = page.querySelector('.overlay_name_display-image');
 const popupImage = overlayPopupImage.querySelector('.popup__image');
@@ -10,6 +9,15 @@ const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
 const profileFieldName = popupEditProfile.querySelector('.form__field_name_name');
 const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_caption');
 const formEditProfile = popupEditProfile.querySelector('.form');
+
+const formSettings = {
+  overlaySelector: '',
+  formSelector: '.form',
+  inputSelector: '.form__field',
+  submitButtonSelector: '.form__button-save',
+  inputErrorClass: 'form__field_type_error',
+  errorClass: 'form__field-error_active'
+};
 
 formEditProfile.addEventListener('submit', saveFormEditProfile);
 
@@ -74,8 +82,6 @@ page.addEventListener('click', function(event) {
   }
 });
 
-
-
 function openPopup(popupClassName) {
   togglePopup(popupClassName);
 }
@@ -86,7 +92,6 @@ function saveNewPlace(event) {
   const linkPlaceImage = fieldNameSrcLink.value;
   togglePopup(popupAddPlace);
   addCard(createCard(placeName, linkPlaceImage, placeName));
-  // необходимо использовать reset
   fieldNamePlace.value = '';
   fieldNameSrcLink.value = '';
 }
@@ -125,7 +130,8 @@ function openPopupEditProfile() {
   profileFieldCaption.value = profileText.textContent;
   togglePopup(popupEditProfile);
   page.addEventListener('keydown', closePopupFromKeydownEscape);
-  enableValidation(popupEditProfile);
+  formSettings.overlaySelector = '.overlay_name_edit-caption';
+  enableValidation(formSettings);
 }
 
 function createCard(placeName, placeImageLink, placeImageAlt) {
@@ -152,7 +158,8 @@ function saveFormEditProfile(event) {
 function openPopupAddPlace() {
   togglePopup(popupAddPlace);
   page.addEventListener('keydown', closePopupFromKeydownEscape);
-  enableValidation(overlayAddPlace);
+  formSettings.overlaySelector = '.overlay_name_add-place';
+  enableValidation(formSettings);
 }
 
 function togglePopup(popup) {
@@ -162,11 +169,6 @@ function togglePopup(popup) {
 function closePopup() {
   const overlayIsOpened = page.querySelector('.overlay_is-opened');
     if (!(overlayIsOpened === null)) {
-      /*
-      if (overlayIsOpened === overlayAddPlace) {
-        resetForm(overlayIsOpened);
-      }
-      */
       page.removeEventListener('keydown', closePopupFromKeydownEscape);
       togglePopup(overlayIsOpened);
     }
