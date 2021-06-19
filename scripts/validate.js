@@ -1,9 +1,9 @@
-
 function enableValidation(formSettings) {
-  const overlayPopupForm = document.querySelector(formSettings.overlaySelector);
-  const formElement = overlayPopupForm.querySelector(formSettings.formSelector);
-  const buttonSubmitElement = overlayPopupForm.querySelector(formSettings.submitButtonSelector);
-  setEventListeners(formElement, buttonSubmitElement);
+  const formElementArray = document.querySelectorAll(formSettings.formSelector);
+  const buttonSubmitElementArray = document.querySelectorAll(formSettings.submitButtonSelector);
+  for (let i = 0; i < formElementArray.length; i++){
+    setEventListeners(formElementArray[i], buttonSubmitElementArray[i]);
+  }
 }
 
 function setEventListeners(formElement, buttonSubmitElement) {

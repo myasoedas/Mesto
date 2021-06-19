@@ -11,13 +11,13 @@ const profileFieldCaption = popupEditProfile.querySelector('.form__field_name_ca
 const formEditProfile = popupEditProfile.querySelector('.form');
 
 const formSettings = {
-  overlaySelector: '',
   formSelector: '.form',
   inputSelector: '.form__field',
   submitButtonSelector: '.form__button-save',
   inputErrorClass: 'form__field_type_error',
   errorClass: 'form__field-error_active'
 };
+enableValidation(formSettings);
 
 formEditProfile.addEventListener('submit', saveFormEditProfile);
 
@@ -75,11 +75,6 @@ page.addEventListener('click', function(event) {
   const eventTarget = event.target;
   if (eventTarget.classList.contains('overlay_is-opened')) {
     const overlayIsOpened = page.querySelector('.overlay_is-opened');
-    /*
-    if (overlayIsOpened === overlayAddPlace) {
-      resetForm(overlayIsOpened);
-    }
-    */
     closePopup();
   }
 });
@@ -124,8 +119,6 @@ function openPopupEditProfile() {
   profileFieldName.value = profileTitle.textContent;
   profileFieldCaption.value = profileText.textContent;
   openPopup(popupEditProfile);
-  formSettings.overlaySelector = '.overlay_name_edit-caption';
-  enableValidation(formSettings);
 }
 
 function createCard(placeName, placeImageLink, placeImageAlt) {
@@ -151,42 +144,12 @@ function saveFormEditProfile(event) {
 
 function openPopupAddPlace() {
   openPopup(popupAddPlace);
-  formSettings.overlaySelector = '.overlay_name_add-place';
-  enableValidation(formSettings);
 }
-
-/*
-function togglePopup(popup) {
-  popup.classList.toggle('overlay_is-opened');
-}
-*/
-
-/*
-function openPopup(popupClassName) {
-  togglePopup(popupClassName);
-}
-*/
- /*
-function openPopup(popup) {
-  popup.classList.toggle('overlay_is-opened');
-}
-*/
 
 function openPopup(popup) {
   popup.classList.add('overlay_is-opened');
   page.addEventListener('keydown', closePopupFromKeydownEscape);
 }
-
-
-/*
-function closePopup() {
-  const overlayIsOpened = page.querySelector('.overlay_is-opened');
-    if (!(overlayIsOpened === null)) {
-      page.removeEventListener('keydown', closePopupFromKeydownEscape);
-      openPopup(overlayIsOpened);
-    }
-}
-*/
 
 function closePopup() {
   const overlayIsOpened = page.querySelector('.overlay_is-opened');
