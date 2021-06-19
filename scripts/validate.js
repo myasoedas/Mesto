@@ -17,8 +17,8 @@ function setEventListeners(formElement, buttonSubmitElement) {
   toggleButtonState(buttonSubmitElement, inputList);
 }
 
-function inputListValid(inputList) {
-  if (inputList[0].validity.valid && inputList[1].validity.valid ) {
+function isInputListValid(inputList) {
+  if (inputList.every(function(inputListItem){ return inputListItem.validity.valid === true; })) {
     return true;
   } else {
     return false;
@@ -38,7 +38,7 @@ function toggleButtonState(buttonSubmitElement, inputList) {
   //в файле form__button-save.css
   //псевдокласс автоматически применяет стили если кнопка переходит в состояние disabled
   //в связи с этим применять отдельный класс излишне
-  if (inputListValid(inputList)) {
+  if (isInputListValid(inputList)) {
     buttonSubmitElement.disabled = false;
   } else {
     buttonSubmitElement.disabled = true;
