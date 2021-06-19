@@ -75,25 +75,22 @@ page.addEventListener('click', function(event) {
   const eventTarget = event.target;
   if (eventTarget.classList.contains('overlay_is-opened')) {
     const overlayIsOpened = page.querySelector('.overlay_is-opened');
+    /*
     if (overlayIsOpened === overlayAddPlace) {
       resetForm(overlayIsOpened);
     }
-    togglePopup(eventTarget);
+    */
+    closePopup();
   }
 });
-
-function openPopup(popupClassName) {
-  togglePopup(popupClassName);
-}
 
 function saveNewPlace(event) {
   event.preventDefault();
   const placeName = fieldNamePlace.value;
   const linkPlaceImage = fieldNameSrcLink.value;
-  togglePopup(popupAddPlace);
+  openPopup(popupAddPlace);
   addCard(createCard(placeName, linkPlaceImage, placeName));
-  fieldNamePlace.value = '';
-  fieldNameSrcLink.value = '';
+  resetForm(popupAddPlace);
 }
 
 function setLikeStatus(eventTarget) {
@@ -108,8 +105,7 @@ function openPopupImage(eventTarget) {
   popupImage.src = eventTarget.src;
   popupImage.alt = eventTarget.alt;
   captionPopupImage.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
-  togglePopup(overlayPopupImage);
-  page.addEventListener('keydown', closePopupFromKeydownEscape);
+  openPopup(overlayPopupImage);
 }
 
 function resetForm(overlayIsOpened) {
@@ -118,7 +114,6 @@ function resetForm(overlayIsOpened) {
 
 function closePopupFromKeydownEscape (event) {
   if (event.key === 'Escape') {
-    page.removeEventListener('keydown', closePopupFromKeydownEscape);
     closePopup();
   }
 }
@@ -128,8 +123,7 @@ function openPopupEditProfile() {
   const profileText = page.querySelector('.profile__text');
   profileFieldName.value = profileTitle.textContent;
   profileFieldCaption.value = profileText.textContent;
-  togglePopup(popupEditProfile);
-  page.addEventListener('keydown', closePopupFromKeydownEscape);
+  openPopup(popupEditProfile);
   formSettings.overlaySelector = '.overlay_name_edit-caption';
   enableValidation(formSettings);
 }
@@ -152,24 +146,52 @@ function saveFormEditProfile(event) {
   const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
   profileTitle.textContent = fieldName.value;
   profileText.textContent = fieldCaption.value;
-  togglePopup(popupEditProfile);
+  openPopup(popupEditProfile);
 }
 
 function openPopupAddPlace() {
-  togglePopup(popupAddPlace);
-  page.addEventListener('keydown', closePopupFromKeydownEscape);
+  openPopup(popupAddPlace);
   formSettings.overlaySelector = '.overlay_name_add-place';
   enableValidation(formSettings);
 }
 
+/*
 function togglePopup(popup) {
   popup.classList.toggle('overlay_is-opened');
 }
+*/
+
+/*
+function openPopup(popupClassName) {
+  togglePopup(popupClassName);
+}
+*/
+ /*
+function openPopup(popup) {
+  popup.classList.toggle('overlay_is-opened');
+}
+*/
+
+function openPopup(popup) {
+  popup.classList.add('overlay_is-opened');
+  page.addEventListener('keydown', closePopupFromKeydownEscape);
+}
+
+
+/*
+function closePopup() {
+  const overlayIsOpened = page.querySelector('.overlay_is-opened');
+    if (!(overlayIsOpened === null)) {
+      page.removeEventListener('keydown', closePopupFromKeydownEscape);
+      openPopup(overlayIsOpened);
+    }
+}
+*/
 
 function closePopup() {
   const overlayIsOpened = page.querySelector('.overlay_is-opened');
     if (!(overlayIsOpened === null)) {
       page.removeEventListener('keydown', closePopupFromKeydownEscape);
-      togglePopup(overlayIsOpened);
+      overlayIsOpened.classList.remove('overlay_is-opened');
     }
 }
