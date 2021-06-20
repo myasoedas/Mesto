@@ -59,6 +59,3 @@ function showInputError(formElement, inputElement) {
   spanElementError.textContent = inputElementErrorMessage;
   spanElementError.classList.add(formSettings.errorClass);
 }
-
-
-
