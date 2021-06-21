@@ -17,6 +17,7 @@ const formSettings = {
   inputErrorClass: 'form__field_type_error',
   errorClass: 'form__field-error_active'
 };
+enableValidation(formSettings);
 
 formEditProfile.addEventListener('submit', saveFormEditProfile);
 
@@ -50,6 +51,7 @@ buttonEditProfile.addEventListener('click', function (event) {
   const profileText = page.querySelector('.profile__text');
   profileFieldName.value = profileTitle.textContent;
   profileFieldCaption.value = profileText.textContent;
+  toggleButton(popupEditProfile);
   openPopup(popupEditProfile);
 });
 
@@ -81,6 +83,12 @@ page.addEventListener('click', function(event) {
   }
 });
 
+function toggleButton(popup) {
+  const buttonSubmitElement = popup.querySelector(formSettings.submitButtonSelector);
+  const inputList = Array.from(popup.querySelectorAll(formSettings.inputSelector));
+  toggleButtonState(buttonSubmitElement, inputList);
+}
+
 function saveNewPlace(event) {
   event.preventDefault();
   const placeName = fieldNamePlace.value;
@@ -88,6 +96,7 @@ function saveNewPlace(event) {
   closePopup();
   addCard(createCard(placeName, linkPlaceImage, placeName));
   resetForm(popupAddPlace);
+  toggleButton(popupAddPlace);
 }
 
 function setLikeStatus(eventTarget) {
@@ -137,7 +146,6 @@ function saveFormEditProfile(event) {
 }
 
 function openPopup(popup) {
-  enableValidation(formSettings);
   page.addEventListener('keydown', closePopupFromKeydownEscape);
   popup.classList.toggle('overlay_is-opened');
 }
@@ -147,13 +155,14 @@ function closePopup() {
     if (!(overlayIsOpened === null)) {
       overlayIsOpened.classList.toggle('overlay_is-opened');
       page.removeEventListener('keydown', closePopupFromKeydownEscape);
-      if (!(overlayIsOpened.querySelector('.form') === null)) {
+      /*if (!(overlayIsOpened.querySelector('.form') === null)) {
         resetForm(overlayIsOpened);
         const formElement = overlayIsOpened.querySelector('.form');
         const inputElementArray = overlayIsOpened.querySelectorAll('.form__field');
         for (let i = 0; i < inputElementArray.length; i++) {
           hideInputError(formElement, inputElementArray[i]);
         }
-      }
+      }*/
+
     }
 }
