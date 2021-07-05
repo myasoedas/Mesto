@@ -9,8 +9,12 @@ export default {
   elementLikeStatusActive: 'element__like_status_active',
   elementsList: '.elements__list',
   overlayPopupImage: '.overlay_name_display-image',
+  overlayNameEditCaption: '.overlay_name_edit-caption',
   popupImage: '.popup__image',
   popupCaption: '.popup__caption',
   popupButtonClose:'popup__button-close',
-  overlayIsOpened: 'overlay_is-opened'
+  overlayIsOpened: 'overlay_is-opened',
+  profileTitle: '.profile__title',
+  profileText: '.profile__text',
+  profileButtonEdit: '.profile__button-edit'
 };

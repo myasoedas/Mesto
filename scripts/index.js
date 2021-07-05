@@ -7,6 +7,14 @@ const page = document.querySelector(initialCssClasses.page);
 const overlayPopupImage = page.querySelector(initialCssClasses.overlayPopupImage);
 const popupImage = overlayPopupImage.querySelector(initialCssClasses.popupImage);
 const captionPopupImage = overlayPopupImage.querySelector(initialCssClasses.popupCaption);
+const profileTitle = page.querySelector(initialCssClasses.profileTitle);
+const profileText = page.querySelector(initialCssClasses.profileText);
+const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
+const popupEditProfile = page.querySelector(initialCssClasses.overlayNameEditCaption);
+const profileFieldName = popupEditProfile.querySelector(formSettings.formFieldName);
+const profileFieldCaption = popupEditProfile.querySelector(formSettings.formFieldCaption);
+const formEditProfile = popupEditProfile.querySelector(formSettings.formSelector);
+
 
 initialCards.forEach((element) => {
   const card = new Card(element, initialCssClasses);
@@ -15,6 +23,20 @@ initialCards.forEach((element) => {
   addElement(initialCssClasses.elementsList, elementsItem);
 });
 
+addEventListenerButtonEditProfile();
+addEventListenerFormEditProfile();
+
+
+function addEventListenerFormEditProfile() {
+  formEditProfile.addEventListener('submit', saveFormEditProfile);
+}
+function saveFormEditProfile(event) {
+  event.preventDefault();
+  //const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
+  profileTitle.textContent = profileFieldName.value;
+  profileText.textContent = profileFieldCaption.value;
+  closePopup();
+}
 function addEventListenerОpenPopupImage(element) {
   element.querySelector(initialCssClasses.elementImage).addEventListener('click', openPopupImage);
 }
@@ -59,15 +81,30 @@ function getOverlayIsOpened() {
   const overlayIsOpened = page.querySelector(`.${initialCssClasses.overlayIsOpened}`);
   return overlayIsOpened;
 }
+function addEventListenerButtonEditProfile() {
+  buttonEditProfile.addEventListener('click', function (event) {
+    profileFieldName.value = profileTitle.textContent;
+    profileFieldCaption.value = profileText.textContent;
+    //toggleButton(popupEditProfile);
+    openPopup(popupEditProfile);
+  });
+}
 function toggleOverlayIsOpened() {
   getOverlayIsOpened().classList.toggle(initialCssClasses.overlayIsOpened);
 }
+function resetForm(overlayIsOpened) {
+  if (!(overlayIsOpened.querySelector(formSettings.formSelector) === null)) {
+    overlayIsOpened.querySelector(formSettings.formSelector).reset();
+  }
+}
 function closePopup() {
+  const overlayIsOpened = page.querySelector('.'+ initialCssClasses.overlayIsOpened);
   if (!(getOverlayIsOpened() === null)) {
     toggleOverlayIsOpened();
     removeEventListenerClosePopupButtonClose(page);
     removeEventListenerClosePopupOverlay(page);
     removeEventListenerCloseFromKeydownEscape(page);
+    resetForm(overlayIsOpened);
   }
 }
 function addEventListenerClosePopupFromKeydownEscape(element) {
