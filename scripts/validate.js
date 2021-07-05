@@ -9,13 +9,13 @@ export default class {
     this._formFieldCaption = formSettings.formFieldCaption;
     this._formFieldPlace = formSettings.formFieldPlace;
     this._formFieldSrcLink = formSettings.formFieldSrcLink;
+    this._formElementArray = document.querySelectorAll(this._formSelector);
+    this._buttonSubmitElementArray = document.querySelectorAll(this._submitButtonSelector);
   }
 
   enableValidation() {
-    const formElementArray = document.querySelectorAll(this._formSelector);
-    const buttonSubmitElementArray = document.querySelectorAll(this._submitButtonSelector);
-    for (let i = 0; i < formElementArray.length; i++){
-      this._setEventListeners(formElementArray[i], buttonSubmitElementArray[i]);
+    for (let i = 0; i < this._formElementArray.length; i++){
+      this._setEventListeners(this._formElementArray[i], this._buttonSubmitElementArray[i]);
     }
   }
   _setEventListeners(formElement, buttonSubmitElement) {
@@ -66,5 +66,4 @@ export default class {
     spanElementError.textContent = inputElementErrorMessage;
     spanElementError.classList.add(this._errorClass);
   }
-
 }
