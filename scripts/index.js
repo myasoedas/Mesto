@@ -1,4 +1,5 @@
 import formSettings from './form-settings.js';
+import Validate from './validate.js';
 import Card from './card.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
@@ -19,6 +20,9 @@ const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
 const formAddPlace = popupAddPlace.querySelector(formSettings.formSelector);
 const fieldNamePlace = popupAddPlace.querySelector(formSettings.formFieldPlace);
 const fieldNameSrcLink = popupAddPlace.querySelector(formSettings.formFieldSrcLink);
+
+const validate = new Validate(formSettings);
+validate.enableValidation();
 
 initialCards.forEach((element) => {
   const card = new Card(element, initialCssClasses);
@@ -59,7 +63,6 @@ function addEventListenerFormEditProfile() {
 }
 function saveFormEditProfile(event) {
   event.preventDefault();
-  //const popupEditProfile = page.querySelector('.overlay_name_edit-caption');
   profileTitle.textContent = profileFieldName.value;
   profileText.textContent = profileFieldCaption.value;
   closePopup();
@@ -112,9 +115,14 @@ function addEventListenerButtonEditProfile() {
   buttonEditProfile.addEventListener('click', function (event) {
     profileFieldName.value = profileTitle.textContent;
     profileFieldCaption.value = profileText.textContent;
-    //toggleButton(popupEditProfile);
+    toggleButton(popupEditProfile);
     openPopup(popupEditProfile);
   });
+}
+function toggleButton(popup) {
+  const buttonSubmitElement = popup.querySelector(formSettings.submitButtonSelector);
+  const inputList = Array.from(popup.querySelectorAll(formSettings.inputSelector));
+  validate.toggleButtonState(buttonSubmitElement, inputList);
 }
 function toggleOverlayIsOpened() {
   getOverlayIsOpened().classList.toggle(initialCssClasses.overlayIsOpened);
@@ -122,6 +130,11 @@ function toggleOverlayIsOpened() {
 function resetForm(overlayIsOpened) {
   if (!(overlayIsOpened.querySelector(formSettings.formSelector) === null)) {
     overlayIsOpened.querySelector(formSettings.formSelector).reset();
+    const formElement = overlayIsOpened.querySelector(formSettings.formSelector);
+    const inputElementArray = overlayIsOpened.querySelectorAll(formSettings.inputSelector);
+    for (let i = 0; i < inputElementArray.length; i++) {
+      validate.hideInputError(formElement, inputElementArray[i]);
+    }
   }
 }
 function closePopup() {
