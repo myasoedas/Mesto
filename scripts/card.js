@@ -52,6 +52,16 @@ export default class {
     this._addListenerToggleLike();
     return this._elementsItem;
   }
+  //
+  /*createCard(titleImage, titleAlt, linkImage) {
+    this._elementImage.src = linkImage;
+    this._elementImage.alt = titleAlt;
+    this._elementsItem.querySelector(this._selectorElementTitle).textContent = titleImage;
+    this._addListenerRemoveCard();
+    this._addListenerToggleLike();
+    return this._elementsItem;
+  }*/
+
   _addListenerRemoveCard() {
     this._elementDelElement.addEventListener('click', (evt) => this._removeCard(evt));
   }

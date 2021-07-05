@@ -14,7 +14,11 @@ const popupEditProfile = page.querySelector(initialCssClasses.overlayNameEditCap
 const profileFieldName = popupEditProfile.querySelector(formSettings.formFieldName);
 const profileFieldCaption = popupEditProfile.querySelector(formSettings.formFieldCaption);
 const formEditProfile = popupEditProfile.querySelector(formSettings.formSelector);
-
+const popupAddPlace = page.querySelector(initialCssClasses.overlayNameAddPlace);
+const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
+const formAddPlace = popupAddPlace.querySelector(formSettings.formSelector);
+const fieldNamePlace = popupAddPlace.querySelector(formSettings.formFieldPlace);
+const fieldNameSrcLink = popupAddPlace.querySelector(formSettings.formFieldSrcLink);
 
 initialCards.forEach((element) => {
   const card = new Card(element, initialCssClasses);
@@ -26,6 +30,29 @@ initialCards.forEach((element) => {
 addEventListenerButtonEditProfile();
 addEventListenerFormEditProfile();
 
+buttonAddPlace.addEventListener('click', function (event) {
+  openPopup(popupAddPlace);
+});
+
+formAddPlace.addEventListener('submit', saveNewPlace);
+
+function saveNewPlace(event) {
+  event.preventDefault();
+  const placeName = fieldNamePlace.value;
+  const linkPlaceImage = fieldNameSrcLink.value;
+  closePopup();
+  const element = {
+    titleImage: placeName,
+    linkImage: linkPlaceImage,
+    titleAlt: placeName
+  }
+  const card = new Card(element, initialCssClasses);
+  const elementsItem = card.createCard();
+  addEventListenerОpenPopupImage(elementsItem);
+  addElement(initialCssClasses.elementsList, elementsItem);
+  resetForm(popupAddPlace);
+  //toggleButton(popupAddPlace);
+}
 
 function addEventListenerFormEditProfile() {
   formEditProfile.addEventListener('submit', saveFormEditProfile);
