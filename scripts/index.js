@@ -1,6 +1,6 @@
 import formSettings from './form-settings.js';
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 

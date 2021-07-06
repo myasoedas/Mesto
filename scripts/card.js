@@ -1,4 +1,4 @@
-export default class {
+export class Card {
   constructor(data, cssClasses) {
     this._titleImage = data.titleImage;
     this._titleAlt = data.titleAlt;
