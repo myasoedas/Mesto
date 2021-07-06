@@ -21,8 +21,11 @@ const formAddPlace = popupAddPlace.querySelector(formSettings.formSelector);
 const fieldNamePlace = popupAddPlace.querySelector(formSettings.formFieldPlace);
 const fieldNameSrcLink = popupAddPlace.querySelector(formSettings.formFieldSrcLink);
 
-const validate = new FormValidator(formSettings);
-validate.enableValidation();
+const validateFormEditProfile = new FormValidator(formEditProfile, formSettings);
+validateFormEditProfile.enableValidation();
+const validateFormAddPlace = new FormValidator(formAddPlace, formSettings);
+validateFormAddPlace.enableValidation();
+
 
 initialCards.forEach((element) => {
   const card = new Card(element, initialCssClasses);
@@ -55,7 +58,7 @@ function saveNewPlace(event) {
   addEventListenerОpenPopupImage(elementsItem);
   addElement(initialCssClasses.elementsList, elementsItem);
   resetForm(popupAddPlace);
-  //toggleButton(popupAddPlace);
+  toggleButton(popupAddPlace);
 }
 
 function addEventListenerFormEditProfile() {
@@ -132,12 +135,9 @@ function resetForm(overlayIsOpened) {
     overlayIsOpened.querySelector(formSettings.formSelector).reset();
     const formElement = overlayIsOpened.querySelector(formSettings.formSelector);
     const inputElementArray = overlayIsOpened.querySelectorAll(formSettings.inputSelector);
-    for (let i = 0; i < inputElementArray.length; i++) {
-      validate.hideInputError(formElement, inputElementArray[i]);
-    }
   }
 }
-function closePopup() {
+function closePopup(validate) {
   const overlayIsOpened = page.querySelector('.'+ initialCssClasses.overlayIsOpened);
   if (!(getOverlayIsOpened() === null)) {
     toggleOverlayIsOpened();
