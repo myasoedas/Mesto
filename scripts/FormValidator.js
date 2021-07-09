@@ -14,20 +14,20 @@ export class FormValidator {
     this._inputListArray = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
 
-  _resetForm() {
+  resetForm() {
     this._formElement.reset();
     for (let i = 0; i < this._inputListArray.length; i++) {
       this._hideInputError(this._inputListArray[i]);
     }
   }
-  _setEventListeners() {
+  enableValidation() {
     this._inputListArray.forEach(inputElement => this._addEventListenerInputElement(inputElement));
-    this._toggleButtonState();
+    this.toggleButtonState();
   }
   _addEventListenerInputElement(inputElement) {
     inputElement.addEventListener('input', () => {
       this._checkInputValidity(inputElement);
-      this._toggleButtonState(this._inputListArray);
+      this.toggleButtonState(this._inputListArray);
     });
   }
   _isInputListValid() {
@@ -47,7 +47,7 @@ export class FormValidator {
       this._showInputError(inputElement);
     }
   }
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._isInputListValid()) {
       this._buttonSubmitElement.disabled = false;
     } else {

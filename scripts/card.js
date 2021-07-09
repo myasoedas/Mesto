@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, cssClasses, /*openPopupImage, */handlerCardClick) {
+  constructor(data, cssClasses, handlerCardClick) {
     this._titleImage = data.titleImage;
     this._titleAlt = data.titleAlt;
     this._linkImage = data.linkImage;

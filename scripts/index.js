@@ -23,8 +23,8 @@ const fieldNameSrcLink = popupAddPlace.querySelector(formSettings.formFieldSrcLi
 
 const validateFormAddPlace = new FormValidator(formAddPlace, formSettings);
 const validateFormEditProfile = new FormValidator(formEditProfile, formSettings);
-validateFormAddPlace._setEventListeners();
-validateFormEditProfile._setEventListeners();
+validateFormAddPlace.enableValidation();
+validateFormEditProfile.enableValidation();
 
 initialCards.forEach((element) => {
   const card = newCard(element, initialCssClasses);
@@ -36,8 +36,8 @@ addEventListenerButtonEditProfile();
 addEventListenerFormEditProfile();
 
 buttonAddPlace.addEventListener('click', function (event) {
-  validateFormAddPlace._resetForm();
-  validateFormAddPlace._toggleButtonState();
+  validateFormAddPlace.resetForm();
+  validateFormAddPlace.toggleButtonState();
   openPopup(popupAddPlace);
 });
 
@@ -112,8 +112,8 @@ function getOverlayIsOpened() {
 }
 function addEventListenerButtonEditProfile() {
   buttonEditProfile.addEventListener('click', function (event) {
-    validateFormEditProfile._resetForm();
-    validateFormEditProfile._toggleButtonState();
+    validateFormEditProfile.resetForm();
+    validateFormEditProfile.toggleButtonState();
     profileFieldName.value = profileTitle.textContent;
     profileFieldCaption.value = profileText.textContent;
     openPopup(popupEditProfile);
