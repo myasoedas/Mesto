@@ -30,7 +30,6 @@ export class Card {
   _addEventListenerОpenPopupImage() {
     this._elementImage.addEventListener('click', openPopupImage);
   }
-
   _toggleLike(evt) {
     const eventTarget = evt.target;
     const selectorElementLikeStatusActive = this._selectorElementLikeStatusActive;
@@ -62,7 +61,6 @@ export class Card {
   _setHandlerCardClick() {
     return () => this._handlerCardClick(this._titleImage, this._titleAlt, this._linkImage);
   }
-
   _addListenerElementImage() {
     this._elementImage.addEventListener('click', this._setHandlerCardClick());
   }
@@ -78,11 +76,9 @@ export class Card {
   _addListenerToggleLike() {
     this._elementLike.addEventListener('click', this._setToggleLike());
   }
-
   _removeListenerElementImage() {
     this._elementImage.removeEventListener('click', this._setHandlerCardClick);
   }
-
   _removeListenerRemoveCard() {
     this._elementDelElement.removeEventListener('click', this._setRemoveCard);
   }

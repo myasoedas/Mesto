@@ -21,14 +21,14 @@ const formAddPlace = popupAddPlace.querySelector(formSettings.formSelector);
 const fieldNamePlace = popupAddPlace.querySelector(formSettings.formFieldPlace);
 const fieldNameSrcLink = popupAddPlace.querySelector(formSettings.formFieldSrcLink);
 
-const validate = new FormValidator(formSettings);
-validate.enableValidation();
+const validateFormAddPlace = new FormValidator(formAddPlace, formSettings);
+const validateFormEditProfile = new FormValidator(formEditProfile, formSettings);
+validateFormAddPlace._setEventListeners();
+validateFormEditProfile._setEventListeners();
 
 initialCards.forEach((element) => {
-  //const card = new Card(element, initialCssClasses, handleCardClick);
   const card = newCard(element, initialCssClasses);
   const elementsItem = card.createCard();
-  //addEventListenerОpenPopupImage(elementsItem);
   addElement(initialCssClasses.elementsList, elementsItem);
 });
 
@@ -36,6 +36,8 @@ addEventListenerButtonEditProfile();
 addEventListenerFormEditProfile();
 
 buttonAddPlace.addEventListener('click', function (event) {
+  validateFormAddPlace._resetForm();
+  validateFormAddPlace._toggleButtonState();
   openPopup(popupAddPlace);
 });
 
@@ -54,11 +56,9 @@ function saveNewPlace(event) {
   const card = newCard(element, initialCssClasses);
   const elementsItem = card.createCard();
   addElement(initialCssClasses.elementsList, elementsItem);
-  resetForm(popupAddPlace);
-  //toggleButton(popupAddPlace);
 }
 function newCard(element, initialCssClasses) {
-  const card = new Card(element, initialCssClasses, handleCardClick);
+  const card = new Card(element, initialCssClasses, handlerCardClick);
   return card;
 }
 function addEventListenerFormEditProfile() {
@@ -70,7 +70,7 @@ function saveFormEditProfile(event) {
   profileText.textContent = profileFieldCaption.value;
   closePopup();
 }
-function handleCardClick(_titleImage, _titleAlt, _linkImage) {
+function handlerCardClick(_titleImage, _titleAlt, _linkImage) {
   popupImage.src = _linkImage;
   popupImage.alt = _titleAlt;
   captionPopupImage.textContent = _titleImage;
@@ -112,29 +112,15 @@ function getOverlayIsOpened() {
 }
 function addEventListenerButtonEditProfile() {
   buttonEditProfile.addEventListener('click', function (event) {
+    validateFormEditProfile._resetForm();
+    validateFormEditProfile._toggleButtonState();
     profileFieldName.value = profileTitle.textContent;
     profileFieldCaption.value = profileText.textContent;
-    toggleButton(popupEditProfile);
     openPopup(popupEditProfile);
   });
 }
-function toggleButton(popup) {
-  const buttonSubmitElement = popup.querySelector(formSettings.submitButtonSelector);
-  const inputList = Array.from(popup.querySelectorAll(formSettings.inputSelector));
-  validate.toggleButtonState(buttonSubmitElement, inputList);
-}
 function toggleOverlayIsOpened() {
   getOverlayIsOpened().classList.toggle(initialCssClasses.overlayIsOpened);
-}
-function resetForm(overlayIsOpened) {
-  if (!(overlayIsOpened.querySelector(formSettings.formSelector) === null)) {
-    overlayIsOpened.querySelector(formSettings.formSelector).reset();
-    const formElement = overlayIsOpened.querySelector(formSettings.formSelector);
-    const inputElementArray = overlayIsOpened.querySelectorAll(formSettings.inputSelector);
-    for (let i = 0; i < inputElementArray.length; i++) {
-      validate.hideInputError(formElement, inputElementArray[i]);
-    }
-  }
 }
 function closePopup() {
   const overlayIsOpened = page.querySelector('.'+ initialCssClasses.overlayIsOpened);
@@ -143,7 +129,6 @@ function closePopup() {
     removeEventListenerClosePopupButtonClose(page);
     removeEventListenerClosePopupOverlay(page);
     removeEventListenerCloseFromKeydownEscape(page);
-    resetForm(overlayIsOpened);
   }
 }
 function addEventListenerClosePopupFromKeydownEscape(element) {
@@ -164,17 +149,3 @@ function removeEventListenerClosePopupOverlay(element) {
 function removeEventListenerCloseFromKeydownEscape(element) {
   element.removeEventListener('keydown', closePopupFromKeydownEscape);
 }
-
-/*
-function openPopupImage(dataCardImage) {
-  //const eventTarget = dataCardImage.evt.target;
-  popupImage.src = dataCardImage.linkImage;
-  popupImage.alt = dataCardImage.titleAlt;
-  captionPopupImage.textContent = dataCardImage.titleImage;
-  openPopup(overlayPopupImage);
-}*/
-
-/*
-function addEventListenerОpenPopupImage(element) {
-  element.querySelector(initialCssClasses.elementImage).addEventListener('click', openPopupImage);
-}*/
