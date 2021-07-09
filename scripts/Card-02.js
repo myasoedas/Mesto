@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, cssClasses, /*openPopupImage, */handleCardClick) {
+  constructor(data, cssClasses, openPopupImage) {
     this._titleImage = data.titleImage;
     this._titleAlt = data.titleAlt;
     this._linkImage = data.linkImage;
@@ -24,7 +24,6 @@ export class Card {
     this._overlayPopupImage = this._page.querySelector(this._selectorOverlayPopupImage);
     this._popupImage = this._overlayPopupImage.querySelector(this._selectorPopupImage);
     this._popupCaption = this._overlayPopupImage.querySelector(this._selectorPopupCaption);
-    this._handleCardClick = handleCardClick;
   }
 
   _addEventListenerОpenPopupImage() {
@@ -55,7 +54,6 @@ export class Card {
     this._elementsItem.querySelector(this._selectorElementTitle).textContent = this._titleImage;
     this._addListenerRemoveCard();
     this._addListenerToggleLike();
-    this._addListenerElementImage();
     return this._elementsItem;
   }
   //
@@ -67,10 +65,6 @@ export class Card {
     this._addListenerToggleLike();
     return this._elementsItem;
   }*/
-
-  _addListenerElementImage() {
-    this._elementImage.addEventListener('click', () => this._handleCardClick(this._titleImage, this._titleAlt, this._linkImage));
-  }
 
   _addListenerRemoveCard() {
     this._elementDelElement.addEventListener('click', (evt) => this._removeCard(evt));
