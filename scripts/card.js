@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, cssClasses, /*openPopupImage, */handleCardClick) {
+  constructor(data, cssClasses, /*openPopupImage, */handlerCardClick) {
     this._titleImage = data.titleImage;
     this._titleAlt = data.titleAlt;
     this._linkImage = data.linkImage;
@@ -24,7 +24,7 @@ export class Card {
     this._overlayPopupImage = this._page.querySelector(this._selectorOverlayPopupImage);
     this._popupImage = this._overlayPopupImage.querySelector(this._selectorPopupImage);
     this._popupCaption = this._overlayPopupImage.querySelector(this._selectorPopupCaption);
-    this._handleCardClick = handleCardClick;
+    this._handlerCardClick = handlerCardClick;
   }
 
   _addEventListenerОpenPopupImage() {
@@ -42,6 +42,7 @@ export class Card {
     element.remove();
     this._removeListenerRemoveCard();
     this._removeListenerToggleLike();
+    this._removeListenerElementImage();
   }
   _createPopupImage(evt) {
     const eventTarget = evt.target;
@@ -58,31 +59,34 @@ export class Card {
     this._addListenerElementImage();
     return this._elementsItem;
   }
-  //
-  /*createCard(titleImage, titleAlt, linkImage) {
-    this._elementImage.src = linkImage;
-    this._elementImage.alt = titleAlt;
-    this._elementsItem.querySelector(this._selectorElementTitle).textContent = titleImage;
-    this._addListenerRemoveCard();
-    this._addListenerToggleLike();
-    return this._elementsItem;
-  }*/
+  _setHandlerCardClick() {
+    return () => this._handlerCardClick(this._titleImage, this._titleAlt, this._linkImage);
+  }
 
   _addListenerElementImage() {
-    this._elementImage.addEventListener('click', () => this._handleCardClick(this._titleImage, this._titleAlt, this._linkImage));
+    this._elementImage.addEventListener('click', this._setHandlerCardClick());
   }
-
+  _setRemoveCard() {
+    return (evt) => this._removeCard(evt);
+  }
   _addListenerRemoveCard() {
-    this._elementDelElement.addEventListener('click', (evt) => this._removeCard(evt));
+    this._elementDelElement.addEventListener('click', this._setRemoveCard());
+  }
+  _setToggleLike() {
+    return (evt) => this._toggleLike(evt);
   }
   _addListenerToggleLike() {
-    this._elementLike.addEventListener('click', (evt) => this._toggleLike(evt));
+    this._elementLike.addEventListener('click', this._setToggleLike());
+  }
+
+  _removeListenerElementImage() {
+    this._elementImage.removeEventListener('click', this._setHandlerCardClick);
   }
 
   _removeListenerRemoveCard() {
-    this._elementDelElement.removeEventListener('click', (evt) => this._removeCard(evt));
+    this._elementDelElement.removeEventListener('click', this._setRemoveCard);
   }
   _removeListenerToggleLike() {
-    this._elementLike.removeEventListener('click', (evt) => this._toggleLike(evt));
+    this._elementLike.removeEventListener('click', this._setToggleLike);
   }
 }
