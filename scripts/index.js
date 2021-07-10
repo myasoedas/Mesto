@@ -77,10 +77,13 @@ function handlerCardClick(_titleImage, _titleAlt, _linkImage) {
   openPopup(overlayPopupImage);
 }
 function openPopup(popup) {
+  addEventListeners(page);
+  popup.classList.toggle(initialCssClasses.overlayIsOpened);
+}
+function addEventListeners(page) {
   addEventListenerClosePopupFromKeydownEscape(page);
   addEventListenerClosePopupButtonClose(page);
   addEventListenerClosePopupOverlay(page);
-  popup.classList.toggle(initialCssClasses.overlayIsOpened);
 }
 function closePopupFromKeydownEscape(evt) {
   if (evt.key === 'Escape') {
@@ -123,13 +126,15 @@ function toggleOverlayIsOpened() {
   getOverlayIsOpened().classList.toggle(initialCssClasses.overlayIsOpened);
 }
 function closePopup() {
-  const overlayIsOpened = page.querySelector('.'+ initialCssClasses.overlayIsOpened);
   if (!(getOverlayIsOpened() === null)) {
     toggleOverlayIsOpened();
-    removeEventListenerClosePopupButtonClose(page);
-    removeEventListenerClosePopupOverlay(page);
-    removeEventListenerCloseFromKeydownEscape(page);
+    removeEventListeners(page);
   }
+}
+function removeEventListeners(page) {
+  removeEventListenerClosePopupButtonClose(page);
+  removeEventListenerClosePopupOverlay(page);
+  removeEventListenerCloseFromKeydownEscape(page);
 }
 function addEventListenerClosePopupFromKeydownEscape(element) {
   element.addEventListener('keydown', closePopupFromKeydownEscape);

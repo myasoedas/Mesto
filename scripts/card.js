@@ -21,9 +21,6 @@ export class Card {
     this._elementImage = this._elementsItem.querySelector(this._selectorElementImage);
     this._elementDelElement = this._elementsItem.querySelector(this._selectorElementDelElement);
     this._elementLike = this._elementsItem.querySelector(this._selectorElementLike);
-    this._overlayPopupImage = this._page.querySelector(this._selectorOverlayPopupImage);
-    this._popupImage = this._overlayPopupImage.querySelector(this._selectorPopupImage);
-    this._popupCaption = this._overlayPopupImage.querySelector(this._selectorPopupCaption);
     this._handlerCardClick = handlerCardClick;
   }
 
@@ -39,15 +36,6 @@ export class Card {
     const eventTarget = evt.target;
     const element = eventTarget.parentElement.parentElement;
     element.remove();
-    this._removeListenerRemoveCard();
-    this._removeListenerToggleLike();
-    this._removeListenerElementImage();
-  }
-  _createPopupImage(evt) {
-    const eventTarget = evt.target;
-    this._popupImage.src = eventTarget.src;
-    this._popupImage.alt = eventTarget.alt;
-    this._popupCaption.textContent = eventTarget.nextElementSibling.nextElementSibling.firstElementChild.textContent;
   }
   createCard() {
     this._elementImage.src = this._linkImage;
@@ -75,14 +63,5 @@ export class Card {
   }
   _addListenerToggleLike() {
     this._elementLike.addEventListener('click', this._setToggleLike());
-  }
-  _removeListenerElementImage() {
-    this._elementImage.removeEventListener('click', this._setHandlerCardClick);
-  }
-  _removeListenerRemoveCard() {
-    this._elementDelElement.removeEventListener('click', this._setRemoveCard);
-  }
-  _removeListenerToggleLike() {
-    this._elementLike.removeEventListener('click', this._setToggleLike);
   }
 }
