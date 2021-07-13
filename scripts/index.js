@@ -1,6 +1,7 @@
 import formSettings from './form-settings.js';
-import { FormValidator } from './components/FormValidator.js';
-import { Card } from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import Card from './components/Card.js';
+import Popup from './components/Popup.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 
@@ -42,7 +43,7 @@ buttonAddPlace.addEventListener('click', function (event) {
 });
 
 formAddPlace.addEventListener('submit', saveNewPlace);
-//
+
 function saveNewPlace(event) {
   event.preventDefault();
   const placeName = fieldNamePlace.value;
@@ -76,26 +77,32 @@ function handleCardClick(imageTitle, imageAltTitle, imageSrc) {
   captionPopupImage.textContent = imageTitle;
   openPopup(overlayPopupImage);
 }
+
+//
 function openPopup(popup) {
   addEventListeners(page);
   popup.classList.toggle(initialCssClasses.overlayIsOpened);
 }
+//
 function addEventListeners(page) {
   addEventListenerClosePopupFromKeydownEscape(page);
   addEventListenerClosePopupButtonClose(page);
   addEventListenerClosePopupOverlay(page);
 }
+//
 function closePopupFromKeydownEscape(evt) {
   if (evt.key === 'Escape') {
     closePopup();
   }
 }
+//
 function closePopupOverlay(evt) {
   const eventTarget = evt.target;
   if (eventTarget.classList.contains(initialCssClasses.overlayIsOpened)) {
     closePopup();
   }
 }
+//
 function closePopupButtonClose(evt) {
   const eventTarget = evt.target;
   if (eventTarget.classList.contains(initialCssClasses.popupButtonClose)) {
@@ -122,35 +129,44 @@ function addEventListenerButtonEditProfile() {
     openPopup(popupEditProfile);
   });
 }
+//
 function toggleOverlayIsOpened() {
   getOverlayIsOpened().classList.toggle(initialCssClasses.overlayIsOpened);
 }
+//
 function closePopup() {
   if (!(getOverlayIsOpened() === null)) {
     toggleOverlayIsOpened();
     removeEventListeners(page);
   }
 }
+//
 function removeEventListeners(page) {
   removeEventListenerClosePopupButtonClose(page);
   removeEventListenerClosePopupOverlay(page);
   removeEventListenerCloseFromKeydownEscape(page);
 }
+//
 function addEventListenerClosePopupFromKeydownEscape(element) {
   element.addEventListener('keydown', closePopupFromKeydownEscape);
 }
+//
 function addEventListenerClosePopupButtonClose(element) {
   element.addEventListener('click', closePopupButtonClose);
 }
+//
 function addEventListenerClosePopupOverlay(element) {
   element.addEventListener('click', closePopupOverlay);
 }
+//
 function removeEventListenerClosePopupButtonClose(element) {
   element.removeEventListener('click', closePopupButtonClose);
 }
+//
 function removeEventListenerClosePopupOverlay(element) {
   element.removeEventListener('click', closePopupOverlay);
 }
+//
 function removeEventListenerCloseFromKeydownEscape(element) {
   element.removeEventListener('keydown', closePopupFromKeydownEscape);
 }
