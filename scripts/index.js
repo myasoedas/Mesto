@@ -1,14 +1,11 @@
 import formSettings from './form-settings.js';
 import FormValidator from './components/FormValidator.js';
 import Card from './components/Card.js';
-import Popup from './components/Popup.js';
+import PopupWithImage from './components/PopupWithImage.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 
 const page = document.querySelector(initialCssClasses.page);
-const overlayPopupImage = page.querySelector(initialCssClasses.overlayPopupImage);
-const popupImage = overlayPopupImage.querySelector(initialCssClasses.popupImage);
-const captionPopupImage = overlayPopupImage.querySelector(initialCssClasses.popupCaption);
 const profileTitle = page.querySelector(initialCssClasses.profileTitle);
 const profileText = page.querySelector(initialCssClasses.profileText);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
@@ -21,6 +18,8 @@ const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
 const formAddPlace = popupAddPlace.querySelector(formSettings.formSelector);
 const fieldNamePlace = popupAddPlace.querySelector(formSettings.formFieldPlace);
 const fieldNameSrcLink = popupAddPlace.querySelector(formSettings.formFieldSrcLink);
+
+const popupImage = new PopupWithImage({popupSelector: initialCssClasses.overlayPopupImage, selectors: initialCssClasses});
 
 const validateFormAddPlace = new FormValidator(formAddPlace, formSettings);
 const validateFormEditProfile = new FormValidator(formEditProfile, formSettings);
@@ -71,11 +70,12 @@ function saveFormEditProfile(event) {
   profileText.textContent = profileFieldCaption.value;
   closePopup();
 }
+
 function handleCardClick(imageTitle, imageAltTitle, imageSrc) {
-  popupImage.src = imageSrc;
-  popupImage.alt = imageAltTitle;
-  captionPopupImage.textContent = imageTitle;
-  openPopup(overlayPopupImage);
+  popupImage.popupImage.src = imageSrc;
+  popupImage.popupImage.alt = imageAltTitle;
+  popupImage.popupCaption.textContent = imageTitle;
+  popupImage.openPopup();
 }
 
 //
