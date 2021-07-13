@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, cssClasses, handlerCardClick) {
+  constructor(data, cssClasses, handleCardClick) {
     this._titleImage = data.titleImage;
     this._titleAlt = data.titleAlt;
     this._linkImage = data.linkImage;
@@ -21,7 +21,7 @@ export class Card {
     this._elementImage = this._elementsItem.querySelector(this._selectorElementImage);
     this._elementDelElement = this._elementsItem.querySelector(this._selectorElementDelElement);
     this._elementLike = this._elementsItem.querySelector(this._selectorElementLike);
-    this._handlerCardClick = handlerCardClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _addEventListenerОpenPopupImage() {
@@ -41,27 +41,21 @@ export class Card {
     this._elementImage.src = this._linkImage;
     this._elementImage.alt = this._titleAlt;
     this._elementsItem.querySelector(this._selectorElementTitle).textContent = this._titleImage;
+    this._addListeners();
+    return this._elementsItem;
+  }
+  _addListenerElementImage() {
+    this._elementImage.addEventListener('click', () => this._handleCardClick(this._titleImage, this._titleAlt, this._linkImage));
+  }
+  _addListenerRemoveCard() {
+    this._elementDelElement.addEventListener('click', (evt) => this._removeCard(evt));
+  }
+  _addListenerToggleLike() {
+    this._elementLike.addEventListener('click', (evt) => this._toggleLike(evt));
+  }
+  _addListeners() {
     this._addListenerRemoveCard();
     this._addListenerToggleLike();
     this._addListenerElementImage();
-    return this._elementsItem;
-  }
-  _setHandlerCardClick() {
-    return () => this._handlerCardClick(this._titleImage, this._titleAlt, this._linkImage);
-  }
-  _addListenerElementImage() {
-    this._elementImage.addEventListener('click', this._setHandlerCardClick());
-  }
-  _setRemoveCard() {
-    return (evt) => this._removeCard(evt);
-  }
-  _addListenerRemoveCard() {
-    this._elementDelElement.addEventListener('click', this._setRemoveCard());
-  }
-  _setToggleLike() {
-    return (evt) => this._toggleLike(evt);
-  }
-  _addListenerToggleLike() {
-    this._elementLike.addEventListener('click', this._setToggleLike());
   }
 }
