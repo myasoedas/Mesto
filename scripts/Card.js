@@ -1,22 +1,20 @@
 export class Card {
-  constructor(data, cssClasses, handleCardClick) {
-    this._titleImage = data.titleImage;
-    this._titleAlt = data.titleAlt;
-    this._linkImage = data.linkImage;
-    this._selectorPage = cssClasses.page;
-    this._selectorElementsItemTemplate = cssClasses.elementsItemTemplate;
-    this._selectorElementsItem = cssClasses.elementsItem;
-    this._selectorElementImage = cssClasses.elementImage;
-    this._selectorElementTitle = cssClasses.elementTitle;
-    this._selectorElementDelElement = cssClasses.elementDelElement;
-    this._selectorElementLike = cssClasses.elementLike;
-    this._selectorElementLikeStatusActive = cssClasses.elementLikeStatusActive;
-    this._selectorOverlayPopupImage = cssClasses.overlayPopupImage;
-    this._selectorPopupImage = cssClasses.popupImage;
-    this._selectorPopupCaption = cssClasses.popupCaption;
-    this._selectorOverlayIsOpened = cssClasses.overlayIsOpened;
-    this._page = document.querySelector(this._selectorPage);
-    this._elementsItemTemplate = this._page.querySelector(this._selectorElementsItemTemplate).content;
+  constructor({data, cardSelectors}, handleCardClick) {
+    this._imageTitle = data.imageTitle;
+    this._imageAltTitle = data.imageAltTitle;
+    this._imageSrc = data.imageSrc;
+    this._selectorElementsItemTemplate = cardSelectors.elementsItemTemplate;
+    this._selectorElementsItem = cardSelectors.elementsItem;
+    this._selectorElementImage = cardSelectors.elementImage;
+    this._selectorElementTitle = cardSelectors.elementTitle;
+    this._selectorElementDelElement = cardSelectors.elementDelElement;
+    this._selectorElementLike = cardSelectors.elementLike;
+    this._selectorElementLikeStatusActive = cardSelectors.elementLikeStatusActive;
+    this._selectorOverlayPopupImage = cardSelectors.overlayPopupImage;
+    this._selectorPopupImage = cardSelectors.popupImage;
+    this._selectorPopupCaption = cardSelectors.popupCaption;
+    this._selectorOverlayIsOpened = cardSelectors.overlayIsOpened;
+    this._elementsItemTemplate = document.querySelector(this._selectorElementsItemTemplate).content;
     this._elementsItem = this._elementsItemTemplate.querySelector(this._selectorElementsItem).cloneNode(true);
     this._elementImage = this._elementsItem.querySelector(this._selectorElementImage);
     this._elementDelElement = this._elementsItem.querySelector(this._selectorElementDelElement);
@@ -38,14 +36,14 @@ export class Card {
     element.remove();
   }
   createCard() {
-    this._elementImage.src = this._linkImage;
-    this._elementImage.alt = this._titleAlt;
-    this._elementsItem.querySelector(this._selectorElementTitle).textContent = this._titleImage;
+    this._elementImage.src = this._imageSrc;
+    this._elementImage.alt = this._imageAltTitle;
+    this._elementsItem.querySelector(this._selectorElementTitle).textContent = this._imageTitle;
     this._addListeners();
     return this._elementsItem;
   }
   _addListenerElementImage() {
-    this._elementImage.addEventListener('click', () => this._handleCardClick(this._titleImage, this._titleAlt, this._linkImage));
+    this._elementImage.addEventListener('click', () => this._handleCardClick(this._imageTitle, this._imageAltTitle, this._imageSrc));
   }
   _addListenerRemoveCard() {
     this._elementDelElement.addEventListener('click', (evt) => this._removeCard(evt));

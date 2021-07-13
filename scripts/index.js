@@ -42,23 +42,23 @@ buttonAddPlace.addEventListener('click', function (event) {
 });
 
 formAddPlace.addEventListener('submit', saveNewPlace);
-
+//
 function saveNewPlace(event) {
   event.preventDefault();
   const placeName = fieldNamePlace.value;
   const linkPlaceImage = fieldNameSrcLink.value;
   closePopup();
   const element = {
-    titleImage: placeName,
-    linkImage: linkPlaceImage,
-    titleAlt: placeName
+    imageTitle: placeName,
+    imageSrc: linkPlaceImage,
+    imageAltTitle: placeName
   }
   const card = newCard(element, initialCssClasses);
   const elementsItem = card.createCard();
   addElement(initialCssClasses.elementsList, elementsItem);
 }
 function newCard(element, initialCssClasses) {
-  const card = new Card(element, initialCssClasses, handlerCardClick);
+  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick);
   return card;
 }
 function addEventListenerFormEditProfile() {
@@ -70,10 +70,10 @@ function saveFormEditProfile(event) {
   profileText.textContent = profileFieldCaption.value;
   closePopup();
 }
-function handlerCardClick(_titleImage, _titleAlt, _linkImage) {
-  popupImage.src = _linkImage;
-  popupImage.alt = _titleAlt;
-  captionPopupImage.textContent = _titleImage;
+function handleCardClick(imageTitle, imageAltTitle, imageSrc) {
+  popupImage.src = imageSrc;
+  popupImage.alt = imageAltTitle;
+  captionPopupImage.textContent = imageTitle;
   openPopup(overlayPopupImage);
 }
 function openPopup(popup) {
