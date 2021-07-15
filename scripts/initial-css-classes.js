@@ -20,5 +20,14 @@ export default {
   profileTitle: '.profile__title',
   profileText: '.profile__text',
   profileButtonEdit: '.profile__button-edit',
-  profileButtonAdd: '.profile__button-add'
+  profileButtonAdd: '.profile__button-add',
+  formSelector: '.form',
+  inputSelector: '.form__field',
+  submitButtonSelector: '.form__button-save',
+  inputErrorClass: 'form__field_type_error',
+  errorClass: 'form__field-error_active',
+  formFieldName: '.form__field_name_name',
+  formFieldCaption: '.form__field_name_caption',
+  formFieldPlace: '.form__field_name_name-place',
+  formFieldSrcLink: '.form__field_name_src-link'
 };

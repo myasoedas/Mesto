@@ -32,25 +32,25 @@ export default class Popup {
   _popupClassListRemove(selector) {
     this._popup.classList.remove(selector);
   }
-  _closePopup() {
+  closePopup() {
     this._popupClassListRemove(this._popupIsOpenedSelector);
-    //this.removeEventListeners();
+    this.removeEventListeners();
   }
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      this._closePopup();
+      this.closePopup();
     }
   }
   _closePopupButtonClose(evt) {
     const eventTarget = evt.target;
     if (eventTarget.classList.contains(this._popupButtonCloseSelector)) {
-      this._closePopup();
+      this.closePopup();
     }
   }
   _closePopupOverlay(evt) {
     const eventTarget = evt.target;
     if (eventTarget.classList.contains(this._popupIsOpenedSelector)) {
-      this._closePopup();
+      this.closePopup();
     }
   }
   _addEventListenerClosePopupFromKeydownEscape() {
@@ -67,7 +67,7 @@ export default class Popup {
     this._addEventListenerClosePopupButtonClose();
     this._addEventListenerClosePopupOverlay();
   }
-  /*_removeEventListenerClosePopupButtonClose() {
+  _removeEventListenerClosePopupButtonClose() {
     this._page.removeEventListener('click', (evt) => this._closePopupButtonClose(evt));
   }
   _removeEventListenerClosePopupOverlay() {
@@ -80,5 +80,5 @@ export default class Popup {
     this._removeEventListenerCloseFromKeydownEscape();
     this._removeEventListenerClosePopupButtonClose();
     this._removeEventListenerClosePopupOverlay();
-  }*/
+  }
 }
