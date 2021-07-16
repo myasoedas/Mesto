@@ -17,6 +17,9 @@ export default class Popup {
     this._popupButtonCloseSelector = selectors.popupButtonClose;
     this._page = document.querySelector(this._pageSelector);
     this._popup = this._page.querySelector(this._popupSelector);
+    this._EscClose = (evt) => {this._handleEscClose(evt)};
+    this._closePopupButton = (evt) => {this._closePopupButtonClose(evt)};
+    this._closePopup = (evt) => {this._closePopupOverlay(evt)};
   }
 
   openPopup() {
@@ -54,30 +57,31 @@ export default class Popup {
     }
   }
   _addEventListenerClosePopupFromKeydownEscape() {
-    this._page.addEventListener('keydown', (evt) => this._handleEscClose(evt));
+    this._page.addEventListener('keydown', this._EscClose);
+  }
+  _removeEventListenerClosePopupFromKeydownEscape() {
+    this._page.removeEventListener('keydown', this._EscClose);
   }
   _addEventListenerClosePopupButtonClose() {
-    this._page.addEventListener('click', (evt) => this._closePopupButtonClose(evt));
+    this._page.addEventListener('click', this._closePopupButton);
+  }
+  _removeEventListenerClosePopupButtonClose() {
+    this._page.removeEventListener('click', this._closePopupButton);
   }
   _addEventListenerClosePopupOverlay() {
-    this._page.addEventListener('click', (evt) => this._closePopupOverlay(evt));
+    this._page.addEventListener('click', this._closePopup);
+  }
+  _removeEventListenerClosePopupOverlay() {
+    this._page.removeEventListener('click', this._closePopup);
   }
   setEventListeners() {
     this._addEventListenerClosePopupFromKeydownEscape();
     this._addEventListenerClosePopupButtonClose();
     this._addEventListenerClosePopupOverlay();
   }
-  _removeEventListenerClosePopupButtonClose() {
-    this._page.removeEventListener('click', (evt) => this._closePopupButtonClose(evt));
-  }
-  _removeEventListenerClosePopupOverlay() {
-    this._page.removeEventListener('click', (evt) => this._closePopupOverlay(evt));
-  }
-  _removeEventListenerCloseFromKeydownEscape() {
-    this._page.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
-  }
+
   removeEventListeners() {
-    this._removeEventListenerCloseFromKeydownEscape();
+    this._removeEventListenerClosePopupFromKeydownEscape();
     this._removeEventListenerClosePopupButtonClose();
     this._removeEventListenerClosePopupOverlay();
   }

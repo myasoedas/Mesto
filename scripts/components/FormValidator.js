@@ -18,7 +18,9 @@ export default class FormValidator {
     this._formElement.reset();
     for (let i = 0; i < this._inputListArray.length; i++) {
       this._hideInputError(this._inputListArray[i]);
+      //this._removeEventListenerInputElement(this._inputListArray[i]);
     }
+
   }
   enableValidation() {
     this._inputListArray.forEach(inputElement => this._addEventListenerInputElement(inputElement));
