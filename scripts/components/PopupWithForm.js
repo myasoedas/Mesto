@@ -21,7 +21,13 @@ export default class PopupWithForm extends Popup {
     this._formInputArray = this.form.querySelectorAll(this._formInputSelector);
     this._formInputValueObject = new Object();
     this._handleSubmitForm = handleSubmitForm;
-
+    this._setListenerFormSubmit = (evt) => {
+      evt.preventDefault();
+      const InputValueObject = this._getFormInputValues();
+      this.closePopup();
+      this._handleSubmitForm(InputValueObject);
+      this.form.reset();
+    };
   }
 
   _getFormInputValues() {
@@ -29,32 +35,27 @@ export default class PopupWithForm extends Popup {
     return this._formInputValueObject;
   }
   _setEventListenerFormSubmit() {
-    this.form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      const InputValueObject = this._getFormInputValues();
-      this.closePopup();
-      this._handleSubmitForm(InputValueObject);
-      this.form.reset();
-    });
+    this.form.addEventListener('submit', this._setListenerFormSubmit);
   }
   _removeEventListenerFormSubmit() {
-    this.form.removeEventListener('submit', (evt) => {
-      this._handleSubmitForm(InputValueObject);});
+    this.form.removeEventListener('submit', this._setListenerFormSubmit);
   }
   setEventListeners() {
     super.setEventListeners();
     this._setEventListenerFormSubmit();
   }
-
+  removeEventListeners() {
+    super.removeEventListeners();
+    this._removeEventListenerFormSubmit();
+  }
   openPopup() {
     this.setEventListeners();
     this._popupClassListAdd(this._popupIsOpenedSelector);
   }
-
   closePopup() {
     super.closePopup();
     this.form.reset();
-    this._removeEventListenerFormSubmit();
+    this.removeEventListeners();
   }
 
 }
