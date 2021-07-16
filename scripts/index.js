@@ -3,14 +3,21 @@ import FormValidator from './components/FormValidator.js';
 import Card from './components/Card.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 
+
 const page = document.querySelector(initialCssClasses.page);
-const profileTitle = page.querySelector(initialCssClasses.profileTitle);
-const profileText = page.querySelector(initialCssClasses.profileText);
+//const profileTitle = page.querySelector(initialCssClasses.profileTitle);
+//const profileText = page.querySelector(initialCssClasses.profileText);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
 const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
+
+const userInfo = new UserInfo({
+  userNameSelector: initialCssClasses.profileTitle,
+  userCaptionSelector: initialCssClasses.profileText
+});
 
 const popupImage = new PopupWithImage({
   popupSelector: initialCssClasses.overlayPopupImage,
@@ -22,12 +29,10 @@ const popupFormAddPlace = new PopupWithForm({
   handleSubmitForm: createNewCard
 });
 
-
 const popupFormEditProfile = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameEditCaption,
   selectors: initialCssClasses,
   handleSubmitForm: editProfile});
-
 
 const validateFormAddPlace = new FormValidator(popupFormAddPlace.form, initialCssClasses);
 const validateFormEditProfile = new FormValidator(popupFormEditProfile.form, initialCssClasses);
@@ -43,7 +48,6 @@ initialCards.forEach((element) => {
 addEventListenerButtonEditProfile();
 
 buttonAddPlace.addEventListener('click', function (event) {
-
   validateFormAddPlace.resetForm();
   validateFormAddPlace.toggleButtonState();
   popupFormAddPlace.openPopup();
@@ -57,10 +61,41 @@ function createNewCard(formInputValueObject) {
 }
 
 function editProfile(formInputValueObject) {
-  profileTitle.textContent = formInputValueObject.userName;
-  profileText.textContent = formInputValueObject.userCaption;
-  this.closePopup();
+  userInfo.setUserInfo(formInputValueObject);
 }
+
+function newCard(element, initialCssClasses) {
+  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick);
+  return card;
+}
+
+function handleCardClick(placeName, placeAlt, placeSrc) {
+  popupImage.popupImage.src = placeSrc;
+  popupImage.popupImage.alt = placeAlt;
+  popupImage.popupCaption.textContent = placeName;
+  popupImage.openPopup();
+}
+
+function getElement(selektor) {
+  const element = document.querySelector(selektor);
+  return element;
+}
+
+function addElement(selektor, elementToAdd) {
+  getElement(selektor).prepend(elementToAdd);
+}
+
+function addEventListenerButtonEditProfile() {
+  buttonEditProfile.addEventListener('click', function (event) {
+    validateFormEditProfile.resetForm();
+    validateFormEditProfile.toggleButtonState();
+    const profileInfo = userInfo.getUserInfo();
+    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldName).value = profileInfo.userName;
+    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldCaption).value = profileInfo.userCaption;
+    popupFormEditProfile.openPopup();
+  });
+}
+
 
 /*
 function saveNewPlace(event) {
@@ -83,10 +118,7 @@ function saveNewPlace(event) {
   return formInputValueObject;
 }*/
 
-function newCard(element, initialCssClasses) {
-  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick);
-  return card;
-}
+
 /*
 function addEventListenerFormEditProfile() {
   formEditProfile.addEventListener('submit', saveFormEditProfile);
@@ -98,14 +130,6 @@ function saveFormEditProfile(event) {
   profileText.textContent = profileFieldCaption.value;
   closePopup();
 }*/
-
-function handleCardClick(placeName, placeAlt, placeSrc) {
-  popupImage.popupImage.src = placeSrc;
-  popupImage.popupImage.alt = placeAlt;
-  popupImage.popupCaption.textContent = placeName;
-  popupImage.openPopup();
-}
-
 
 
 /*
@@ -139,32 +163,14 @@ function closePopupButtonClose(evt) {
     closePopup();
   }
 }*/
-function getElement(selektor) {
-  const element = document.querySelector(selektor);
-  return element;
-}
-function addElement(selektor, elementToAdd) {
-  getElement(selektor).prepend(elementToAdd);
-}
+
 /*
 function getOverlayIsOpened() {
   const overlayIsOpened = page.querySelector(`.${initialCssClasses.overlayIsOpened}`);
   return overlayIsOpened;
 }
 */
-function addEventListenerButtonEditProfile() {
-  buttonEditProfile.addEventListener('click', function (event) {
-    console.log("Нажата кнопка: buttonEditProfile");
-    validateFormEditProfile.resetForm();
-    validateFormEditProfile.toggleButtonState();
-    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldName).value = profileTitle.textContent;
-    //profileFieldName.value = profileTitle.textContent;
-    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldCaption).value = profileText.textContent;
-    //profileFieldCaption.value = profileText.textContent;
-    popupFormEditProfile.openPopup();
-    //openPopup(popupEditProfile);
-  });
-}
+
 
 /*
 function toggleOverlayIsOpened() {

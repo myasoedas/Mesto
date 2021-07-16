@@ -20,11 +20,11 @@ export default class Card {
     this._elementDelElement = this._elementsItem.querySelector(this._selectorElementDelElement);
     this._elementLike = this._elementsItem.querySelector(this._selectorElementLike);
     this._handleCardClick = handleCardClick;
+    this._cardClik = () => {this._handleCardClick(this._imageTitle, this._imageAltTitle, this._imageSrc)};
+    this._delCard = (evt) => {this._removeCard(evt)};
+    this._togLike = (evt) => {this._toggleLike(evt)};
   }
 
-  _addEventListenerОpenPopupImage() {
-    this._elementImage.addEventListener('click', openPopupImage);
-  }
   _toggleLike(evt) {
     const eventTarget = evt.target;
     const selectorElementLikeStatusActive = this._selectorElementLikeStatusActive;
@@ -34,6 +34,7 @@ export default class Card {
     const eventTarget = evt.target;
     const element = eventTarget.parentElement.parentElement;
     element.remove();
+    this._removeListeners();
   }
   createCard() {
     this._elementImage.src = this._imageSrc;
@@ -43,17 +44,31 @@ export default class Card {
     return this._elementsItem;
   }
   _addListenerElementImage() {
-    this._elementImage.addEventListener('click', () => this._handleCardClick(this._imageTitle, this._imageAltTitle, this._imageSrc));
+    this._elementImage.addEventListener('click', this._cardClik);
+  }
+  _removeListenerElementImage() {
+    this._elementImage.removeEventListener('click', this._cardClik);
   }
   _addListenerRemoveCard() {
-    this._elementDelElement.addEventListener('click', (evt) => this._removeCard(evt));
+    this._elementDelElement.addEventListener('click', this._delCard);
+  }
+  _removeListenerRemoveCard() {
+    this._elementDelElement.removeEventListener('click', this._delCard);
   }
   _addListenerToggleLike() {
-    this._elementLike.addEventListener('click', (evt) => this._toggleLike(evt));
+    this._elementLike.addEventListener('click', this._togLike);
+  }
+  _removeListenerToggleLike() {
+    this._elementLike.removeEventListener('click', this._togLike);
   }
   _addListeners() {
     this._addListenerRemoveCard();
     this._addListenerToggleLike();
     this._addListenerElementImage();
+  }
+  _removeListeners() {
+    this._removeListenerRemoveCard();
+    this._removeListenerToggleLike();
+    this._removeListenerElementImage();
   }
 }
