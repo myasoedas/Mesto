@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import Section from './components/Section.js';
 import FormValidator from './components/FormValidator.js';
 import Card from './components/Card.js';
@@ -6,7 +7,6 @@ import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
-
 
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);

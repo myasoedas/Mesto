@@ -1,0 +1,36 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "mesto - travel program",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myasoedas/mesto.git"
+  },
+  "author": "Myasoed Aleksandr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myasoedas/mesto/issues"
+  },
+  "homepage": "https://github.com/myasoedas/mesto",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^6.1.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.1.0",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "core-js": "^3.15.2",
+    "rimraf": "^3.0.2"
+  }
+}
