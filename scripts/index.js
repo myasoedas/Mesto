@@ -11,8 +11,13 @@ import initialCssClasses from './initial-css-classes.js';
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
 const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
+const cardsSection = new Section({items: initialCards, renderer: rendererCard}, initialCssClasses.elementsList);
+const elements = cardsSection.rendererItems();
+elements.forEach((element) => {
+  cardsSection.addItem(element);
+});
 
-addItems(initialCards);
+
 
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
@@ -47,19 +52,6 @@ buttonAddPlace.addEventListener('click', function (event) {
   popupFormAddPlace.openPopup();
 });
 
-function newCardsSection(cardsData) {
-  const cardsSection = new Section({items: cardsData, renderer: rendererCard}, initialCssClasses.elementsList);
-  return cardsSection;
-}
-
-function addItems(formInputValueObject) {
-  const cardsSection = newCardsSection(formInputValueObject);
-  const elements = cardsSection.rendererItems();
-  elements.forEach((element) => {
-    cardsSection.addItem(element);
-  });
-}
-
 function getElement(selektor) {
   const element = document.querySelector(selektor);
   return element;
@@ -79,7 +71,7 @@ function createNewCard(formInputValueObject) {
   const card = newCard(formInputValueObject, initialCssClasses);
   const elementsItem = card.createCard();
   this.closePopup();
-  addElement(initialCssClasses.elementsList, elementsItem);
+  cardsSection.addItem(elementsItem);
 }
 
 function editProfile(formInputValueObject) {
