@@ -31,10 +31,9 @@ export default class Card {
     eventTarget.classList.toggle(selectorElementLikeStatusActive);
   }
   _removeCard(evt) {
-    const eventTarget = evt.target;
-    const element = eventTarget.parentElement.parentElement;
-    element.remove();
+    this._elementsItem.remove();
     this._removeListeners();
+    this._elementsItem = '';
   }
   createCard() {
     this._elementImage.src = this._imageSrc;
