@@ -5,5 +5,12 @@
   border-radius: 10px 10px 0 0;
   width: 282px;
   height: 282px;
-  object-fit: cover; 
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
+
+.element__image:hover {
+  opacity: 0.5;
+}
+
