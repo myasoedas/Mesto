@@ -9,6 +9,8 @@
 слушатель клика иконке закрытия попапа. Модальное окно также закрывается
 при клике на затемнённую область вокруг формы.
 */
+import constants from '../constants.js';
+
 export default class Popup {
   constructor({ popupSelector, selectors }) {
     this._popupSelector = popupSelector;
@@ -40,7 +42,7 @@ export default class Popup {
     this.removeEventListeners();
   }
   _handleEscClose(evt) {
-    if (evt.key === 'Escape') {
+    if (evt.key === constants.escape) {
       this.closePopup();
     }
   }
