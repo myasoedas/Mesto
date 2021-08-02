@@ -1,5 +1,4 @@
 import '../pages/index.css';
-import Api from './components/Api.js';
 import Section from './components/Section.js';
 import FormValidator from './components/FormValidator.js';
 import Card from './components/Card.js';
@@ -12,20 +11,6 @@ import initialCssClasses from './initial-css-classes.js';
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
 const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
-
-const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-26/',
-  authorization: '366940f8-1afd-40c8-8095-e44dfdf9116b',
-  contentTip: 'application/json',
-});
-
-const cardsPromise = api.getCards();
-//cardsPromise.then(cards => {console.log(cards);});
-
-console.log(cardsPromise.then(cards => {return cards;}));
-const profilePromise = api.getProfile();
-//console.log(profilePromise);
-
 const cardsSection = new Section({items: initialCards, renderer: rendererCard}, initialCssClasses.elementsList);
 const elements = cardsSection.rendererItems();
 elements.forEach((element) => {

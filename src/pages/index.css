@@ -38,6 +38,7 @@
 
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like/_status/element__like_status_active.css);
+@import url(../blocks/element/__like-counter/element__like-counter.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
@@ -46,6 +47,7 @@
 @import url(../blocks/overlay/_color/overlay_color_black.css);
 @import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
 @import url(../blocks/overlay/_name/overlay_name_add-place.css);
+@import url(../blocks/overlay/_name/overlay_name_delete-card.css);
 @import url(../blocks/overlay/_name/overlay_name_display-image.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__image/popup__image.css);

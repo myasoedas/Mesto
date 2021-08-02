@@ -10,7 +10,7 @@
   font-family: inherit;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows:auto auto auto 50px;
+  /*grid-template-rows:auto auto auto 50px;*/
   justify-content: center;
   align-content: start;
 }
@@ -19,7 +19,7 @@
   .form {
     margin: 25px 22px;
     grid-template-rows: auto auto auto 46px;
-    gap: 45px 0;
+    /*gap: 45px 0;*/
   }
 }
 

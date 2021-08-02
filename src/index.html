@@ -51,10 +51,23 @@
         <div class="element__caption">
             <h2 class="element__title"></h2>
             <button class="element__like" name ="button_name_toggle-like" type="button"></button>
+            <span></span>
+            <span class="element__like-counter"></span>
         </div>
       </div>
     </li>
   </template>
+
+  <!-- Попап для подтверждения удаления карточки места -->
+  <div class="overlay overlay_name_delete-card">
+    <div class="popup">
+      <form class="form" name="form_name_edit-caption" novalidate>
+        <h2 class="form__title">Вы уверены?</h2>
+        <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__button-close" name ="button_name_close" type="button"></button>
+    </div>
+  </div>
 
   <!-- Попап для редактирования профиля -->
   <div class="overlay overlay_name_edit-caption">
