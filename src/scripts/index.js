@@ -19,18 +19,34 @@ const api = new Api({
   contentTip: 'application/json',
 });
 
+const array = [];
 const cardsPromise = api.getCards();
-//cardsPromise.then(cards => {console.log(cards);});
+cardsPromise.then(cards => {
+  console.log(cards.length);
+  console.log(cards[cards.length - 1]);
+  cards.forEach(item => {
+    const card = {
+      placeName: item.name,
+      placeSrc: item.link,
+      placeAlt: item.name,
+    };
+    array.push(card);
+  });
+  const cardsSection = new Section({items: array, renderer: rendererCard}, initialCssClasses.elementsList);
+  const elements = cardsSection.rendererItems();
+  elements.forEach((element) => {
+    cardsSection.addItem(element);
+  });
 
-console.log(cardsPromise.then(cards => {return cards;}));
-const profilePromise = api.getProfile();
-//console.log(profilePromise);
-
-const cardsSection = new Section({items: initialCards, renderer: rendererCard}, initialCssClasses.elementsList);
-const elements = cardsSection.rendererItems();
-elements.forEach((element) => {
-  cardsSection.addItem(element);
 });
+
+const profilePromise = api.getProfile();
+console.log(profilePromise);
+profilePromise.then(profile => {
+  console.log(profile.name + ' id: ' + profile._id);
+
+});
+
 
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
