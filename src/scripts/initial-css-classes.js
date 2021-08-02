@@ -17,6 +17,7 @@ export default {
   popupImage: '.popup__image',
   popupCaption: '.popup__caption',
   popupButtonClose:'popup__button-close',
+  profileImage: '.profile__image',
   profileTitle: '.profile__title',
   profileText: '.profile__text',
   profileButtonEdit: '.profile__button-edit',

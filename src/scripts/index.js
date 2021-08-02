@@ -42,16 +42,22 @@ cardsPromise.then(cards => {
 
 const profilePromise = api.getProfile();
 console.log(profilePromise);
+
 profilePromise.then(profile => {
   console.log(profile.name + ' id: ' + profile._id);
+  const userInfo = new UserInfo({
+    userNameSelector: initialCssClasses.profileTitle,
+    userCaptionSelector: initialCssClasses.profileText,
+    userImageSelector: initialCssClasses.profileImage,
+  }, profile);
+  console.log(userInfo.getUserInfo());
+  userInfo.setUserInfo(profile);
+  userInfo.setUserImage(profile);
 
 });
 
 
-const userInfo = new UserInfo({
-  userNameSelector: initialCssClasses.profileTitle,
-  userCaptionSelector: initialCssClasses.profileText
-});
+
 
 const popupImage = new PopupWithImage({
   popupSelector: initialCssClasses.overlayPopupImage,
