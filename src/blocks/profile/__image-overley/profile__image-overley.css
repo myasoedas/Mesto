@@ -1,16 +1,11 @@
 /*блок img - содержит изображение путешественника в круглой рамке*/
-.profile__image {
+.profile__image-overley {
+  position: absolute;
+  top: 48px;
+  left: 48px;
   margin: 0;
   padding: 0;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  justify-self: center;
-  align-self: center;
-  z-index: 2;
-  opacity: 1;
+  z-index: 0;
+  opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
-
-

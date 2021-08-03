@@ -1,0 +1,16 @@
+.profile__image-container {
+  margin: 0;
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.profile__image-container:hover .profile__image {
+  opacity: 0.6;
+}
+
+.profile__image-container:hover .profile__image-overley {
+  opacity: 1;
+}
+

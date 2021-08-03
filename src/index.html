@@ -19,13 +19,17 @@
   <main class="main">
 
     <section class="profile">
-      <img class="profile__image" src="" alt="">
+      <div class = "profile__image-container">
+        <img class="profile__image" src="" alt="">
+        <img class="profile__image-overley" src="<%=require('./images/button-edit-avatar.svg')%>" alt="Белый карандаш на прозрачном фоне">
+      </div>
+
         <div class="profile__caption">
           <div class="profile__caption-title">
-            <h1 class="profile__title">Александр</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__button-edit" name ="button_name_edit-profile" type="button"></button>
           </div>
-          <p class="profile__text">WEB разработчик</p>
+          <p class="profile__text"></p>
         </div>
       <button class="profile__button-add" name ="button_name_add-place" type="button"></button>
     </section>

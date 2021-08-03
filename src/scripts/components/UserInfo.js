@@ -34,6 +34,11 @@ export default class UserInfo {
   }
 
   setUserInfo(userInfo) {
+    this._about = userInfo.about;
+    this._avatar = userInfo.avatar;
+    this._cohort = userInfo.cohort;
+    this._name = userInfo.name;
+    this._id = userInfo._id;
     this._userName.textContent = userInfo.name;
     this._userCaption.textContent = userInfo.about;
   }
