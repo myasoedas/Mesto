@@ -22,8 +22,6 @@ const api = new Api({
 const array = [];
 const cardsPromise = api.getCards();
 cardsPromise.then(cards => {
-  console.log(cards.length);
-  console.log(cards[cards.length - 1]);
   cards.forEach(item => {
     const card = {
       placeName: item.name,
@@ -48,6 +46,7 @@ const userInfo = new UserInfo({
   userImageSelector: initialCssClasses.profileImage,
 }, profileData);
 profilePromise.then(profile => {
+  console.log(profile);
   userInfo.setUserInfo(profile);
   userInfo.setUserImage(profile);
 });
@@ -55,6 +54,12 @@ profilePromise.then(profile => {
 const popupImage = new PopupWithImage({
   popupSelector: initialCssClasses.overlayPopupImage,
   selectors: initialCssClasses});
+
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: initialCssClasses.overlayNameEditAvatar,
+  selectors: initialCssClasses,
+  handleSubmitForm: editAvatar
+});
 
 const popupFormAddPlace = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameAddPlace,
@@ -65,7 +70,8 @@ const popupFormAddPlace = new PopupWithForm({
 const popupFormEditProfile = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameEditCaption,
   selectors: initialCssClasses,
-  handleSubmitForm: editProfile});
+  handleSubmitForm: editProfile
+});
 
 const validateFormAddPlace = new FormValidator(popupFormAddPlace.form, initialCssClasses);
 const validateFormEditProfile = new FormValidator(popupFormEditProfile.form, initialCssClasses);
@@ -96,6 +102,7 @@ function rendererCard(element) {
 }
 
 function createNewCard(formInputValueObject) {
+  console.log(formInputValueObject);
   const card = newCard(formInputValueObject, initialCssClasses);
   const elementsItem = card.createCard();
   this.closePopup();
@@ -103,7 +110,16 @@ function createNewCard(formInputValueObject) {
 }
 
 function editProfile(formInputValueObject) {
+  console.log(formInputValueObject);
   userInfo.setUserInfo(formInputValueObject);
+  api.editProfileInfo(formInputValueObject);
+}
+
+function editAvatar(formInputValueObject) {
+  console.log(formInputValueObject);
+  userInfo.setUserImage(formInputValueObject);
+  //
+
 }
 
 function newCard(element, initialCssClasses) {
@@ -123,8 +139,8 @@ function addEventListenerButtonEditProfile() {
     validateFormEditProfile.resetForm();
     validateFormEditProfile.toggleButtonState();
     const profileInfo = userInfo.getUserInfo();
-    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldName).value = profileInfo.userName;
-    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldCaption).value = profileInfo.userCaption;
+    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldName).value = profileInfo.name;
+    popupFormEditProfile.form.querySelector(initialCssClasses.formFieldCaption).value = profileInfo.about;
     popupFormEditProfile.openPopup();
   });
 }

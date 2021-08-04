@@ -24,11 +24,11 @@ export default class UserInfo {
 
   getUserInfo() {
     const userInfo = {
-      userName: this._name,
-      userCaption: this._about,
-      userAvatar: this._avatar,
-      userCohort: this._cohort,
-      userId: this._id
+      name: this._name,
+      about: this._about,
+      avatar: this._avatar,
+      cohort: this._cohort,
+      id: this._id
     };
     return userInfo;
   }
@@ -45,8 +45,6 @@ export default class UserInfo {
 
   setUserImage(userInfo) {
     this._userImage.src = userInfo.avatar;
-    this._userImage.alt = userInfo.name + ' - ' + userInfo.about;
-    //<%=require('./images/alex.jpg')%>
   }
 
 

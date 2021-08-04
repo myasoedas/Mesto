@@ -62,10 +62,23 @@
     </li>
   </template>
 
+  <!-- Попап для редактирования аватарки пользователя -->
+  <div class="overlay overlay_name_edit-avatar">
+    <div class="popup">
+      <form class="form" name="form_name_edit-avatar" novalidate>
+        <h2 class="form__title">Сменить аватарку</h2>
+        <input class="form__field form__field_name_avatar-src" name="avatar" type="url" value="" placeholder="Ссылка на аватарку" pattern="https?://.+" required>
+        <span class="form__field-error">Ошибка</span>
+        <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__button-close" name ="button_name_close" type="button"></button>
+    </div>
+  </div>
+
   <!-- Попап для подтверждения удаления карточки места -->
   <div class="overlay overlay_name_delete-card">
     <div class="popup">
-      <form class="form" name="form_name_edit-caption" novalidate>
+      <form class="form" name="form_name_delete-card" novalidate>
         <h2 class="form__title">Вы уверены?</h2>
         <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>
@@ -78,9 +91,9 @@
     <div class="popup">
       <form class="form" name="form_name_edit-caption" novalidate>
         <h2 class="form__title">Редактировать профиль</h2>
-        <input class="form__field form__field_name_name" name="userName" type="text" value="" placeholder="Введите ФИО" minlength="2" maxlength="40" required>
+        <input class="form__field form__field_name_name" name="name" type="text" value="" placeholder="Введите ФИО" minlength="2" maxlength="40" required>
         <span class="form__field-error">Ошибка</span>
-        <input class="form__field form__field_name_caption" name="userCaption" type="text" value="" placeholder='Кем вы работаете' minlength="2" maxlength="200" required>
+        <input class="form__field form__field_name_caption" name="about" type="text" value="" placeholder='Кем вы работаете' minlength="2" maxlength="200" required>
         <span class="form__field-error">Ошибка</span>
         <button class="form__button-save" name ="button_name_save" type="submit">Сохранить</button>
       </form>

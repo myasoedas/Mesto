@@ -10,6 +10,7 @@ export default {
   elementsList: '.elements__list',
   overlay: '.overlay',
   overlayPopupImage: '.overlay_name_display-image',
+  overlayNameEditAvatar: '.overlay_name_edit-avatar',
   overlayNameEditCaption: '.overlay_name_edit-caption',
   overlayNameAddPlace: '.overlay_name_add-place',
   overlayIsOpened: 'overlay_is-opened',

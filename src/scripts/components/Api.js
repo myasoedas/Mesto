@@ -43,6 +43,21 @@ export default class Api {
     });
   }
 
+  editProfileInfo(userInfo) {
+    fetch(`${this._url}users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip
+      },
+      body: JSON.stringify({
+        name: userInfo.name,
+        about: userInfo.about
+      })
+    });
+
+  }
+
 
 
 }
