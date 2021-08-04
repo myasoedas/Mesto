@@ -11,6 +11,7 @@ import initialCssClasses from './initial-css-classes.js';
 
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
+const profileImageContainer = page.querySelector(initialCssClasses.profileImageContainer);
 const buttonAddPlace = page.querySelector(initialCssClasses.profileButtonAdd);
 
 const api = new Api({
@@ -46,7 +47,6 @@ const userInfo = new UserInfo({
   userImageSelector: initialCssClasses.profileImage,
 }, profileData);
 profilePromise.then(profile => {
-  console.log(profile);
   userInfo.setUserInfo(profile);
   userInfo.setUserImage(profile);
 });
@@ -73,12 +73,21 @@ const popupFormEditProfile = new PopupWithForm({
   handleSubmitForm: editProfile
 });
 
+const popupFormEditProfileAvatar = new PopupWithForm({
+  popupSelector: initialCssClasses.overlayNameEditAvatar,
+  selectors: initialCssClasses,
+  handleSubmitForm: editAvatar
+});
+
 const validateFormAddPlace = new FormValidator(popupFormAddPlace.form, initialCssClasses);
 const validateFormEditProfile = new FormValidator(popupFormEditProfile.form, initialCssClasses);
+const validateFormEditProfileAvatar = new FormValidator(popupFormEditProfileAvatar.form, initialCssClasses);
 validateFormAddPlace.enableValidation();
 validateFormEditProfile.enableValidation();
+validateFormEditProfileAvatar.enableValidation();
 
 addEventListenerButtonEditProfile();
+addEventListenerProfileImageContainer();
 
 buttonAddPlace.addEventListener('click', function (event) {
   validateFormAddPlace.resetForm();
@@ -102,7 +111,6 @@ function rendererCard(element) {
 }
 
 function createNewCard(formInputValueObject) {
-  console.log(formInputValueObject);
   const card = newCard(formInputValueObject, initialCssClasses);
   const elementsItem = card.createCard();
   this.closePopup();
@@ -110,15 +118,13 @@ function createNewCard(formInputValueObject) {
 }
 
 function editProfile(formInputValueObject) {
-  console.log(formInputValueObject);
   userInfo.setUserInfo(formInputValueObject);
   api.editProfileInfo(formInputValueObject);
 }
 
 function editAvatar(formInputValueObject) {
-  console.log(formInputValueObject);
   userInfo.setUserImage(formInputValueObject);
-  //
+  api.editProfileAvatar(formInputValueObject);
 
 }
 
@@ -142,5 +148,16 @@ function addEventListenerButtonEditProfile() {
     popupFormEditProfile.form.querySelector(initialCssClasses.formFieldName).value = profileInfo.name;
     popupFormEditProfile.form.querySelector(initialCssClasses.formFieldCaption).value = profileInfo.about;
     popupFormEditProfile.openPopup();
+  });
+}
+
+
+function addEventListenerProfileImageContainer() {
+  profileImageContainer.addEventListener('click', function (event) {
+    validateFormEditProfileAvatar.resetForm();
+    validateFormEditProfileAvatar.toggleButtonState();
+    const profileInfo = userInfo.getUserInfo();
+    popupFormEditProfileAvatar.form.querySelector(initialCssClasses.formFieldAvatarSrc).value = profileInfo.avatar;
+    popupFormEditProfileAvatar.openPopup();
   });
 }

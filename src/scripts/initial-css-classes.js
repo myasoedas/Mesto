@@ -21,6 +21,7 @@ export default {
   profileImage: '.profile__image',
   profileTitle: '.profile__title',
   profileText: '.profile__text',
+  profileImageContainer: '.profile__image-container',
   profileButtonEdit: '.profile__button-edit',
   profileButtonAdd: '.profile__button-add',
   formSelector: '.form',
@@ -30,6 +31,7 @@ export default {
   errorClass: 'form__field-error_active',
   formFieldName: '.form__field_name_name',
   formFieldCaption: '.form__field_name_caption',
+  formFieldAvatarSrc: '.form__field_name_avatar-src',
   formFieldPlace: '.form__field_name_name-place',
   formFieldSrcLink: '.form__field_name_src-link'
 };

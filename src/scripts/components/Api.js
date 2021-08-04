@@ -58,7 +58,19 @@ export default class Api {
 
   }
 
+  editProfileAvatar(userInfo) {
+    fetch(`${this._url}users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip
+      },
+      body: JSON.stringify({
+        avatar: userInfo.avatar
+      })
+    });
 
+  }
 
 }
 

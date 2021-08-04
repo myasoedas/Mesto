@@ -48,6 +48,7 @@
 @import url(../blocks/overlay/_is-opened/overlay_is-opened.css);
 @import url(../blocks/overlay/_color/overlay_color_black.css);
 @import url(../blocks/overlay/_name/overlay_name_edit-caption.css);
+@import url(../blocks/overlay/_name/overlay_name_edit-avatar.css);
 @import url(../blocks/overlay/_name/overlay_name_add-place.css);
 @import url(../blocks/overlay/_name/overlay_name_delete-card.css);
 @import url(../blocks/overlay/_name/overlay_name_display-image.css);
