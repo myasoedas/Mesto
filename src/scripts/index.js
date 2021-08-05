@@ -20,8 +20,8 @@ const api = new Api({
   contentTip: 'application/json',
 });
 
-const array = [];
-const cardsSection = new Section({items: array, renderer: rendererCard}, initialCssClasses.elementsList);
+const cards = []; // создаем пустой массив карточек
+const cardsSection = new Section({items: cards, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
 
 const profilePromise = api.getProfile();
@@ -32,24 +32,36 @@ const userInfo = new UserInfo({
   userImageSelector: initialCssClasses.profileImage,
 }, profileData);
 
+let cardsArr = [];
+let profile = {};
+
 Promise.all([cardsPromise, profilePromise])
 .then(values => {
-  console.log(values);
-  values[0].forEach(item => {
+  cardsArr = values[0];
+  profile = values[1];
+  userInfo.setUserInfo(profile);
+  userInfo.setUserImage(profile);
+  console.log(userInfo);
+  cardsArr.forEach(item => {
     const card = {
       placeName: item.name,
-      placeSrc: item.link,
       placeAlt: item.name,
+      placeSrc: item.link,
+      placeCreatedAt: item.createdAt,
+      placeOwner: item.owner,
+      placeLikes: item.likes,
+      placeId: item._id,
+      deleteButtonState: (item.owner._id === profile._id),
     };
-    array.push(card);
+    cards.push(card);
   });
-  cardsSection.setItems(array);
+  console.log(cards);
+  cardsSection.setItems(cards);
   const elements = cardsSection.rendererItems();
   elements.forEach((element) => {
     cardsSection.addItem(element);
   });
-  userInfo.setUserInfo(values[1]);
-  userInfo.setUserImage(values[1]);
+
 })
 .catch(err => {
   console.log(err);
@@ -107,7 +119,7 @@ function getElement(selektor) {
 function addElement(selektor, elementToAdd) {
   getElement(selektor).prepend(elementToAdd);
 }
-
+//
 function rendererCard(element) {
   const card = newCard(element, initialCssClasses);
   const elementsItem = card.createCard();
