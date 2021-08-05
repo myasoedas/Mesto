@@ -34,6 +34,9 @@ export default class Section {
     });
     return elements;
   }
+  setItems(itemsArr) {
+    this._items = itemsArr;
+  }
 
   /*
     публичный метод addItem, который принимает DOM-элемент и

@@ -33,6 +33,10 @@ export default class UserInfo {
     return userInfo;
   }
 
+  getUserId() {
+    return this._id;
+  }
+
   setUserInfo(userInfo) {
     this._about = userInfo.about;
     this._avatar = userInfo.avatar;

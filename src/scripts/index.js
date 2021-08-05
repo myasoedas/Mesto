@@ -21,23 +21,8 @@ const api = new Api({
 });
 
 const array = [];
+const cardsSection = new Section({items: array, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
-cardsPromise.then(cards => {
-  cards.forEach(item => {
-    const card = {
-      placeName: item.name,
-      placeSrc: item.link,
-      placeAlt: item.name,
-    };
-    array.push(card);
-  });
-  const cardsSection = new Section({items: array, renderer: rendererCard}, initialCssClasses.elementsList);
-  const elements = cardsSection.rendererItems();
-  elements.forEach((element) => {
-    cardsSection.addItem(element);
-  });
-
-});
 
 const profilePromise = api.getProfile();
 const profileData = [];
@@ -46,9 +31,28 @@ const userInfo = new UserInfo({
   userCaptionSelector: initialCssClasses.profileText,
   userImageSelector: initialCssClasses.profileImage,
 }, profileData);
-profilePromise.then(profile => {
-  userInfo.setUserInfo(profile);
-  userInfo.setUserImage(profile);
+
+Promise.all([cardsPromise, profilePromise])
+.then(values => {
+  console.log(values);
+  values[0].forEach(item => {
+    const card = {
+      placeName: item.name,
+      placeSrc: item.link,
+      placeAlt: item.name,
+    };
+    array.push(card);
+  });
+  cardsSection.setItems(array);
+  const elements = cardsSection.rendererItems();
+  elements.forEach((element) => {
+    cardsSection.addItem(element);
+  });
+  userInfo.setUserInfo(values[1]);
+  userInfo.setUserImage(values[1]);
+})
+.catch(err => {
+  console.log(err);
 });
 
 const popupImage = new PopupWithImage({
