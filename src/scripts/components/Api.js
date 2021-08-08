@@ -1,3 +1,5 @@
+import { Date } from "core-js";
+
 export default class Api {
   constructor(options) {
     this._url = options.url;
@@ -23,6 +25,26 @@ export default class Api {
       console.log(err);
     });
   }
+
+  addCard(cardInfo) {
+    fetch(`${this._url}cards`, {
+    //fetch('https://mesto.nomoreparties.co/v1/cohortId/cards/', {
+      method: 'POST',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip
+      },
+      body: JSON.stringify({
+        link: cardInfo.placeSrc,
+        name: cardInfo.placeName
+      })
+    });
+  }
+
+  delCard() {
+
+  }
+
 
   getProfile() {
     return fetch(`${this._url}users/me`, {

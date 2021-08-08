@@ -23,6 +23,7 @@ const api = new Api({
 const cards = []; // создаем пустой массив карточек
 const cardsSection = new Section({items: cards, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
+console.log(cardsPromise);
 
 const profilePromise = api.getProfile();
 const profileData = [];
@@ -119,7 +120,7 @@ function getElement(selektor) {
 function addElement(selektor, elementToAdd) {
   getElement(selektor).prepend(elementToAdd);
 }
-//
+
 function rendererCard(element) {
   const card = newCard(element, initialCssClasses);
   const elementsItem = card.createCard();
@@ -127,10 +128,22 @@ function rendererCard(element) {
 }
 
 function createNewCard(formInputValueObject) {
-  const card = newCard(formInputValueObject, initialCssClasses);
+  const cardData = {
+    placeName: formInputValueObject.placeName,
+    placeAlt: formInputValueObject.placeName,
+    placeSrc: formInputValueObject.placeSrc,
+    placeCreatedAt: '',
+    placeOwner: {},
+    placeLikes: [],
+    placeId: '',
+    deleteButtonState: true,
+    likeButtonState: false
+  }
+  const card = newCard(cardData, initialCssClasses);
   const elementsItem = card.createCard();
   this.closePopup();
   cardsSection.addItem(elementsItem);
+  api.addCard(formInputValueObject);
 }
 
 function editProfile(formInputValueObject) {
@@ -166,7 +179,6 @@ function addEventListenerButtonEditProfile() {
     popupFormEditProfile.openPopup();
   });
 }
-
 
 function addEventListenerProfileImageContainer() {
   profileImageContainer.addEventListener('click', function (event) {

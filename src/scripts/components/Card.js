@@ -17,8 +17,6 @@ export default class Card {
       return false;
     });
 
-
-
     this._selectorElementsItemTemplate = cardSelectors.elementsItemTemplate;
     this._selectorElementsItem = cardSelectors.elementsItem;
     this._selectorElementImage = cardSelectors.elementImage;
@@ -50,8 +48,18 @@ export default class Card {
   _toggleLike(evt) {
     const eventTarget = evt.target;
     const selectorElementLikeStatusActive = this._selectorElementLikeStatusActive;
+    /*
+    1.  Событие клик по сердечку:
+        если сердечко уже нажато - снять лайк
+          отправить промис на сервер где в массиве пользователей - удалить своего пользователя из массива
+        если сердечко не нажато - поставить лайк
+          отправить промис на сервер в котором добавить пользователя в массив Likes для этой карточки
+          id карточки текущей известно
+    */
     eventTarget.classList.toggle(selectorElementLikeStatusActive);
   }
+
+
 
   _removeCard(evt) {
     this._elementsItem.remove();
