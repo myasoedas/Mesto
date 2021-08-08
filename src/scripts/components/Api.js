@@ -26,26 +26,6 @@ export default class Api {
     });
   }
 
-  /*getCard(cardId) {
-    const id = cardId;
-    return fetch(`${this._url}cards/${id}`, {
-      method: 'GET',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentTip,
-      }
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }*/
-
   addCard(cardInfo) {
     fetch(`${this._url}cards`, {
       method: 'POST',

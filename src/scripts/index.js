@@ -32,10 +32,10 @@ const api = new Api({
 const cards = []; // создаем пустой массив карточек
 const cardsSection = new Section({items: cards, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
-console.log(cardsPromise);
+//console.log(cardsPromise);
 
 const profilePromise = api.getProfile();
-console.log(profilePromise);
+//console.log(profilePromise);
 const profileData = [];
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
