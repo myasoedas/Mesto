@@ -12,8 +12,11 @@ import initialCssClasses from './initial-css-classes.js';
 //объект хранит id карточки на которой была нажата кнопка удаления и её evt
 const cardId = {
   cardId: null,
-  evt: null
+  evt: null,
+  likeButtonState: null
 };
+
+let numberOfLikes = 0; //переменная для подсчета количества лайков для карточки
 
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
@@ -176,7 +179,7 @@ function editAvatar(formInputValueObject) {
 }
 
 function newCard(element, initialCssClasses) {
-  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick, handleDeleteButtonClick);
+  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick, handleDeleteButtonClick, handleLikeButtonClick);
   return card;
 }
 
@@ -191,6 +194,53 @@ function handleDeleteButtonClick(placeId, evt) {
   cardId.cardId = placeId;
   cardId.evt = evt;
   popupDeleteCard.openPopup();
+}
+
+function handleLikeButtonClick(placeId, evt) {
+  evt.target.classList.toggle(initialCssClasses.elementLikeStatusActive);
+  api.setLike(placeId);
+  /*const elementLikeStatusActive = evt.target;
+  console.log(evt.target.querySelector(initialCssClasses.elementLikeStatusActive));
+  if (evt.target.querySelector(initialCssClasses.elementLikeStatusActive)) {
+    api.delLike(placeId);
+    const cardsPromise = api.getCards();
+    Promise.all([cardsPromise])
+    .then(values => {
+      cardsArr = values[0];
+      cardsArr.forEach(item => {
+        if (item._id === placeId) {
+          return numberOfLikes = item.likes.length;
+        }
+      });
+      console.log('numberOfLikes: ' + numberOfLikes);
+      if (numberOfLikes > 0) {
+        evt.target.querySelector(initialCssClasses.elementLikeCounter).textContent = numberOfLikes;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  } else {
+    api.setLike(placeId);
+    const cardsPromise = api.getCards();
+    Promise.all([cardsPromise])
+    .then(values => {
+      cardsArr = values[0];
+      cardsArr.forEach(item => {
+        if (item._id === placeId) {
+          return numberOfLikes = item.likes.length;
+        }
+      });
+      console.log('numberOfLikes: ' + numberOfLikes);
+      if (numberOfLikes > 0) {
+        evt.target.querySelector(initialCssClasses.elementLikeCounter).textContent = numberOfLikes;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }*/
+
 }
 
 function addEventListenerButtonEditProfile() {

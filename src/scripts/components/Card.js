@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({data, cardSelectors}, handleCardClick, handleDeleteButtonClick) {
+  constructor({data, cardSelectors}, handleCardClick, handleDeleteButtonClick, handleLikeButtonClick) {
     this._imageTitle = data.placeName; // название карточки
     this._imageAltTitle = data.placeAlt; // Alt карточки
     this._imageSrc = data.placeSrc; // URL карточки
@@ -13,8 +13,9 @@ export default class Card {
     this._likeButtonState = this._likes.forEach(item => {
       if (item._id === this._owner._id) {
         return true;
+      } else {
+        return false;
       }
-      return false;
     });
 
     this._selectorElementsItemTemplate = cardSelectors.elementsItemTemplate;
@@ -38,9 +39,11 @@ export default class Card {
     this._elementLikeCounter = this._elementsItem.querySelector(this._selectorElementLikeCounter);
     this._handleCardClick = handleCardClick;
     this._handleDeleteButtonClick = handleDeleteButtonClick;
+    this._handleLikeButtonClick = handleLikeButtonClick;
     this._cardClik = () => {this._handleCardClick(this._imageTitle, this._imageAltTitle, this._imageSrc)};
     this._delCard = (evt) => {this._handleDeleteButtonClick(this._id, evt)};
-    this._togLike = (evt) => {this._toggleLike(evt)};
+    this._likeClick = (evt) => {this._handleLikeButtonClick(this._id, evt)};
+    //this._togLike = (evt) => {this._toggleLike(evt)};
   }
 
   _toggleLike(evt) {
@@ -83,19 +86,11 @@ export default class Card {
   _removeListenerRemoveCard() {
     this._elementDelElement.removeEventListener('click', this._delCard);
   }
-  /*
-  _addListenerRemoveCard() {
-    this._elementDelElement.addEventListener('click', this._delCard);
-  }
-  _removeListenerRemoveCard() {
-    this._elementDelElement.removeEventListener('click', this._delCard);
-  }
-  */
   _addListenerToggleLike() {
-    this._elementLike.addEventListener('click', this._togLike);
+    this._elementLike.addEventListener('click', this._likeClick);
   }
   _removeListenerToggleLike() {
-    this._elementLike.removeEventListener('click', this._togLike);
+    this._elementLike.removeEventListener('click', this._likeClick);
   }
   _addListeners() {
     this._addListenerRemoveCard();

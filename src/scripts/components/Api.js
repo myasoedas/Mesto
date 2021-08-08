@@ -26,6 +26,26 @@ export default class Api {
     });
   }
 
+  /*getCard(cardId) {
+    const id = cardId;
+    return fetch(`${this._url}cards/${id}`, {
+      method: 'GET',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip,
+      }
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }*/
+
   addCard(cardInfo) {
     fetch(`${this._url}cards`, {
       method: 'POST',
@@ -42,7 +62,6 @@ export default class Api {
 
   delCard(cardId) {
     const id = cardId;
-    console.log(`${this._url}cards/${id}`);
     fetch(`${this._url}cards/${id}`, {
       method: 'DELETE',
       headers: {
@@ -52,6 +71,30 @@ export default class Api {
     });
   }
 
+  setLike(cardId) {
+    const id = cardId;
+    fetch(`${this._url}cards/likes/${id}`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip,
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  delLike(cardId) {
+    const id = cardId;
+    fetch(`${this._url}cards/likes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip,
+      }
+    });
+  }
 
   getProfile() {
     return fetch(`${this._url}users/me`, {
