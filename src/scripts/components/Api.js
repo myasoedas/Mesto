@@ -28,7 +28,6 @@ export default class Api {
 
   addCard(cardInfo) {
     fetch(`${this._url}cards`, {
-    //fetch('https://mesto.nomoreparties.co/v1/cohortId/cards/', {
       method: 'POST',
       headers: {
         authorization: this._authorization,
@@ -41,8 +40,16 @@ export default class Api {
     });
   }
 
-  delCard() {
-
+  delCard(cardId) {
+    const id = cardId;
+    console.log(`${this._url}cards/${id}`);
+    fetch(`${this._url}cards/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentTip,
+      }
+    });
   }
 
 

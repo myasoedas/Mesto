@@ -9,6 +9,12 @@ import UserInfo from './components/UserInfo.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 
+//объект хранит id карточки на которой была нажата кнопка удаления и её evt
+const cardId = {
+  cardId: null,
+  evt: null
+};
+
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
 const profileImageContainer = page.querySelector(initialCssClasses.profileImageContainer);
@@ -26,6 +32,7 @@ const cardsPromise = api.getCards();
 console.log(cardsPromise);
 
 const profilePromise = api.getProfile();
+console.log(profilePromise);
 const profileData = [];
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
@@ -42,7 +49,6 @@ Promise.all([cardsPromise, profilePromise])
   profile = values[1];
   userInfo.setUserInfo(profile);
   userInfo.setUserImage(profile);
-  console.log(userInfo);
   cardsArr.forEach(item => {
     const card = {
       placeName: item.name,
@@ -56,7 +62,6 @@ Promise.all([cardsPromise, profilePromise])
     };
     cards.push(card);
   });
-  console.log(cards);
   cardsSection.setItems(cards);
   const elements = cardsSection.rendererItems();
   elements.forEach((element) => {
@@ -76,6 +81,12 @@ const popupEditAvatar = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameEditAvatar,
   selectors: initialCssClasses,
   handleSubmitForm: editAvatar
+});
+
+const popupDeleteCard = new PopupWithForm({
+  popupSelector: initialCssClasses.overlayNameDeleteCard,
+  selectors: initialCssClasses,
+  handleSubmitForm: deleteCard
 });
 
 const popupFormAddPlace = new PopupWithForm({
@@ -146,6 +157,13 @@ function createNewCard(formInputValueObject) {
   api.addCard(formInputValueObject);
 }
 
+function deleteCard() {
+  const eventTarget = cardId.evt.target;
+  eventTarget.parentElement.parentElement.remove();
+  api.delCard(cardId.cardId);
+  this.closePopup();
+}
+
 function editProfile(formInputValueObject) {
   userInfo.setUserInfo(formInputValueObject);
   api.editProfileInfo(formInputValueObject);
@@ -158,7 +176,7 @@ function editAvatar(formInputValueObject) {
 }
 
 function newCard(element, initialCssClasses) {
-  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick);
+  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick, handleDeleteButtonClick);
   return card;
 }
 
@@ -167,6 +185,12 @@ function handleCardClick(placeName, placeAlt, placeSrc) {
   popupImage.popupImage.alt = placeAlt;
   popupImage.popupCaption.textContent = placeName;
   popupImage.openPopup();
+}
+
+function handleDeleteButtonClick(placeId, evt) {
+  cardId.cardId = placeId;
+  cardId.evt = evt;
+  popupDeleteCard.openPopup();
 }
 
 function addEventListenerButtonEditProfile() {
