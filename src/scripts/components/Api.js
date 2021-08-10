@@ -27,7 +27,7 @@ export default class Api {
   }
 
   addCard(cardInfo) {
-    fetch(`${this._url}cards`, {
+    return fetch(`${this._url}cards`, {
       method: 'POST',
       headers: {
         authorization: this._authorization,
@@ -37,7 +37,16 @@ export default class Api {
         link: cardInfo.placeSrc,
         name: cardInfo.placeName
       })
-    });
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result) => {      
+      return result;
+    });    
   }
 
   delCard(cardId) {
@@ -48,7 +57,16 @@ export default class Api {
         authorization: this._authorization,
         'Content-Type': this._contentTip,
       }
-    });
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result) => {      
+      return result;
+    });    
   }
 
   setLike(cardId) {
@@ -60,9 +78,15 @@ export default class Api {
         'Content-Type': this._contentTip,
       }
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result) => {      
+      return result;
+    });      
   }
 
   delLike(cardId) {
@@ -73,7 +97,16 @@ export default class Api {
         authorization: this._authorization,
         'Content-Type': this._contentTip,
       }
-    });
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result) => {      
+      return result;
+    });      
   }
 
   getProfile() {
@@ -84,15 +117,15 @@ export default class Api {
         'Content-Type': this._contentTip,
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then((result) => {      
+      return result;
+    });      
   }
 
   editProfileInfo(userInfo) {
@@ -106,8 +139,16 @@ export default class Api {
         name: userInfo.name,
         about: userInfo.about
       })
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result) => {      
+      return result;
     });
-
   }
 
   editProfileAvatar(userInfo) {
@@ -120,9 +161,16 @@ export default class Api {
       body: JSON.stringify({
         avatar: userInfo.avatar
       })
-    });
-
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }    
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result) => {      
+      return result;
+    });    
   }
-
 }
 

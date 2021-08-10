@@ -70,7 +70,6 @@ Promise.all([cardsPromise, profilePromise])
   elements.forEach((element) => {
     cardsSection.addItem(element);
   });
-
 })
 .catch(err => {
   console.log(err);
@@ -141,23 +140,46 @@ function rendererCard(element) {
   return elementsItem;
 }
 
-function createNewCard(formInputValueObject) {
-  const cardData = {
-    placeName: formInputValueObject.placeName,
-    placeAlt: formInputValueObject.placeName,
-    placeSrc: formInputValueObject.placeSrc,
-    placeCreatedAt: '',
-    placeOwner: {},
-    placeLikes: [],
-    placeId: '',
-    deleteButtonState: true,
-    likeButtonState: false
+function handleResponse(response) {
+  if (response.ok) {
+      return response.json()
+  } else {
+      console.log("Ошибка: " + response.statusText);
+      return Promise.reject("Ошибка: " + response.status + ":" + response.statusText);
   }
-  const card = newCard(cardData, initialCssClasses);
-  const elementsItem = card.createCard();
-  this.closePopup();
-  cardsSection.addItem(elementsItem);
-  api.addCard(formInputValueObject);
+}
+
+function findSubmitButton(popupSelector, submitButtonSelector) {
+  return document.querySelector(popupSelector).querySelector(submitButtonSelector);  
+}
+
+function createNewCard(formInputValueObject) { 
+  findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';  
+  const result = api.addCard(formInputValueObject);  
+  result.then(res => {    
+    const cardData = {
+      placeName: res.name,
+      placeAlt: res.name,
+      placeSrc: res.link,
+      placeCreatedAt: res.createdAt,
+      placeOwner: res.owner,
+      placeLikes: res.likes,
+      placeId: res._id,
+      deleteButtonState: true,
+      likeButtonState: false
+    }
+    const card = newCard(cardData, initialCssClasses);
+    const elementsItem = card.createCard();    
+    cardsSection.addItem(elementsItem); 
+  })
+  .catch((err) => {
+    findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Ошибка';    
+    console.log(err);
+  })
+  .finally(() => {
+    console.log('finally'); 
+    findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Сохранено';    
+  });    
 }
 
 function deleteCard() {
