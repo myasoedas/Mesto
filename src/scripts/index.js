@@ -52,7 +52,7 @@ Promise.all([cardsPromise, profilePromise])
   profile = values[1];
   userInfo.setUserInfo(profile);
   userInfo.setUserImage(profile);
-  cardsArr.forEach(item => {
+  cardsArr.reverse().forEach(item => {
     const card = {
       placeName: item.name,
       placeAlt: item.name,
