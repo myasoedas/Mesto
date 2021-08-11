@@ -5,6 +5,7 @@ import FormValidator from './components/FormValidator.js';
 import Card from './components/Card.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithFormSubmit from './components/PopupWithFormSubmit.js';
 import UserInfo from './components/UserInfo.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
@@ -15,6 +16,9 @@ const cardId = {
   evt: null,
   likeButtonState: null
 };
+
+let currentCardObject = null;
+let currentDelButtonCardEvt = null;
 
 let numberOfLikes = 0; //переменная для подсчета количества лайков для карточки
 
@@ -32,7 +36,7 @@ const api = new Api({
 const cards = []; // создаем пустой массив карточек
 const cardsSection = new Section({items: cards, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
-//console.log(cardsPromise);
+console.log(cardsPromise);
 
 const profilePromise = api.getProfile();
 //console.log(profilePromise);
@@ -85,12 +89,6 @@ const popupEditAvatar = new PopupWithForm({
   handleSubmitForm: editAvatar
 });
 
-const popupDeleteCard = new PopupWithForm({
-  popupSelector: initialCssClasses.overlayNameDeleteCard,
-  selectors: initialCssClasses,
-  handleSubmitForm: deleteCard
-});
-
 const popupFormAddPlace = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameAddPlace,
   selectors: initialCssClasses,
@@ -107,6 +105,12 @@ const popupFormEditProfileAvatar = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameEditAvatar,
   selectors: initialCssClasses,
   handleSubmitForm: editAvatar
+});
+
+const popupDeleteCard = new PopupWithFormSubmit({
+  popupSelector: initialCssClasses.overlayNameDeleteCard,
+  selectors: initialCssClasses,
+  handleSubmitForm: deleteCard
 });
 
 const validateFormAddPlace = new FormValidator(popupFormAddPlace.form, initialCssClasses);
@@ -173,20 +177,36 @@ function createNewCard(formInputValueObject) {
     cardsSection.addItem(elementsItem); 
   })
   .catch((err) => {
-    findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Ошибка';    
+    findSubmitButton(initialCssClasses.overlayNameAddPlace, 
+    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';    
     console.log(err);
   })
-  .finally(() => {
-    console.log('finally'); 
-    findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Сохранено';    
+  .finally(() => {    
+    findSubmitButton(initialCssClasses.overlayNameAddPlace, 
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранено';    
   });    
 }
 
 function deleteCard() {
-  const eventTarget = cardId.evt.target;
-  eventTarget.parentElement.parentElement.remove();
-  api.delCard(cardId.cardId);
-  this.closePopup();
+  findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
+  initialCssClasses.submitButtonSelector).textContent = 'Удаление...';  
+  const card = currentCardObject;  
+  const evt = currentDelButtonCardEvt;
+  const resultDelCard = api.delCard(card.getCardId());
+  resultDelCard.then(res => {    
+    card.removeCard(evt);
+    findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
+    initialCssClasses.submitButtonSelector).textContent = 'Удалено';  
+  })
+  .catch((err) => {
+    findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
+    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';  
+    console.log(err);
+  })
+  .finally(() => {    
+    findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
+    initialCssClasses.submitButtonSelector).textContent = 'Удалить';  
+  });    
 }
 
 function editProfile(formInputValueObject) {
@@ -201,7 +221,8 @@ function editAvatar(formInputValueObject) {
 }
 
 function newCard(element, initialCssClasses) {
-  const card = new Card({data: element, cardSelectors: initialCssClasses}, handleCardClick, handleDeleteButtonClick, handleLikeButtonClick);
+  const card = new Card({data: element, cardSelectors: initialCssClasses}, 
+  handleCardClick, handleDeleteButtonClick, handleLikeButtonClick);
   return card;
 }
 
@@ -212,9 +233,9 @@ function handleCardClick(placeName, placeAlt, placeSrc) {
   popupImage.openPopup();
 }
 
-function handleDeleteButtonClick(placeId, evt) {
-  cardId.cardId = placeId;
-  cardId.evt = evt;
+function handleDeleteButtonClick(card, evt) {
+  currentCardObject = card;
+  currentDelButtonCardEvt = evt;  
   popupDeleteCard.openPopup();
 }
 

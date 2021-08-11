@@ -51,7 +51,7 @@ export default class Api {
 
   delCard(cardId) {
     const id = cardId;
-    fetch(`${this._url}cards/${id}`, {
+    return fetch(`${this._url}cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._authorization,
@@ -71,7 +71,7 @@ export default class Api {
 
   setLike(cardId) {
     const id = cardId;
-    fetch(`${this._url}cards/likes/${id}`, {
+    return fetch(`${this._url}cards/likes/${id}`, {
       method: 'PUT',
       headers: {
         authorization: this._authorization,
@@ -91,7 +91,7 @@ export default class Api {
 
   delLike(cardId) {
     const id = cardId;
-    fetch(`${this._url}cards/likes/${id}`, {
+    return fetch(`${this._url}cards/likes/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._authorization,
@@ -129,7 +129,7 @@ export default class Api {
   }
 
   editProfileInfo(userInfo) {
-    fetch(`${this._url}users/me`, {
+    return fetch(`${this._url}users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this._authorization,
@@ -152,7 +152,7 @@ export default class Api {
   }
 
   editProfileAvatar(userInfo) {
-    fetch(`${this._url}users/me/avatar`, {
+    return fetch(`${this._url}users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this._authorization,

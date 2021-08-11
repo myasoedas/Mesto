@@ -37,9 +37,9 @@ export default class Popup {
   _popupClassListRemove(selector) {
     this._popup.classList.remove(selector);
   }
-  closePopup() {
-    this._popupClassListRemove(this._popupIsOpenedSelector);
+  closePopup() {    
     this.removeEventListeners();
+    this._popupClassListRemove(this._popupIsOpenedSelector);
   }
   _handleEscClose(evt) {
     if (evt.key === constants.escape) {
