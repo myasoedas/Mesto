@@ -26,10 +26,7 @@ const api = new Api({
 const cards = []; // создаем пустой массив карточек
 const cardsSection = new Section({items: cards, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
-//console.log(cardsPromise);
-
 const profilePromise = api.getProfile();
-//console.log(profilePromise);
 const profileData = [];
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
@@ -140,15 +137,6 @@ function rendererCard(element) {
   return elementsItem;
 }
 
-/*function handleResponse(response) {
-  if (response.ok) {
-      return response.json()
-  } else {
-      console.log("Ошибка: " + response.statusText);
-      return Promise.reject("Ошибка: " + response.status + ":" + response.statusText);
-  }
-}*/
-
 function findSubmitButton(popupSelector, submitButtonSelector) {
   return document.querySelector(popupSelector).querySelector(submitButtonSelector);
 }
@@ -183,12 +171,12 @@ function createNewCard(formInputValueObject) {
   });
 }
 
-function deleteCard( card) {
+function deleteCard(card) {
   findSubmitButton(initialCssClasses.overlayNameDeleteCard,
   initialCssClasses.submitButtonSelector).textContent = 'Удаление...';
   const resultDelCard = api.delCard(card.getCardId());
   resultDelCard.then(res => {
-    card.removeCard(evt);
+    card.removeCard();
     findSubmitButton(initialCssClasses.overlayNameDeleteCard,
     initialCssClasses.submitButtonSelector).textContent = 'Удалено';
   })
@@ -200,6 +188,7 @@ function deleteCard( card) {
   .finally(() => {
     findSubmitButton(initialCssClasses.overlayNameDeleteCard,
     initialCssClasses.submitButtonSelector).textContent = 'Удалить';
+    popupDeleteCard.closePopup();
   });
 }
 
@@ -232,7 +221,6 @@ function editAvatar(formInputValueObject) {
     initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';
   const resultEditProfileAvatar = api.editProfileAvatar(formInputValueObject);
   resultEditProfileAvatar.then(res => {
-    console.log(res);
     const userData = {
       avatar: res.avatar
     }
@@ -267,7 +255,6 @@ function handleCardClick(placeName, placeAlt, placeSrc) {
 
 function handleDeleteButtonClick(targetCard) {
   popupDeleteCard.setSubmitAction(() => {
-    console.log(targetCard);
     deleteCard(targetCard);
   });
   popupDeleteCard.openPopup();

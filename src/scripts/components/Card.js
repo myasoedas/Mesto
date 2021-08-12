@@ -37,12 +37,6 @@ export default class Card {
     this._likeClick = (evt) => {this._handleLikeButtonClick(this)};
   }
 
-  /*toggleLike(evt) {
-    const eventTarget = evt.target;
-    const selectorElementLikeStatusActive = this._selectorElementLikeStatusActive;
-    eventTarget.classList.toggle(selectorElementLikeStatusActive);
-  }*/
-
   setLike() {
     this._elementLike.classList.add(this._selectorElementLikeStatusActive);
     this._likeButtonState = true;
