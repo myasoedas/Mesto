@@ -211,13 +211,9 @@ function editProfile(formInputValueObject) {
     initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';
   const resultEditProfileInfo = api.editProfileInfo(formInputValueObject);
   resultEditProfileInfo.then(res => {
-    console.log(res);
     const userData = {
       about: res.about,
-      avatar: res.avatar,
-      cohort: res.cohort,
-      name: res.name,
-      _id: res._id
+      name: res.name
     }
     userInfo.setUserInfo(userData);
     findSubmitButton(initialCssClasses.overlayNameEditCaption,
@@ -235,8 +231,27 @@ function editProfile(formInputValueObject) {
 }
 
 function editAvatar(formInputValueObject) {
-  userInfo.setUserImage(formInputValueObject);
-  api.editProfileAvatar(formInputValueObject);
+  findSubmitButton(initialCssClasses.overlayNameEditAvatar,
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';
+  const resultEditProfileAvatar = api.editProfileAvatar(formInputValueObject);
+  resultEditProfileAvatar.then(res => {
+    console.log(res);
+    const userData = {
+      avatar: res.avatar
+    }
+    userInfo.setUserImage(userData);
+    findSubmitButton(initialCssClasses.overlayNameEditAvatar,
+      initialCssClasses.submitButtonSelector).textContent = 'Сохранено';
+  })
+  .catch((err) => {
+    findSubmitButton(initialCssClasses.overlayNameEditAvatar,
+      initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
+    console.log(err);
+  })
+  .finally(() => {
+    findSubmitButton(initialCssClasses.overlayNameEditAvatar,
+      initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
+  });
 
 }
 
@@ -254,9 +269,6 @@ function handleCardClick(placeName, placeAlt, placeSrc) {
 }
 
 function handleDeleteButtonClick(targetCard) {
-  /*
-  currentCardObject = card;
-  currentDelButtonCardEvt = evt; */
   popupDeleteCard.setSubmitAction(() => {
     console.log(targetCard);
     deleteCard(targetCard);
@@ -264,7 +276,6 @@ function handleDeleteButtonClick(targetCard) {
   popupDeleteCard.openPopup();
 }
 
-//________________________
 function handleLikeButtonClick(card, evt) {
   if(card.getLikeButtonState()) {
     let resultSetLike = api.setLike(card.getCardId());
@@ -309,8 +320,6 @@ function addEventListenerProfileImageContainer() {
   profileImageContainer.addEventListener('click', function (event) {
     validateFormEditProfileAvatar.resetForm();
     validateFormEditProfileAvatar.toggleButtonState();
-    const profileInfo = userInfo.getUserInfo();
-    popupFormEditProfileAvatar.form.querySelector(initialCssClasses.formFieldAvatarSrc).value = profileInfo.avatar;
     popupFormEditProfileAvatar.openPopup();
   });
 }
