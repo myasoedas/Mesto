@@ -10,17 +10,7 @@ import UserInfo from './components/UserInfo.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 
-//объект хранит id карточки на которой была нажата кнопка удаления и её evt
-const cardId = {
-  cardId: null,
-  evt: null,
-  likeButtonState: null
-};
-
-let currentCardObject = null;
-let currentDelButtonCardEvt = null;
-
-let numberOfLikes = 0; //переменная для подсчета количества лайков для карточки
+//let numberOfLikes = 0; //переменная для подсчета количества лайков для карточки
 
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
@@ -39,7 +29,7 @@ const cardsPromise = api.getCards();
 console.log(cardsPromise);
 
 const profilePromise = api.getProfile();
-//console.log(profilePromise);
+console.log(profilePromise);
 const profileData = [];
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
@@ -66,6 +56,16 @@ Promise.all([cardsPromise, profilePromise])
       placeLikes: item.likes,
       placeId: item._id,
       deleteButtonState: (item.owner._id === profile._id),
+      /*likeButtonState: () => {
+        let state = false;
+        state = item.likes.forEach(like => {
+          if (like._id === item.owner._id) {
+            return state = true;
+          }
+        });
+        return state;
+      }*/
+
     };
     cards.push(card);
   });
@@ -110,7 +110,6 @@ const popupFormEditProfileAvatar = new PopupWithForm({
 const popupDeleteCard = new PopupWithFormSubmit({
   popupSelector: initialCssClasses.overlayNameDeleteCard,
   selectors: initialCssClasses,
-  handleSubmitForm: deleteCard
 });
 
 const validateFormAddPlace = new FormValidator(popupFormAddPlace.form, initialCssClasses);
@@ -154,13 +153,13 @@ function handleResponse(response) {
 }
 
 function findSubmitButton(popupSelector, submitButtonSelector) {
-  return document.querySelector(popupSelector).querySelector(submitButtonSelector);  
+  return document.querySelector(popupSelector).querySelector(submitButtonSelector);
 }
 
-function createNewCard(formInputValueObject) { 
-  findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';  
-  const result = api.addCard(formInputValueObject);  
-  result.then(res => {    
+function createNewCard(formInputValueObject) {
+  findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';
+  const result = api.addCard(formInputValueObject);
+  result.then(res => {
     const cardData = {
       placeName: res.name,
       placeAlt: res.name,
@@ -173,45 +172,66 @@ function createNewCard(formInputValueObject) {
       likeButtonState: false
     }
     const card = newCard(cardData, initialCssClasses);
-    const elementsItem = card.createCard();    
-    cardsSection.addItem(elementsItem); 
+    const elementsItem = card.createCard();
+    cardsSection.addItem(elementsItem);
   })
   .catch((err) => {
-    findSubmitButton(initialCssClasses.overlayNameAddPlace, 
-    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';    
+    findSubmitButton(initialCssClasses.overlayNameAddPlace,
+    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
     console.log(err);
   })
-  .finally(() => {    
-    findSubmitButton(initialCssClasses.overlayNameAddPlace, 
-    initialCssClasses.submitButtonSelector).textContent = 'Сохранено';    
-  });    
+  .finally(() => {
+    findSubmitButton(initialCssClasses.overlayNameAddPlace,
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранено';
+  });
 }
 
-function deleteCard() {
-  findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
-  initialCssClasses.submitButtonSelector).textContent = 'Удаление...';  
-  const card = currentCardObject;  
-  const evt = currentDelButtonCardEvt;
+function deleteCard( card) {
+  findSubmitButton(initialCssClasses.overlayNameDeleteCard,
+  initialCssClasses.submitButtonSelector).textContent = 'Удаление...';
   const resultDelCard = api.delCard(card.getCardId());
-  resultDelCard.then(res => {    
+  resultDelCard.then(res => {
     card.removeCard(evt);
-    findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
-    initialCssClasses.submitButtonSelector).textContent = 'Удалено';  
+    findSubmitButton(initialCssClasses.overlayNameDeleteCard,
+    initialCssClasses.submitButtonSelector).textContent = 'Удалено';
   })
   .catch((err) => {
-    findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
-    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';  
+    findSubmitButton(initialCssClasses.overlayNameDeleteCard,
+    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
     console.log(err);
   })
-  .finally(() => {    
-    findSubmitButton(initialCssClasses.overlayNameDeleteCard, 
-    initialCssClasses.submitButtonSelector).textContent = 'Удалить';  
-  });    
+  .finally(() => {
+    findSubmitButton(initialCssClasses.overlayNameDeleteCard,
+    initialCssClasses.submitButtonSelector).textContent = 'Удалить';
+  });
 }
 
 function editProfile(formInputValueObject) {
-  userInfo.setUserInfo(formInputValueObject);
-  api.editProfileInfo(formInputValueObject);
+  findSubmitButton(initialCssClasses.overlayNameEditCaption,
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранение...';
+  const resultEditProfileInfo = api.editProfileInfo(formInputValueObject);
+  resultEditProfileInfo.then(res => {
+    console.log(res);
+    const userData = {
+      about: res.about,
+      avatar: res.avatar,
+      cohort: res.cohort,
+      name: res.name,
+      _id: res._id
+    }
+    userInfo.setUserInfo(userData);
+    findSubmitButton(initialCssClasses.overlayNameEditCaption,
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранено';
+  })
+  .catch((err) => {
+    findSubmitButton(initialCssClasses.overlayNameEditCaption,
+    initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
+    console.log(err);
+  })
+  .finally(() => {
+    findSubmitButton(initialCssClasses.overlayNameEditCaption,
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
+  });
 }
 
 function editAvatar(formInputValueObject) {
@@ -221,7 +241,7 @@ function editAvatar(formInputValueObject) {
 }
 
 function newCard(element, initialCssClasses) {
-  const card = new Card({data: element, cardSelectors: initialCssClasses}, 
+  const card = new Card({data: element, cardSelectors: initialCssClasses},
   handleCardClick, handleDeleteButtonClick, handleLikeButtonClick);
   return card;
 }
@@ -233,56 +253,44 @@ function handleCardClick(placeName, placeAlt, placeSrc) {
   popupImage.openPopup();
 }
 
-function handleDeleteButtonClick(card, evt) {
+function handleDeleteButtonClick(targetCard) {
+  /*
   currentCardObject = card;
-  currentDelButtonCardEvt = evt;  
+  currentDelButtonCardEvt = evt; */
+  popupDeleteCard.setSubmitAction(() => {
+    console.log(targetCard);
+    deleteCard(targetCard);
+  });
   popupDeleteCard.openPopup();
 }
 
-function handleLikeButtonClick(placeId, evt) {
-  evt.target.classList.toggle(initialCssClasses.elementLikeStatusActive);
-  api.setLike(placeId);
-  /*const elementLikeStatusActive = evt.target;
-  console.log(evt.target.querySelector(initialCssClasses.elementLikeStatusActive));
-  if (evt.target.querySelector(initialCssClasses.elementLikeStatusActive)) {
-    api.delLike(placeId);
-    const cardsPromise = api.getCards();
-    Promise.all([cardsPromise])
-    .then(values => {
-      cardsArr = values[0];
-      cardsArr.forEach(item => {
-        if (item._id === placeId) {
-          return numberOfLikes = item.likes.length;
-        }
-      });
-      console.log('numberOfLikes: ' + numberOfLikes);
-      if (numberOfLikes > 0) {
-        evt.target.querySelector(initialCssClasses.elementLikeCounter).textContent = numberOfLikes;
-      }
+//________________________
+function handleLikeButtonClick(card, evt) {
+  if(card.getLikeButtonState()) {
+    let resultSetLike = api.setLike(card.getCardId());
+    resultSetLike.then(resultCard => {
+      card.showLikes(resultCard.likes, evt);
+      card.toggleLike(evt);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
     });
   } else {
-    api.setLike(placeId);
-    const cardsPromise = api.getCards();
-    Promise.all([cardsPromise])
-    .then(values => {
-      cardsArr = values[0];
-      cardsArr.forEach(item => {
-        if (item._id === placeId) {
-          return numberOfLikes = item.likes.length;
-        }
-      });
-      console.log('numberOfLikes: ' + numberOfLikes);
-      if (numberOfLikes > 0) {
-        evt.target.querySelector(initialCssClasses.elementLikeCounter).textContent = numberOfLikes;
-      }
+    let resultDelLike = api.delLike(card.getCardId());
+    resultDelLike.then(resultCard => {
+      card.showLikes(resultCard.likes, evt);
+      card.toggleLike(evt);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+
     });
-  }*/
+
+  }
 
 }
 

@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({data, cardSelectors}, handleCardClick, handleDeleteButtonClick, handleFormSubmitButton, handleLikeButtonClick) {
+  constructor({data, cardSelectors}, handleCardClick, handleDeleteButtonClick, handleLikeButtonClick) {
     this._imageTitle = data.placeName; // название карточки
     this._imageAltTitle = data.placeAlt; // Alt карточки
     this._imageSrc = data.placeSrc; // URL карточки
@@ -8,16 +8,6 @@ export default class Card {
     this._likes = data.placeLikes; //массив объектов пользователей, поставивших лайк
     this._id = data.placeId; // уникальный номер карточки
     this._deleteButtonState = data.deleteButtonState; // false - не выводить кнопку удаления карточки
-    
-    // если owner лайкнул свою карточку - она с заливкой
-    this._likeButtonState = this._likes.forEach(item => {
-      if (item._id === this._owner._id) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
     this._selectorElementsItemTemplate = cardSelectors.elementsItemTemplate;
     this._selectorElementsItem = cardSelectors.elementsItem;
     this._selectorElementImage = cardSelectors.elementImage;
@@ -38,20 +28,49 @@ export default class Card {
     this._elementLike = this._elementsItem.querySelector(this._selectorElementLike);
     this._elementLikeCounter = this._elementsItem.querySelector(this._selectorElementLikeCounter);
     this._handleCardClick = handleCardClick;
-    this._handleDeleteButtonClick = handleDeleteButtonClick;
-    this._handleFormSubmitButton = handleFormSubmitButton; 
+    this._handleDeleteButtonClick = handleDeleteButtonClick;     
     this._handleLikeButtonClick = handleLikeButtonClick;
     this._cardClik = () => {this._handleCardClick(this._imageTitle, this._imageAltTitle, this._imageSrc)};
-    this._delCard = (evt) => {this._handleDeleteButtonClick(this, evt)};
+    this._delCard = (evt) => {this._handleDeleteButtonClick(this)};
     this._openPopupDelCard = () => {this._handleDeleteButtonClick()};
-    this._likeClick = (evt) => {this._handleLikeButtonClick(this._id, evt)};
-    //this._togLike = (evt) => {this._toggleLike(evt)};
+    this._likeClick = (evt) => {this._handleLikeButtonClick(this, evt)};
+    //this._togLike = (evt) => {this.toggleLike(evt)};
   }
 
-  _toggleLike(evt) {
+  toggleLike(evt) {
     const eventTarget = evt.target;
     const selectorElementLikeStatusActive = this._selectorElementLikeStatusActive;
     eventTarget.classList.toggle(selectorElementLikeStatusActive);
+  }
+
+  showLikes(likes, evt) {
+    const eventTarget = evt.target;
+    const numbersOfLikes = likes.length;
+    if(numbersOfLikes > 0) {
+      eventTarget.nextElementSibling.nextElementSibling.textContent = numbersOfLikes;
+    }    
+  }
+
+  getNumbersOfLikes(likes) {
+    return likes.length;
+  }
+
+  getOwnerId() {
+    return this._owner;
+  }
+
+  getLikeButtonState() {
+    let state = false;
+    this._likes.forEach(like => {
+      if (like._id === this._owner) {
+        state = true;
+      }
+    })
+    return state;
+  }
+
+  getDeleteButtonState() {
+    return this._deleteButtonState;
   }
 
   getCardId() {
@@ -67,23 +86,23 @@ export default class Card {
       name: this._imageTitle,
       owner: this._owner,
       _id: this._id,
-
     }
+    return cardData;
   }
 
-  removeCard(evt) {
+  removeCard() {
     this._elementsItem.remove();
     this._removeListeners();
     this._elementsItem = '';
   }
-
+//___________________________________
   createCard() {
     if (this._deleteButtonState) {
       this._elementDelElement.classList.add(this._selectorElementDelElementIsAdd);
     }
     if (!(this._likes.length === 0)) {
       this._elementLikeCounter.textContent = this._likes.length;
-      if (this._likeButtonState) {
+      if (this.getLikeButtonState()) {
         this._elementLike.classList.add(this._selectorElementLikeStatusActive);
       }
     }
