@@ -26,10 +26,10 @@ const api = new Api({
 const cards = []; // создаем пустой массив карточек
 const cardsSection = new Section({items: cards, renderer: rendererCard}, initialCssClasses.elementsList);
 const cardsPromise = api.getCards();
-console.log(cardsPromise);
+//console.log(cardsPromise);
 
 const profilePromise = api.getProfile();
-console.log(profilePromise);
+//console.log(profilePromise);
 const profileData = [];
 const userInfo = new UserInfo({
   userNameSelector: initialCssClasses.profileTitle,
@@ -47,6 +47,12 @@ Promise.all([cardsPromise, profilePromise])
   userInfo.setUserInfo(profile);
   userInfo.setUserImage(profile);
   cardsArr.reverse().forEach(item => {
+    let likeButtonState = false;
+    item.likes.forEach(like => {
+      if (like._id === profile._id) {
+        return likeButtonState = true;
+      }
+    });
     const card = {
       placeName: item.name,
       placeAlt: item.name,
@@ -56,16 +62,7 @@ Promise.all([cardsPromise, profilePromise])
       placeLikes: item.likes,
       placeId: item._id,
       deleteButtonState: (item.owner._id === profile._id),
-      /*likeButtonState: () => {
-        let state = false;
-        state = item.likes.forEach(like => {
-          if (like._id === item.owner._id) {
-            return state = true;
-          }
-        });
-        return state;
-      }*/
-
+      likeButtonState: likeButtonState
     };
     cards.push(card);
   });
@@ -143,14 +140,14 @@ function rendererCard(element) {
   return elementsItem;
 }
 
-function handleResponse(response) {
+/*function handleResponse(response) {
   if (response.ok) {
       return response.json()
   } else {
       console.log("Ошибка: " + response.statusText);
       return Promise.reject("Ошибка: " + response.status + ":" + response.statusText);
   }
-}
+}*/
 
 function findSubmitButton(popupSelector, submitButtonSelector) {
   return document.querySelector(popupSelector).querySelector(submitButtonSelector);
@@ -276,33 +273,26 @@ function handleDeleteButtonClick(targetCard) {
   popupDeleteCard.openPopup();
 }
 
-function handleLikeButtonClick(card, evt) {
-  if(card.getLikeButtonState()) {
-    let resultSetLike = api.setLike(card.getCardId());
-    resultSetLike.then(resultCard => {
-      card.showLikes(resultCard.likes, evt);
-      card.toggleLike(evt);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-    });
-  } else {
-    let resultDelLike = api.delLike(card.getCardId());
+function handleLikeButtonClick(card) {
+  if( card.getLikeButtonState() ) {
+    const resultDelLike = api.delLike(card.getCardId());
     resultDelLike.then(resultCard => {
-      card.showLikes(resultCard.likes, evt);
-      card.toggleLike(evt);
+      card.delLike();
+      card.showLikes(resultCard.likes);
     })
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => {
-
-    });
-
+  }  else {
+    const resultSetLike = api.setLike(card.getCardId());
+    resultSetLike.then(resultCard => {
+      card.showLikes(resultCard.likes);
+      card.setLike();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
-
 }
 
 function addEventListenerButtonEditProfile() {

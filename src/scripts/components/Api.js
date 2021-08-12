@@ -20,9 +20,6 @@ export default class Api {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
     });
   }
 
@@ -41,12 +38,12 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
-    });    
+    });
   }
 
   delCard(cardId) {
@@ -61,12 +58,12 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
-    });    
+    });
   }
 
   setLike(cardId) {
@@ -81,12 +78,12 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
-    });      
+    });
   }
 
   delLike(cardId) {
@@ -101,12 +98,12 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
-    });      
+    });
   }
 
   getProfile() {
@@ -120,12 +117,12 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
-    });      
+    });
   }
 
   editProfileInfo(userInfo) {
@@ -143,10 +140,10 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
     });
   }
@@ -165,12 +162,12 @@ export default class Api {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      }    
+      }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then((result) => {      
+    .then((result) => {
       return result;
-    });    
+    });
   }
 }
 

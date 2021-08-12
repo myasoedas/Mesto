@@ -8,6 +8,7 @@ export default class Card {
     this._likes = data.placeLikes; //массив объектов пользователей, поставивших лайк
     this._id = data.placeId; // уникальный номер карточки
     this._deleteButtonState = data.deleteButtonState; // false - не выводить кнопку удаления карточки
+    this._likeButtonState = data.likeButtonState;
     this._selectorElementsItemTemplate = cardSelectors.elementsItemTemplate;
     this._selectorElementsItem = cardSelectors.elementsItem;
     this._selectorElementImage = cardSelectors.elementImage;
@@ -28,27 +29,39 @@ export default class Card {
     this._elementLike = this._elementsItem.querySelector(this._selectorElementLike);
     this._elementLikeCounter = this._elementsItem.querySelector(this._selectorElementLikeCounter);
     this._handleCardClick = handleCardClick;
-    this._handleDeleteButtonClick = handleDeleteButtonClick;     
+    this._handleDeleteButtonClick = handleDeleteButtonClick;
     this._handleLikeButtonClick = handleLikeButtonClick;
     this._cardClik = () => {this._handleCardClick(this._imageTitle, this._imageAltTitle, this._imageSrc)};
     this._delCard = (evt) => {this._handleDeleteButtonClick(this)};
     this._openPopupDelCard = () => {this._handleDeleteButtonClick()};
-    this._likeClick = (evt) => {this._handleLikeButtonClick(this, evt)};
-    //this._togLike = (evt) => {this.toggleLike(evt)};
+    this._likeClick = (evt) => {this._handleLikeButtonClick(this)};
   }
 
-  toggleLike(evt) {
+  /*toggleLike(evt) {
     const eventTarget = evt.target;
     const selectorElementLikeStatusActive = this._selectorElementLikeStatusActive;
     eventTarget.classList.toggle(selectorElementLikeStatusActive);
+  }*/
+
+  setLike() {
+    this._elementLike.classList.add(this._selectorElementLikeStatusActive);
+    this._likeButtonState = true;
   }
 
-  showLikes(likes, evt) {
-    const eventTarget = evt.target;
+  delLike() {
+    this._elementLike.classList.remove(this._selectorElementLikeStatusActive);
+    this._likeButtonState = false;
+  }
+
+  getLikeButtonState() {
+    return this._likeButtonState;
+  }
+
+  showLikes(likes) {
     const numbersOfLikes = likes.length;
     if(numbersOfLikes > 0) {
-      eventTarget.nextElementSibling.nextElementSibling.textContent = numbersOfLikes;
-    }    
+      this._elementLikeCounter.textContent = numbersOfLikes;
+    }
   }
 
   getNumbersOfLikes(likes) {
@@ -56,17 +69,7 @@ export default class Card {
   }
 
   getOwnerId() {
-    return this._owner;
-  }
-
-  getLikeButtonState() {
-    let state = false;
-    this._likes.forEach(like => {
-      if (like._id === this._owner) {
-        state = true;
-      }
-    })
-    return state;
+    return this._owner._id;
   }
 
   getDeleteButtonState() {
@@ -74,8 +77,7 @@ export default class Card {
   }
 
   getCardId() {
-    const id = this._id;
-    return id;
+    return this._id;
   }
 
   getCardData() {
@@ -95,7 +97,7 @@ export default class Card {
     this._removeListeners();
     this._elementsItem = '';
   }
-//___________________________________
+
   createCard() {
     if (this._deleteButtonState) {
       this._elementDelElement.classList.add(this._selectorElementDelElementIsAdd);
@@ -103,7 +105,9 @@ export default class Card {
     if (!(this._likes.length === 0)) {
       this._elementLikeCounter.textContent = this._likes.length;
       if (this.getLikeButtonState()) {
-        this._elementLike.classList.add(this._selectorElementLikeStatusActive);
+        this.setLike();
+      } else {
+        this.delLike();
       }
     }
     this._elementImage.src = this._imageSrc;
