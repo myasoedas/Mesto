@@ -10,8 +10,6 @@ import UserInfo from './components/UserInfo.js';
 import initialCards from './initial-сards.js';
 import initialCssClasses from './initial-css-classes.js';
 
-//let numberOfLikes = 0; //переменная для подсчета количества лайков для карточки
-
 const page = document.querySelector(initialCssClasses.page);
 const buttonEditProfile = page.querySelector(initialCssClasses.profileButtonEdit);
 const profileImageContainer = page.querySelector(initialCssClasses.profileImageContainer);
@@ -34,13 +32,8 @@ const userInfo = new UserInfo({
   userImageSelector: initialCssClasses.profileImage,
 }, profileData);
 
-let cardsArr = [];
-let profile = {};
-
 Promise.all([cardsPromise, profilePromise])
-.then(values => {
-  cardsArr = values[0];
-  profile = values[1];
+.then(([cardsArr,profile]) => {
   userInfo.setUserInfo(profile);
   userInfo.setUserImage(profile);
   cardsArr.reverse().forEach(item => {
@@ -76,12 +69,6 @@ Promise.all([cardsPromise, profilePromise])
 const popupImage = new PopupWithImage({
   popupSelector: initialCssClasses.overlayPopupImage,
   selectors: initialCssClasses});
-
-const popupEditAvatar = new PopupWithForm({
-  popupSelector: initialCssClasses.overlayNameEditAvatar,
-  selectors: initialCssClasses,
-  handleSubmitForm: editAvatar
-});
 
 const popupFormAddPlace = new PopupWithForm({
   popupSelector: initialCssClasses.overlayNameAddPlace,
@@ -159,15 +146,13 @@ function createNewCard(formInputValueObject) {
     const card = newCard(cardData, initialCssClasses);
     const elementsItem = card.createCard();
     cardsSection.addItem(elementsItem);
+    findSubmitButton(initialCssClasses.overlayNameAddPlace, initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
+    popupFormAddPlace.closePopup();
   })
   .catch((err) => {
     findSubmitButton(initialCssClasses.overlayNameAddPlace,
     initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
     console.log(err);
-  })
-  .finally(() => {
-    findSubmitButton(initialCssClasses.overlayNameAddPlace,
-    initialCssClasses.submitButtonSelector).textContent = 'Сохранено';
   });
 }
 
@@ -178,17 +163,13 @@ function deleteCard(card) {
   resultDelCard.then(res => {
     card.removeCard();
     findSubmitButton(initialCssClasses.overlayNameDeleteCard,
-    initialCssClasses.submitButtonSelector).textContent = 'Удалено';
+    initialCssClasses.submitButtonSelector).textContent = 'Удалить';
+    popupDeleteCard.closePopup();
   })
   .catch((err) => {
     findSubmitButton(initialCssClasses.overlayNameDeleteCard,
     initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
     console.log(err);
-  })
-  .finally(() => {
-    findSubmitButton(initialCssClasses.overlayNameDeleteCard,
-    initialCssClasses.submitButtonSelector).textContent = 'Удалить';
-    popupDeleteCard.closePopup();
   });
 }
 
@@ -203,16 +184,13 @@ function editProfile(formInputValueObject) {
     }
     userInfo.setUserInfo(userData);
     findSubmitButton(initialCssClasses.overlayNameEditCaption,
-    initialCssClasses.submitButtonSelector).textContent = 'Сохранено';
+    initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
+    popupFormEditProfile.closePopup();
   })
   .catch((err) => {
     findSubmitButton(initialCssClasses.overlayNameEditCaption,
     initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
     console.log(err);
-  })
-  .finally(() => {
-    findSubmitButton(initialCssClasses.overlayNameEditCaption,
-    initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
   });
 }
 
@@ -226,18 +204,14 @@ function editAvatar(formInputValueObject) {
     }
     userInfo.setUserImage(userData);
     findSubmitButton(initialCssClasses.overlayNameEditAvatar,
-      initialCssClasses.submitButtonSelector).textContent = 'Сохранено';
+      initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
+      popupFormEditProfileAvatar.closePopup();
   })
   .catch((err) => {
     findSubmitButton(initialCssClasses.overlayNameEditAvatar,
       initialCssClasses.submitButtonSelector).textContent = 'Ошибка';
     console.log(err);
-  })
-  .finally(() => {
-    findSubmitButton(initialCssClasses.overlayNameEditAvatar,
-      initialCssClasses.submitButtonSelector).textContent = 'Сохранить';
   });
-
 }
 
 function newCard(element, initialCssClasses) {
@@ -252,10 +226,11 @@ function handleCardClick(placeName, placeAlt, placeSrc) {
   popupImage.popupCaption.textContent = placeName;
   popupImage.openPopup();
 }
-
+//
 function handleDeleteButtonClick(targetCard) {
   popupDeleteCard.setSubmitAction(() => {
     deleteCard(targetCard);
+    targetCard.removeListeners();
   });
   popupDeleteCard.openPopup();
 }
@@ -273,8 +248,8 @@ function handleLikeButtonClick(card) {
   }  else {
     const resultSetLike = api.setLike(card.getCardId());
     resultSetLike.then(resultCard => {
-      card.showLikes(resultCard.likes);
       card.setLike();
+      card.showLikes(resultCard.likes);
     })
     .catch((err) => {
       console.log(err);

@@ -55,6 +55,8 @@ export default class Card {
     const numbersOfLikes = likes.length;
     if(numbersOfLikes > 0) {
       this._elementLikeCounter.textContent = numbersOfLikes;
+    } else {
+      this._elementLikeCounter.textContent = '';
     }
   }
 
@@ -88,7 +90,7 @@ export default class Card {
 
   removeCard() {
     this._elementsItem.remove();
-    this._removeListeners();
+    this.removeListeners();
     this._elementsItem = '';
   }
 
@@ -133,7 +135,7 @@ export default class Card {
     this._addListenerToggleLike();
     this._addListenerElementImage();
   }
-  _removeListeners() {
+  removeListeners() {
     this._removeListenerRemoveCard();
     this._removeListenerToggleLike();
     this._removeListenerElementImage();

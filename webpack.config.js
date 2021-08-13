@@ -11,7 +11,7 @@ module.exports = {
       publicPath: ''
 },
   mode: 'development',
-  //devtool: 'source-map',
+  devtool: 'source-map',
 devServer: {
   contentBase: path.resolve(__dirname, './dist'),
   compress: true,
