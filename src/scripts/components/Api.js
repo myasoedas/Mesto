@@ -37,10 +37,7 @@ export default class Api {
         name: cardInfo.placeName
       })
     })
-    .then(this._getResponseData)
-    .then((result) => {
-      return result;
-    });
+    .then(this._getResponseData);
   }
 
   delCard(cardId) {
@@ -52,10 +49,7 @@ export default class Api {
         'Content-Type': this._contentTip,
       }
     })
-    .then(this._getResponseData)
-    .then((result) => {
-      return result;
-    });
+    .then(this._getResponseData);
   }
 
   setLike(cardId) {
@@ -67,10 +61,7 @@ export default class Api {
         'Content-Type': this._contentTip,
       }
     })
-    .then(this._getResponseData)
-    .then((result) => {
-      return result;
-    });
+    .then(this._getResponseData);
   }
 
   delLike(cardId) {
@@ -87,9 +78,6 @@ export default class Api {
         return response.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .then((result) => {
-      return result;
     });
   }
 
@@ -101,10 +89,7 @@ export default class Api {
         'Content-Type': this._contentTip,
       }
     })
-    .then(this._getResponseData)
-    .then((result) => {
-      return result;
-    });
+    .then(this._getResponseData);
   }
 
   editProfileInfo(userInfo) {
@@ -119,10 +104,7 @@ export default class Api {
         about: userInfo.about
       })
     })
-    .then(this._getResponseData)
-    .then((result) => {
-      return result;
-    });
+    .then(this._getResponseData);
   }
 
   editProfileAvatar(userInfo) {
@@ -136,10 +118,7 @@ export default class Api {
         avatar: userInfo.avatar
       })
     })
-    .then(this._getResponseData)
-    .then((result) => {
-      return result;
-    });
+    .then(this._getResponseData);
   }
 }
 
