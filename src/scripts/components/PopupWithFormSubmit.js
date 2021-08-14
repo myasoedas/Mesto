@@ -7,17 +7,20 @@ export default class PopupWithFormSubmit extends Popup {
     this._popup = this._page.querySelector(this._popupSelector);
     this.form = this._popup.querySelector(this._formSelector);
     this._handleSubmitForm = null;
+    this._setListenerFormSubmit = (evt) => {
+      evt.preventDefault();
+      this._handleSubmitForm();
+    };
   }
   // Функция, которая принимает стрелочную функцию в которой передается описание функции
   // которая примет как аргумент переданный экземпляр класса Card
   setSubmitAction(action) {
     this._handleSubmitForm = action;
   }
+
+
   _setEventListenerFormSubmit() {
-    this.form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        this._handleSubmitForm();
-    });
+    this.form.addEventListener('submit', this._setListenerFormSubmit);
   }
   _removeEventListenerFormSubmit() {
     this.form.removeEventListener('submit', this._setListenerFormSubmit);
